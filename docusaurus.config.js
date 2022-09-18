@@ -100,6 +100,10 @@ const config = {
             title: "Community",
             items: [
               {
+                label: "Gitter Chat",
+                href: "https://gitter.im/zeno-ml-eval/community",
+              },
+              {
                 label: "Stack Overflow",
                 href: "https://stackoverflow.com/questions/tagged/zeno",
               },
