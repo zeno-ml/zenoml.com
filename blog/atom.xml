@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://zenoml.com/blog</id>
+    <title>Zeno Blog</title>
+    <updated>2022-08-26T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://zenoml.com/blog"/>
+    <subtitle>Zeno Blog</subtitle>
+    <icon>https://zenoml.com/img/favicon.png</icon>
+    <entry>
+        <title type="html"><![CDATA[Welcome to Zeno]]></title>
+        <id>welcome-post</id>
+        <link href="https://zenoml.com/blog/welcome-post"/>
+        <updated>2022-08-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet]]></summary>
+        <content type="html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>]]></content>
+        <author>
+            <name>Angel Alexander Cabrera</name>
+            <uri>https://cabreraalex.com</uri>
+        </author>
+        <category label="welcome" term="welcome"/>
+    </entry>
+</feed>
