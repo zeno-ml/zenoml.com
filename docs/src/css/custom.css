@@ -19,6 +19,7 @@
 
   --logo: #6A1B9A;
   --p1: #B18BD3;
+  --background: #2C2A4A;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -54,8 +55,9 @@
   width: 24px;
 }
 
-h1 {
-  /* font-family: Hammersmith One; */
+.heroSubtitle {
+  font-size: 40px;
+  font-weight: 200;
 }
 
 .heroTitle {
@@ -64,17 +66,21 @@ h1 {
   margin: auto;
 }
 
-.heroSubtitle {
-  font-weight: 400;
-}
 
 .heroBanner {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(rgba(223,222,245,0) 40%, rgba(70,65,154,0.5) 65%, rgba(60,57,108,1) 100%);  
-  padding: 100px 100px 200px 100px;
-  row-gap: 100px;
+  padding: 100px 50px 50px 50px;
+  row-gap: 50px;
 }
+
+.heroDemoIntro {
+  padding: 0 25px;
+  background: linear-gradient(rgba(223,222,245,0) 0%, rgba(70,65,154,0.5) 65%, rgba(60,57,108,1) 100%);  
+  position: sticky;
+  top: 250px;
+}
+
 
 .heroMain {
   background:rgba(44,42,74,1);
@@ -103,17 +109,34 @@ h1 {
   font-family: Hammersmith One;
 }
 
-/* .heroFeature {
-  height: 100vh;
-  opacity: 0;
-  transform: translate(0, 10vh);
-  transition: all 1s;
+.heroDescription {
+  padding: 40px 50px;
+}
+.heroFeature {
+  /* height: 90vh; */
+  padding-bottom: 300px;
 }
 
-.heroFeature.visible {
-  opacity: 1;
-  transform: translate(0, 0);
-} */
+.heroDemo {
+  height: 550px;
+  width: 100%;
+  background-color: gray;
+  border-radius: 25px 25px 0 0;
+  box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  position: sticky;
+  top: 250px;
+}
+
+.hideVid {
+  transition-timing-function: ease-in;
+  transition: 1.0s;
+}
+
+.heroDemoIntro .heroDemo {
+  background: linear-gradient(rgba(223,222,245,0) 0%, rgba(60,57,108,1) 20%);  
+  box-shadow: none;
+}
 
 .underline {
   text-decoration: underline;
