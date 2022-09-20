@@ -10,18 +10,23 @@ import styles from "./index.module.css";
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <header className={clsx("hero hero--primary", styles.heroBanner)}>
-      <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro"
-          >
-            Get Started!️
-          </Link>
-        </div>
+    <header className="heroBanner">
+      <h1 className="heroTitle">Conduct <span className="underline">behavioral evaluation</span> on your ML models
+      </h1>
+
+      <div className={styles.buttons}>
+        <Link
+          className="button button--lg heroButton"
+          to="/docs/intro/get_started"
+        >
+          Get Started!️
+        </Link>
+        <Link
+          className="button button--lg heroButtonSecondary"
+          to="/docs/intro"
+        >
+          Explore Docs
+        </Link>
       </div>
     </header>
   );
@@ -35,7 +40,7 @@ export default function Home(): JSX.Element {
       description="Machine learning evaluation framework"
     >
       <HomepageHeader />
-      <main>
+      <main className="heroMain">
         <HomepageFeatures />
       </main>
     </Layout>

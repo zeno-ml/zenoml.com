@@ -6,8 +6,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Zeno",
-  tagline: "Powerful and Interactive Machine Learning Evaluation",
+  title: "The First Real Machine Learning Evaluation Tool",
   url: "https://zenoml.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -56,6 +55,10 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      colorMode: {
+        defaultMode: 'dark',
+        disableSwitch: false,
+      },
       navbar: {
         // title: "Zeno",
         logo: {
@@ -84,7 +87,18 @@ const config = {
         style: "dark",
         links: [
           {
-            title: "Zeno",
+            title: " ",
+            items: [
+              {
+                html: `
+                  <img src="/img/zeno_dark.png" width="150" height="51" />
+                  `,
+              },
+            ],
+          },
+          {},
+          {
+            title: "Learn",
             items: [
               {
                 label: "Docs",
