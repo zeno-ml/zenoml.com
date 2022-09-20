@@ -8,7 +8,7 @@ To create a new View you can use the [Svelte](https://svelte.dev/) cookiecutter 
 
 ```bash
 pip install cookiecutter
-git clone https://github.com/cmudig/zeno
+git clone https://github.com/zeno-ml/view-template-svelte
 cookiecutter zeno/views/template
 ```
 
