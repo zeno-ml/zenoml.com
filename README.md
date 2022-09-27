@@ -1,19 +1,25 @@
-<img src="./frontend/public/zeno.png" width="400px"/>
+# Zeno Docs
 
-[![PyPI version](https://badge.fury.io/py/zenoml.svg)](https://badge.fury.io/py/zenoml)
-![Github Actions CI tests](https://github.com/cabreraalex/zeno/actions/workflows/test.yml/badge.svg)
-![Github Actions Docs build](https://github.com/cabreraalex/zeno/actions/workflows/docs.yml/badge.svg)
-[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
-Zeno is a general-purpose framework for evaluating machine learning models.
-It combines a **Python API** with an **interactive UI** to allow users to discover, explore, and analyze the performance of their models across diverse use cases.
-Zeno can be used for any data type or task with _modular views_ for everything from object detection to audio transcription.
+### Installation
 
-## Getting Started
+```
+$ npm i
+```
 
-Check out the quickstart tutorial and API reference to get started with Zeno:
+### Local Development
 
-- [Introduction](http://zenoml.com/docs/intro/) - Learn more about Zeno.
-- [Getting Started](http://zenoml.com/docs/intro/get_started) - Setup Zeno with your own data and models.
-- [CIFAR-10 Example](http://zenoml.com/docs/intro/cifar) - Learn how to use Zeno with a CIFAR-10 classification example.
-- [Documentation & API](http://zenoml.com/docs/intro/) - Full documentation and API reference.
+```
+$ npm run start
+```
+
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+
+### Build
+
+```
+$ npm run build
+```
+
+This command generates static content into the `build` directory and can be served using any static contents hosting service.
