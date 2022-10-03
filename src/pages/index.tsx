@@ -11,7 +11,12 @@ function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <header className="heroBanner">
-      <h1 className="heroTitle">Conduct <strong><em>behavioral evaluation</em></strong> on your ML models
+      <h1 className="heroTitle">
+        Conduct{" "}
+        <strong>
+          <em>behavioral evaluation</em>
+        </strong>{" "}
+        on your ML models
       </h1>
 
       <div className={styles.buttons}>
@@ -33,18 +38,18 @@ function HomepageHeader() {
 }
 
 export default function Home(): JSX.Element {
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(true);
   const controlIntroDemo = () => {
-    if (window.scrollY>500) {
-      setShow(false)
+    if (window.scrollY > 500) {
+      setShow(false);
     } else {
-      setShow(true)
+      setShow(true);
     }
-  }
+  };
 
-  useEffect (() => {
-    window.addEventListener('scroll', controlIntroDemo)
-  }, [])
+  useEffect(() => {
+    window.addEventListener("scroll", controlIntroDemo);
+  }, []);
 
   const { siteConfig } = useDocusaurusContext();
 
@@ -53,19 +58,23 @@ export default function Home(): JSX.Element {
       title={`Zeno ML`}
       description="Machine learning evaluation framework"
     >
-    <HomepageHeader />
-    <div className="heroDemoIntroWrapper">
-      <video className="heroDemoIntro">
-        <source src="videoplayback.mp4" className="showVid" type="video/mp4"></source>
-      </video>
-    </div>
-    {/* <video className="heroDemoIntro">
+      <HomepageHeader />
+      <div className="heroDemoIntroWrapper">
+        <video className="heroDemoIntro">
+          <source
+            src="videoplayback.mp4"
+            className="showVid"
+            type="video/mp4"
+          ></source>
+        </video>
+      </div>
+      {/* <video className="heroDemoIntro">
       <source src="videoplayback.mp4" className="showVid" type="video/mp4"></source>
     </video> */}
 
-    <main className="heroMain">
-      <HomepageFeatures />
-    </main>
+      <main className="heroMain">
+        <HomepageFeatures />
+      </main>
     </Layout>
   );
 }

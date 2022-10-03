@@ -1,0 +1,34 @@
+# CIFAR-10 Example
+
+This short example introduces the core concepts in Zeno by walking through a setup for the CIFAR-10 image classification task.
+
+Start by installing the Zeno library and the view for image classification:
+
+```bash
+pip install zenoml zenoml-image-classification
+```
+
+## Explore the data
+
+First, we'll download the images for CIFAR-10 in a new folder:
+
+```bash
+mkdir zeno-cifar/
+cd zeno-cifar
+git clone https://github.com/YoongiKim/CIFAR-10-images
+```
+
+Now, we can create a file called `zeno.toml` with some basic properties:
+
+```toml title="zeno.toml"
+view = "zenoml-image-classification"
+metadata = "./cifar_pred.csv"
+data_path = "./CIFAR-10-images/test/"
+data_column = "id"
+```
+
+## Implement a model
+
+## Add a distill function
+
+## Add a transform function
