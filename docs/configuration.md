@@ -8,7 +8,7 @@ Zeno options are set using a `TOML` file such as the following:
 
 ```toml title="Example TOML configuration for an image classification task"
 tests = "./tests/"
-view = "zenoml-image-classification"
+view = "image-classification"
 metadata = "./metadata.csv"
 models = [
 	"./model_epochs_2.pth",
@@ -29,7 +29,7 @@ The configuration file has the the following options.
 
 ### `view`
 
-The Zeno View used for the given data and task, e.g. `zenoml-image-classification`. **Required**
+The Zeno View used for the given data and task, e.g. `image-classification`. **Required**
 
 See [Instance views](/docs/views) for a list of available views.
 
