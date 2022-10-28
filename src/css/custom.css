@@ -6,7 +6,7 @@
 
 
  @import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Source+Sans+Pro:wght@400;700&display=swap');
-
+ @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500;600&display=swap');
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #6a1b9a;
@@ -20,6 +20,7 @@
   --logo: #6A1B9A;
   --p1: #B18BD3;
   --background: #2C2A4A;
+  --gray: #d3d3d3
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -55,22 +56,39 @@
   width: 24px;
 }
 
+#homepage h1 {
+  font-family: 'Rubik', sans-serif;
+}
+#homepage h2{
+  font-weight: 400;
+  color: var(--gray);
+}
+
+#homepage p {
+  color: var(--gray);
+  font-size: 18px;
+}
+
 .heroSubtitle {
-  font-size: 40px;
-  font-weight: 200;
+  font-size: 48px;
+  font-weight: 600;
 }
 
 .heroTitle {
-  font-weight: 400;
-  font-size: 48px;
   margin: auto;
+  text-align: center;
+  gap: 40px;
 }
 
+.heroTitleMain {
+  font-weight: 500;
+  font-size: 60px;
+}
 
 .heroBanner {
   display: flex;
   flex-direction: column;
-  padding: 100px 50px 50px 50px;
+  padding: 150px 50px 50px 50px;
   row-gap: 50px;
 }
 
@@ -81,19 +99,21 @@
 }
 
 .heroButton {
-  background-color: #B18BD3;
-  color: white;
-  border: 2px solid white;
+  background-color: white;
+  color: black;
+  box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.25);
 }
 
 .heroButtonSecondary {
-  border: 2px solid var(--p1);
-  background-color: white;
-  color: black;
+  background: linear-gradient(rgba(137,133,199,1) 0%, rgba(126,121,196,1) 100%);
+  color: white;
+  box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.25);
 }
 
 .heroButtonSecondary:hover, .heroButton:hover {
-  background-color: var(--logo);
+  color: white;
+  background: linear-gradient(rgba(92,86,177,1) 0%, rgba(137,133,199,1) 100%);
+  box-shadow: none;
 }
 
 .heroEmphasis {
@@ -103,10 +123,11 @@
 
 .heroDescription {
   padding: 40px 50px;
+  text-align: center;
 }
 
 .heroDemo {
-  height: 550px;
+  /* height: 550px; */
   width: 100%;
   background-color: black;
   border-radius: 25px 25px 0 0;
@@ -116,9 +137,7 @@
   top: 250px;
 }
 
-.heroDemoIntroWrapper{
-  padding-left: 20px;
-  padding-right: 20px;
+.heroDemoGradient{
   background: linear-gradient(rgba(223,222,245,0) 0%, rgba(70,65,154,0.5) 65%, rgba(60,57,108,1) 100%);  
 }
 
@@ -153,4 +172,14 @@
   opacity: 1;
   transform: none;
   visibility: visible;
+}
+
+.heroTwoColumn {
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.heroTwoColumn * {
+  flex: 1;
 }
