@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import clsx from "clsx";
 import * as Panelbear from "@panelbear/panelbear-js";
 import Link from "@docusaurus/Link";
@@ -30,8 +30,10 @@ function HomepageHeader() {
 
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
-  Panelbear.load("KyRRezHS5mw");
-  Panelbear.trackPageview();
+  useEffect(() => {
+    Panelbear.load("KyRRezHS5mw");
+    Panelbear.trackPageview();
+  });
   return (
     <Layout
       title={`Zeno ML`}
