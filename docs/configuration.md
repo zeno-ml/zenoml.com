@@ -87,6 +87,10 @@ Where cache outputs are stored. **Optional**
 
 By default it is `.zeno_cache` in the same directory as the `TOML` file. Cache stores preprocesssing and model outputs.
 
+### `editable`
+
+Whether users should be able to create/delete/edit slices, folder, and reports. If set to false any changes to the frontend will not be saved in the backend. Default True. **Optional**
+
 ### `samples`
 
 Number of samples to show by default in view. Default 30. **Optional**
