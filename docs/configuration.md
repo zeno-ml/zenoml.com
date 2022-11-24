@@ -7,9 +7,9 @@ sidebar_position: 3
 Zeno options are set using a `TOML` file such as the following:
 
 ```toml title="Example TOML configuration for an image classification task"
-tests = "./tests/"
 view = "image-classification"
 metadata = "./metadata.csv"
+functions = "./tests/"
 models = [
 	"./model_epochs_2.pth",
 	"./model_epochs_5.pth",
@@ -33,19 +33,23 @@ The Zeno View used for the given data and task, e.g. `image-classification`. **R
 
 See [Instance views](/docs/views) for a list of available views.
 
-### `tests`
-
-Path to a directory with Python files implementing Zeno functions. **Required**
-
 ### `metadata`
 
 Path to a `csv` or `parquet` file with metadata for data instances. **Required**
 
 Must have a column with unique identifiers for each instance, specificed by [`id_column`](/docs/configuration#id_column).
 
+**Jupyter**: A Pandas DataFrame.
+
+### `functions`
+
+Path to a directory with Python files implementing Zeno functions.
+
+**Jupyter**: A list of functions with Zeno decorators.
+
 ### `models`
 
-List of models to test. **Required**
+List of models to test.
 
 Can either be paths or strings which are passed directly to the [`load_model`](/docs/api#Predict) function.
 

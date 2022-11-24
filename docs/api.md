@@ -41,7 +41,7 @@ class ZenoOptions:
     output_path: str
 ```
 
-## Predict
+## Model
 
 `model` functions should return a function that returns a list of model outputs for a given model name.
 

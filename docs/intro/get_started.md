@@ -4,24 +4,37 @@ sidebar_position: 1
 
 # Getting Started
 
-1. Install the Zeno Python package.
+Install the Zeno Python package.
 
 ```bash
 pip install zenoml
 ```
 
-2. Create a folder with at least one Python file, a [`model`](/docs/api#predict) function, and any number of additional [Zeno functions](/docs/api/).
+## Command Line
 
-3. Install a Zeno View for your given task from the [list of supported views](/docs/views), e.g. for image classification:
+1. Create a folder with at least one Python file, a [`model`](/docs/api#predict) function, and any number of additional [Zeno functions](/docs/api/).
 
-```bash
-pip install zenoml-image-classification
-```
+2. Create a configuration `TOML` file, `config.toml`, with the [required options](/docs/configuration), primarily a [view](/docs/views/) and metadata file.
 
-4. Create a configuration `TOML` file, `config.toml`, with the [required options](/docs/configuration).
-
-5. Run Zeno:
+3. Run Zeno:
 
 ```bash
 zeno config.toml
+```
+
+## Jupyter Notebooks
+
+1. Import zeno with `import zeno from zeno`
+
+2. Create a Pandas DataFrame and any number of functions with Zeno decorators.
+
+3. Run zeno with a dict of options:
+
+```python
+zeno({
+	"view": "image-classification",
+	"metadata": my_dataframe,
+	"functions": [my_function, my_other_function],
+	"models": ['model_a', 'model_b']
+})
 ```
