@@ -47,3 +47,8 @@
   height: 24px;
   width: 24px;
 }
+
+[data-theme="dark"] .color-invert {
+  filter: invert(1);
+  mix-blend-mode: exclusion;
+}
