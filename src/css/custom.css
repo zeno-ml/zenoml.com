@@ -4,6 +4,8 @@
  * work well for content-centric websites.
  */
 
+@import url("https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Source+Sans+Pro:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@500;600&display=swap");
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #6a1b9a;
@@ -13,6 +15,12 @@
   --ifm-color-primary-light: #751ea9;
   --ifm-color-primary-lighter: #7a1fb1;
   --ifm-color-primary-lightest: #8a23c8;
+
+  --logo: #6a1b9a;
+  --p1: #b18bd3;
+  --background: #2c2a4a;
+  --gray: #d3d3d3;
+  --gray2: #ebebea;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -46,4 +54,152 @@
   display: flex;
   height: 24px;
   width: 24px;
+}
+
+#pageWrapper {
+  max-width: 1500px;
+  padding: 50px;
+  margin: auto;
+}
+
+#homepage h1 {
+  font-family: "Rubik", sans-serif;
+  font-size: 48px;
+}
+#homepage h2 {
+  font-weight: 400;
+  font-size: 48px;
+}
+
+#homepage p {
+  /* color: var(--gray); */
+  font-size: 18px;
+}
+
+.heroSubtitle {
+  font-size: 48px;
+  font-weight: 600;
+}
+
+.heroBanner {
+  display: flex;
+  flex-direction: column;
+  padding: 150px 50px 50px 50px;
+  row-gap: 50px;
+}
+
+.heroMain {
+  background: rgba(44, 42, 74, 1);
+  padding: 50px 10px;
+  color: white;
+}
+
+.heroButtonSecondary {
+  background-color: white;
+  color: black;
+  box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.25);
+}
+
+.heroButton {
+  background: var(--p1);
+  color: white;
+  box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.25);
+}
+
+.heroButtonSecondary:hover,
+.heroButton:hover {
+  filter: brightness(75%);
+}
+
+.heroButton:hover {
+  color: white;
+}
+
+.heroEmphasis {
+  color: var(--p1);
+  font-family: Hammersmith One;
+}
+
+.heroDescription {
+  padding: 40px 50px;
+  text-align: center;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.fade-in-section {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease-out;
+  will-change: opacity, visibility;
+  padding-bottom: 200px;
+}
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+}
+
+.heroTwoColumn {
+  /* margin: 20px; */
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+.heroTwoColumn * {
+  flex: 1;
+}
+
+#section-1 {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  /* min-width: 100vw; */
+  height: 450px;
+  overflow: hidden;
+}
+#section-1 > #video-background {
+  position: absolute;
+  width: 100%;
+  filter: brightness(40%);
+}
+
+#section-1 > span {
+  color: white;
+  z-index: 2;
+  padding: 100px;
+  /* text-shadow: 2px 2px 4px #000000; */
+}
+
+#section-2 {
+  display: flex;
+  flex-basis: 100%;
+  gap: 50px;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: space-evenly;
+}
+
+.sectionIcon {
+  max-width: 100px;
+  margin: auto;
+}
+
+.header > * {
+  margin: 0;
+}
+
+.header {
+  margin: 50px 0;
+}
+
+.headerTitle {
+  color: var(--p1);
+}
+.headerDescription {
+  font-weight: 400;
 }

@@ -1,0 +1,38 @@
+.inactiveSelection {
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+  border: solid 1px var(--gray);
+  border-radius: 10px;
+  padding: 5px 20px;
+  margin-bottom: 5px;
+}
+
+.activeSelection {
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+  border: solid 1px var(--gray);
+  border-radius: 10px;
+  padding: 5px 20px;
+  margin-bottom: 5px;
+  background-color: #e6deed;
+}
+
+.extra {
+  color: #989895;
+}
+
+.inactiveSelection:hover {
+  background-color: var(--gray2);
+}
+
+#selectContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.video {
+  width: 75%;
+}

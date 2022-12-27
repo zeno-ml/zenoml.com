@@ -1,0 +1,37 @@
+.features {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.featureIcon {
+  max-width: 100px;
+  margin: auto;
+}
+
+.featureContainer {
+  display: flex;
+  flex-basis: 100%;
+  gap: 50px;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.featureWrapper {
+  /* background: linear-gradient(rgba(137,133,199,1) 0%, rgba(126,121,196,1) 100%); */
+  border-radius: 20px;
+  padding: 20px;
+  flex: 1;
+  min-width: 200px;
+  border: var(--gray) solid 1px;
+  box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.25);
+}
+
+.centerText {
+  text-align: center;
+}
+
+.featureArrow {
+  position: absolute;
+}
