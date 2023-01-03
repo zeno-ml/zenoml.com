@@ -1,8 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-# Getting Started
+# Quickstart
 
 Install the Zeno Python package.
 

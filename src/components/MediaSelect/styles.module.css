@@ -1,4 +1,5 @@
 .inactiveSelection {
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   width: 250px;
@@ -9,6 +10,7 @@
 }
 
 .activeSelection {
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   width: 250px;
@@ -16,7 +18,8 @@
   border-radius: 10px;
   padding: 5px 20px;
   margin-bottom: 5px;
-  background-color: #e6deed;
+  background-color: #6a1b9a;
+  color: white;
 }
 
 .extra {
@@ -29,10 +32,13 @@
 
 #selectContainer {
   display: flex;
-  justify-content: space-between;
   gap: 20px;
 }
 
 .video {
   width: 75%;
+}
+
+.image {
+  width: 50%;
 }

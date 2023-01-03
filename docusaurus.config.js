@@ -66,7 +66,7 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "intro/intro",
+            docId: "intro",
             position: "left",
             label: "Docs",
           },
@@ -119,7 +119,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Alex Cabrera. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Alex Cabrera`,
       },
       prism: {
         theme: lightCodeTheme,

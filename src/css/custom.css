@@ -59,15 +59,12 @@
 #pageWrapper {
   max-width: 1500px;
   padding: 50px;
+  padding-top: 30px;
   margin: auto;
 }
 
 #homepage h1 {
   font-family: "Rubik", sans-serif;
-  font-size: 48px;
-}
-#homepage h2 {
-  font-weight: 400;
   font-size: 48px;
 }
 
@@ -149,30 +146,13 @@
   padding: 0;
 }
 
+.textLeft {
+  margin-right: 15px;
+  margin-top: 15px;
+}
+
 .heroTwoColumn * {
   flex: 1;
-}
-
-#section-1 {
-  display: inline-flex;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  /* min-width: 100vw; */
-  height: 450px;
-  overflow: hidden;
-}
-#section-1 > #video-background {
-  position: absolute;
-  width: 100%;
-  filter: brightness(40%);
-}
-
-#section-1 > span {
-  color: white;
-  z-index: 2;
-  padding: 100px;
-  /* text-shadow: 2px 2px 4px #000000; */
 }
 
 #section-2 {
@@ -185,8 +165,7 @@
 }
 
 .sectionIcon {
-  max-width: 100px;
-  margin: auto;
+  max-width: 200px;
 }
 
 .header > * {
@@ -194,7 +173,7 @@
 }
 
 .header {
-  margin: 50px 0;
+  margin: 30px 0;
 }
 
 .headerTitle {
