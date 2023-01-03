@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import React from "react";
 import Layout from "@theme/Layout";
+
 import DatatypeSelect from "@site/src/components/DatatypeSelect";
 import ReportSelect from "@site/src/components/ReportSelect";
-
-import { HomepageHeader } from "./HomepageHeader";
-import { SectionHeader } from "./SectionHeader";
-import { APISnippets } from "./ApiSnippets";
+import { HomepageHeader } from "@site/src/components/HomepageHeader/HomepageHeader";
+import { Sections } from "@site/src/components/Sections/Sections";
+import { APISnippets } from "@site/src/components/APISnippets/ApiSnippets";
 
 function Header({ title, summary, description }): JSX.Element {
   return (
@@ -20,21 +19,6 @@ function Header({ title, summary, description }): JSX.Element {
 }
 
 export default function Home(): JSX.Element {
-  const [show, setShow] = useState(true);
-  const controlIntroDemo = () => {
-    if (window.scrollY > 500) {
-      setShow(false);
-    } else {
-      setShow(true);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", controlIntroDemo);
-  }, []);
-
-  const { siteConfig } = useDocusaurusContext();
-
   return (
     <Layout
       title={`Zeno ML`}
@@ -43,11 +27,11 @@ export default function Home(): JSX.Element {
       <div id="homepage">
         <HomepageHeader />
         <div id="pageWrapper">
-          <SectionHeader />
+          <Sections />
           <Header
             title="Explore"
             summary="Interactively explore your data"
-            description="Use Zeno for any datatype"
+            description="Zeno's modular instance view can be extended to render any data type and model output"
           ></Header>
           <DatatypeSelect />
           <Header

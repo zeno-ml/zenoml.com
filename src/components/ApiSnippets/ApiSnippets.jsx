@@ -3,26 +3,33 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import CodeBlock from "@theme/CodeBlock";
 
-import styles from "./index.module.css";
-
 export function APISnippets() {
   return (
-    <div className="container heroTwoColumn">
+    <div className="heroTwoColumn">
       <div className="textLeft">
         <p>
-          Zeno's <b>Python API</b> plugs in model predictions, metrics, and new
-          metadata columns. The API has three Python decorator functions which
-          can be used with any Python libraries.
+          The <b>Python API</b> is used to adapt new models, metrics, and slices
+          to explore in Zeno.
         </p>
         <p>
-          The <code>@model</code> functions
+          The <code>@model</code> functions wraps Python libraries, such as
+          PyTorch, Tensorflow, Keras, HuggingFace, etc. to get model
+          predictions.
+        </p>
+        <p>
+          <code>@metric</code> functions are used to calculate different metrics
+          on slices of data.
+        </p>
+        <p>
+          <code>@distill</code> functions derive new metadata columns from your
+          data instances.
         </p>
       </div>
-      <Tabs groupId="operating-systems">
+      <Tabs className="tabs" groupId="operating-systems">
         <TabItem value="model" label="Model">
           <CodeBlock
             language="py"
-            title="/src/components/Pythonfile.py"
+            title="Audio transcription using the OpenAI Whisper model"
             showLineNumbers
           >
             {`@model
@@ -40,11 +47,7 @@ export function APISnippets() {
           </CodeBlock>
         </TabItem>
         <TabItem value="Metric" label="Metric">
-          <CodeBlock
-            language="py"
-            title="/src/components/Pythonfile.py"
-            showLineNumbers
-          >
+          <CodeBlock language="py" title="Calculating accuracy" showLineNumbers>
             {`@metric
   def accuracy(df, ops: ZenoOptions):
 	  if len(df) == 0:
@@ -56,7 +59,7 @@ export function APISnippets() {
         <TabItem value="Distill" label="Distill">
           <CodeBlock
             language="py"
-            title="/src/components/Pythonfile.py"
+            title="Disitilling a metadata column of audio amplitudes"
             showLineNumbers
           >
             {`@distill

@@ -8,11 +8,11 @@ export function HomepageHeader() {
   return (
     <header className={styles.header}>
       <div className={styles.headerLeft}>
-        <h1>The only ML evaluation framework you need</h1>
+        <h1>Evaluate ML models beyond aggregate metrics</h1>
         <h3 className={styles.subheader}>
-          <b>Zeno</b> is an ML evaluation framework for interactively exploring
-          model outputs, discovering and create slices, and exporting beautiful
-          reports.
+          <b>Zeno</b> is a machine learning evaluation framework for
+          interactively exploring data, discovering important slices, and
+          creating visualizations and reports.
         </h3>
         <div className={styles.buttons}>
           <Link

@@ -27,7 +27,7 @@
 }
 
 .inactiveSelection:hover {
-  background-color: var(--gray2);
+  border-color: #6a1b9a;
 }
 
 #selectContainer {

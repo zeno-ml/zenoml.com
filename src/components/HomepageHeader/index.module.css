@@ -1,0 +1,33 @@
+.buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 25px;
+}
+
+.header {
+  color: white;
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  height: 460px;
+  background: #6a1b9a;
+  width: 100%;
+  overflow: hidden;
+}
+
+.headerLeft {
+  width: 50%;
+  margin: 30px;
+}
+
+.headerRight {
+  width: 50%;
+  margin: 50px;
+}
+
+.subheader {
+  font-weight: 300;
+  margin-bottom: 50px;
+  font-size: 24px;
+}

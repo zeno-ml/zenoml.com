@@ -17,7 +17,7 @@
   --ifm-color-primary-lightest: #8a23c8;
 
   --logo: #6a1b9a;
-  --p1: #b18bd3;
+  --p1: #6a1b9a;
   --background: #2c2a4a;
   --gray: #d3d3d3;
   --gray2: #ebebea;
@@ -147,7 +147,7 @@
 }
 
 .textLeft {
-  margin-right: 15px;
+  margin-right: 30px;
   margin-top: 15px;
 }
 
@@ -162,13 +162,14 @@
   flex-wrap: wrap;
   flex-grow: 1;
   justify-content: space-evenly;
+  margin-top: 20px;
 }
 
-.sectionIcon {
-  max-width: 200px;
+hr {
+  margin-top: 50px;
 }
 
-.header > * {
+.header > h1 {
   margin: 0;
 }
 
@@ -181,4 +182,13 @@
 }
 .headerDescription {
   font-weight: 400;
+}
+
+.footer--dark {
+  background: var(--logo);
+}
+
+.tabs-container {
+  min-width: 66%;
+  max-width: 66%;
 }
