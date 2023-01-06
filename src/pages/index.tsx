@@ -30,20 +30,20 @@ export default function Home(): JSX.Element {
           <Sections />
           <Header
             title="Explore"
-            summary="Interactively explore your data"
+            summary="Explore your data"
             description="Zeno's modular instance view can be extended to render any data type and model output"
           ></Header>
           <DatatypeSelect />
           <Header
             title="Report"
-            summary="Report your findings to stakeholders"
-            description="Display your slices in matricies and more"
+            summary="Create interactive reports"
+            description="Track and compare performance across slices and models"
           ></Header>
           <ReportSelect />
           <Header
-            title="Code"
-            summary="Code to refine your analysis"
-            description="Use existing python functions to refine your search"
+            title="Extend"
+            summary="Extend Zeno with the Python API"
+            description="Add new models, metrics, and metadata columns with the Python API"
           ></Header>
           <APISnippets />
         </div>

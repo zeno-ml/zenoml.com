@@ -103,15 +103,6 @@
   box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.25);
 }
 
-.heroButtonSecondary:hover,
-.heroButton:hover {
-  filter: brightness(75%);
-}
-
-.heroButton:hover {
-  color: white;
-}
-
 .heroEmphasis {
   color: var(--p1);
   font-family: Hammersmith One;
@@ -178,7 +169,7 @@ hr {
 }
 
 .headerTitle {
-  color: var(--p1);
+  color: var(--ifm-color-primary);
 }
 .headerDescription {
   font-weight: 400;
@@ -187,8 +178,15 @@ hr {
 .footer--dark {
   background: var(--logo);
 }
+.footer__link-item:hover {
+  color: var(--grey);
+}
 
 .tabs-container {
   min-width: 66%;
   max-width: 66%;
+}
+
+.button:hover {
+  color: var(--p1);
 }

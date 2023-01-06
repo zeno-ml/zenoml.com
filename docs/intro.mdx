@@ -18,29 +18,6 @@ See the [Quickstart](/docs/quickstart) to set up Zeno and learn about the core c
 
 Zeno uses a Python decorator API to generate data and model information that is used to scaffold the interactive evaluation UI.
 
-### Python API
-
-<div style={{ display: "flex" }}>
-  <p style={{ marginRight: "20px" }}>
-    The Python API consists of four core decorator functions that you can use to plug your models in and generate information for evaluation. 
-    The <code>@model</code> functions return model outputs for any Python-based model or API, which can then be evaluated with <code>@metric</code> functions.
-    To test more diverse use cases <code>@distill</code> functions can be used to create new metadata columns based on raw data instances, and <code>@transform</code> functions can be used to perturb data and create new instances. 
-  </p>
-  <CodeBlock language="python" title="Example Zeno API functions">
-    {`@metric
-def accuracy(df, ops):
-    return df[ops.label_column] 
-            == df[ops.output_column]
-`}
-    {`
-@distill
-def brightness(df, ops):
-    return lum(df[ops.data_column]))
-`}
-  </CodeBlock>
-
-</div>
-
 ### Exploration UI
 
 <div style={{display: 'flex'}}>
@@ -49,18 +26,18 @@ def brightness(df, ops):
 <p>
     Zeno's Exploration UI is the main interface for evaluation.
     It lets you slice and dice your data to quickly see how your model works for different types of instances.
-    You can pick different models and transforms, and also transform your data to see how perturbations impact model performance.
+    You can pick different models and metrics to see model performance.
 </p>
 
 <p>
-    The instance view is modular, and supports any data type or task.
+    The modular instance view supports any data type or task.
     Existing views can be found <a href="/docs/views">here</a>, and new views can be written for unsupported data types.
 
 </p>
 </div>
 </div>
 
-### Analysis UI
+### Report UI
 
 <div style={{ display: "flex" }}>
   <img
@@ -73,12 +50,35 @@ def brightness(df, ops):
     src="/img/analyze.png"
   />
   <p>
-    The Analysis UI is used to compare models over time and create
-    <i> behavioral unit tests</i>. You can create reports for groups of instance
-    and see how new models compare with sparkline visualizations and trends. To catch
-    potential regressions, you can create tests of expected metrics for slices. Reports
-    can be shared and exported as PDFs.
+    The Report page is used to compare models across slices. You can create
+    reports for groups of instance and see how new models compare with sparkline
+    visualizations and trends. To catch potential regressions, you can create
+    tests of expected metrics for slices. Reports can be shared and exported as
+    PDFs.
   </p>
+</div>
+
+### Python API
+
+<div style={{ display: "flex" }}>
+  <p style={{ marginRight: "20px" }}>
+    The Python API consists of four core decorator functions that you can use to plug your models in and generate information for evaluation. 
+    The <code>@model</code> functions return model outputs for any Python-based model or API, which can then be evaluated with <code>@metric</code> functions.
+    To test more diverse use cases <code>@distill</code> functions can be used to create new metadata columns based on raw data instances.
+  </p>
+  <CodeBlock language="python" title="Example Zeno API functions">
+    {`@metric
+def accuracy(df, ops):
+    return df[ops.label_column] 
+                == df[ops.output_column]
+`}
+    {`
+@distill
+def brightness(df, ops):
+    return lum(df[ops.data_column]))
+`}
+  </CodeBlock>
+
 </div>
 
 ## Why Zeno?

@@ -12,11 +12,13 @@ pip install zenoml
 
 ## Command Line
 
-1. Create a folder with at least one Python file, a [`model`](/docs/api#predict) function, and any number of additional [Zeno functions](/docs/api/).
+Zeno includes a command line helper to set up a new project which guides you through creating the TOML configuration file:
 
-2. Create a configuration `TOML` file, `config.toml`, with the [required options](/docs/configuration), primarily a [view](/docs/views/) and metadata file.
+```bash
+zeno init
+```
 
-3. Run Zeno:
+You can then run Zeno with
 
 ```bash
 zeno config.toml
@@ -26,7 +28,7 @@ zeno config.toml
 
 1. Import zeno with `import zeno from zeno`
 
-2. Create a Pandas DataFrame and any number of functions with Zeno decorators.
+2. Create a Pandas DataFrame with your metadata.
 
 3. Run zeno with a dict of options:
 
@@ -34,7 +36,25 @@ zeno config.toml
 zeno({
 	"view": "image-classification",
 	"metadata": my_dataframe,
-	"functions": [my_function, my_other_function],
-	"models": ['model_a', 'model_b']
+	"data_path": "path/to/data",
+	"data_column": "image_path",
+})
+```
+
+## Adding Models and Metrics
+
+To add model predictions and metrics, you can write functions with the [Python API](/docs/api) wrappers.
+
+If using the command line, create a folder with a Python file including these functions and add the folder as an option to the TOML file:
+
+```toml
+functions = "path/to/functions"
+```
+
+In Jupyter Notebooks, you can pass a list of functions to the `functions` option:
+
+```python
+zeno({
+	"functions": [model_function, accuracy_function]
 })
 ```

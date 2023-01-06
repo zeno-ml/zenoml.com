@@ -2,7 +2,7 @@ import React from "react";
 import Link from "@docusaurus/Link";
 import styles from "./index.module.css";
 
-import video from "@site/static/img/exploration.mp4";
+import video from "@site/static/img/teaser.mp4";
 
 export function HomepageHeader() {
   return (

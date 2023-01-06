@@ -7,22 +7,16 @@ export function APISnippets() {
   return (
     <div className="heroTwoColumn">
       <div className="textLeft">
-        <p>
-          The <b>Python API</b> is used to adapt new models, metrics, and slices
-          to explore in Zeno.
+        <p style={{ fontSize: "22px" }}>
+          The <b>Python API</b> is used to add models, metrics, and slices to
+          Zeno.
         </p>
-        <p>
+        <p style={{ fontSize: "22px" }}>
           The <code>@model</code> functions wraps Python libraries, such as
           PyTorch, Tensorflow, Keras, HuggingFace, etc. to get model
-          predictions.
-        </p>
-        <p>
-          <code>@metric</code> functions are used to calculate different metrics
-          on slices of data.
-        </p>
-        <p>
-          <code>@distill</code> functions derive new metadata columns from your
-          data instances.
+          predictions.&nbsp;<code>@metric</code> functions are used to calculate
+          different metrics on slices of data.&nbsp;<code>@distill</code>{" "}
+          functions derive new metadata columns from your data instances.
         </p>
       </div>
       <Tabs className="tabs" groupId="operating-systems">
@@ -33,27 +27,25 @@ export function APISnippets() {
             showLineNumbers
           >
             {`@model
-  def load_model(model_path):
-	  # Load the OpenAI Whisper audio transcription model
-	  model = whisper.load_model("tiny")
-  
-	  def pred(df, ops: ZenoOptions):
-		  # Get a list of paths for each audio file
-		  files = [os.path.join(ops.data_path, f) for f in df[ops.data_column]]
-		  # Transcribe each audio file
-		  return [model.transcribe(f)["text"] for f in files]
-  
-	  return pred`}
+def load_model(model_path):
+  model = whisper.load_model("tiny")
+
+  def pred(df, ops: ZenoOptions):
+    # Get a list of paths for each audio file
+    files = [os.path.join(ops.data_path, f) for f in df[ops.data_column]]
+    return [model.transcribe(f)["text"] for f in files]
+
+  return pred`}
           </CodeBlock>
         </TabItem>
         <TabItem value="Metric" label="Metric">
           <CodeBlock language="py" title="Calculating accuracy" showLineNumbers>
             {`@metric
-  def accuracy(df, ops: ZenoOptions):
-	  if len(df) == 0:
-		  return 0
-	  # Calculate the accuracy of the model if not empty
-	  return 100 * (df[ops.label_column] == df[ops.output_column]).sum() / len(df)`}
+def accuracy(df, ops: ZenoOptions):
+  if len(df) == 0:
+    return 0
+  # Calculate the accuracy of the model if not empty
+  return 100 * (df[ops.label_column] == df[ops.output_column]).sum() / len(df)`}
           </CodeBlock>
         </TabItem>
         <TabItem value="Distill" label="Distill">
@@ -63,15 +55,15 @@ export function APISnippets() {
             showLineNumbers
           >
             {`@distill
-  def amplitude(df, ops: ZenoOptions):
-	  # Get a list of paths for each audio file
-	  files = [os.path.join(ops.data_path, f) for f in df[ops.data_column]]
-	  amps = []
-	  for audio in files:
-		  # Load each audio file and calculate the amplitude
-		  y, _ = librosa.load(audio)
-		  amps.append(float(np.abs(y).mean()))
-	  return amps`}
+def amplitude(df, ops: ZenoOptions):
+  # Get a list of paths for each audio file
+  files = [os.path.join(ops.data_path, f) for f in df[ops.data_column]]
+  amps = []
+  for audio in files:
+    # Load each audio file and calculate the amplitude
+    y, _ = librosa.load(audio)
+    amps.append(float(np.abs(y).mean()))
+  return amps`}
           </CodeBlock>
         </TabItem>
       </Tabs>

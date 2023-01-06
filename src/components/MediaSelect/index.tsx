@@ -35,9 +35,12 @@ export default function Select(props) {
       .select.startsWith("Your")
   ) {
     return (
-      <div id={styles.selectContainer} style={{ alignItems: "center" }}>
+      <div
+        id={styles.selectContainer}
+        style={{ alignItems: "center", width: "100%" }}
+      >
         {menu}
-        <h2>
+        <h2 style={{ textAlign: "center", width: "100%" }}>
           <a href="/docs/views/new-view">
             Learn how to support your custom data type <br />
             with a single JavaScript file.
@@ -54,8 +57,10 @@ export default function Select(props) {
         style={{
           display: "flex",
           flexDirection: "row",
-          gap: 10,
           flexWrap: "wrap",
+          justifyContent: "space-between",
+          width: "75%",
+          marginLeft: "30px",
         }}
       >
         {props.list
@@ -65,9 +70,13 @@ export default function Select(props) {
           .images.map((img) => (
             <img
               style={{
-                maxHeight: "150px",
-                maxWidth: "350px",
+                maxHeight: "175px",
+                maxWidth: "325px",
                 objectFit: "contain",
+                padding: "10px",
+                background: "white",
+                borderRadius: "4px",
+                border: "1px solid var(--gray)",
               }}
               src={img}
             />
