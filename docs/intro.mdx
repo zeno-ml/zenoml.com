@@ -1,0 +1,91 @@
+---
+sidebar_position: 1
+---
+
+import CodeBlock from "@theme/CodeBlock";
+
+# Introduction
+
+Zeno is a general-purpose framework for evaluating machine learning models.
+It combines a **Python API** with an **interactive user interface** to empower you to discover, explore, and analyze the performance of your models across diverse use cases.
+Zeno can be used for any data type or task with [modular views](/docs/views/) for everything from object detection to audio transcription.
+
+See the [Quickstart](/docs/quickstart) to set up Zeno and learn about the core concepts.
+
+<img style={{ margin: "5px", borderRadius: "3px" }} src="/img/overall.png" />
+
+## Key Features
+
+Zeno uses a Python decorator API to generate data and model information that is used to scaffold the interactive evaluation UI.
+
+### Exploration UI
+
+<div style={{display: 'flex'}}>
+<img style={{borderRadius: '5px', margin: '5px', width: '50%', marginRight: '20px', objectFit: 'contain'}} src="/img/explore.png" />
+<div>
+<p>
+    Zeno's Exploration UI is the main interface for evaluation.
+    It lets you slice and dice your data to quickly see how your model works for different types of instances.
+    You can pick different models and metrics to see model performance.
+</p>
+
+<p>
+    The modular instance view supports any data type or task.
+    Existing views can be found <a href="/docs/views">here</a>, and new views can be written for unsupported data types.
+
+</p>
+</div>
+</div>
+
+### Report UI
+
+<div style={{ display: "flex" }}>
+  <img
+    style={{
+      padding: "5px",
+      width: "50%",
+      marginRight: "20px",
+      objectFit: "contain",
+    }}
+    src="/img/analyze.png"
+  />
+  <p>
+    The Report page is used to compare models across slices. You can create
+    reports for groups of instance and see how new models compare with sparkline
+    visualizations and trends. To catch potential regressions, you can create
+    tests of expected metrics for slices. Reports can be shared and exported as
+    PDFs.
+  </p>
+</div>
+
+### Python API
+
+<div style={{ display: "flex" }}>
+  <p style={{ marginRight: "20px" }}>
+    The Python API consists of four core decorator functions that you can use to plug your models in and generate information for evaluation. 
+    The <code>@model</code> functions return model outputs for any Python-based model or API, which can then be evaluated with <code>@metric</code> functions.
+    To test more diverse use cases <code>@distill</code> functions can be used to create new metadata columns based on raw data instances.
+  </p>
+  <CodeBlock language="python" title="Example Zeno API functions">
+    {`@metric
+def accuracy(df, ops):
+    return df[ops.label_column] 
+                == df[ops.output_column]
+`}
+    {`
+@distill
+def brightness(df, ops):
+    return lum(df[ops.data_column]))
+`}
+  </CodeBlock>
+
+</div>
+
+## Why Zeno?
+
+Zeno helps you move beyond relying on aggregate metrics and spot-checking model outputs.
+Instead, it allows you to develop a deep and quantitative understanding of how your model behaves.
+
+Zeno supports your workflow - it is **model and data agnostic**, and requires just a single Python function to start working.
+It also lets you test **diverse mode use cases**, from potential fairness concerns to robustness checks.
+Lastly, Zeno lets you **compare your models** and detect potential regressions as you release updates.

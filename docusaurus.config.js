@@ -16,7 +16,7 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "cmudig", // Usually your GitHub org/user name.
+  organizationName: "zenoml", // Usually your GitHub org/user name.
   projectName: "zeno", // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -66,7 +66,7 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "intro/intro",
+            docId: "intro",
             position: "left",
             label: "Docs",
           },
@@ -86,6 +86,10 @@ const config = {
           {
             title: "Zeno",
             items: [
+              {
+                label: "Home",
+                to: "/",
+              },
               {
                 label: "Docs",
                 to: "/docs/intro",
@@ -107,6 +111,10 @@ const config = {
                 label: "Stack Overflow",
                 href: "https://stackoverflow.com/questions/tagged/zeno",
               },
+              {
+                label: "Twitter",
+                href: "https://twitter.com/zeno_mlops",
+              },
             ],
           },
           {
@@ -119,7 +127,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Alex Cabrera. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Alex Cabrera`,
       },
       prism: {
         theme: lightCodeTheme,

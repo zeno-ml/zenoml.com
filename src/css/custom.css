@@ -4,6 +4,8 @@
  * work well for content-centric websites.
  */
 
+@import url("https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Source+Sans+Pro:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@500;600&display=swap");
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #6a1b9a;
@@ -13,6 +15,12 @@
   --ifm-color-primary-light: #751ea9;
   --ifm-color-primary-lighter: #7a1fb1;
   --ifm-color-primary-lightest: #8a23c8;
+
+  --logo: #6a1b9a;
+  --p1: #6a1b9a;
+  --background: #2c2a4a;
+  --gray: #d3d3d3;
+  --gray2: #ebebea;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -46,4 +54,139 @@
   display: flex;
   height: 24px;
   width: 24px;
+}
+
+#pageWrapper {
+  max-width: 1500px;
+  padding: 50px;
+  padding-top: 30px;
+  margin: auto;
+}
+
+#homepage h1 {
+  font-family: "Rubik", sans-serif;
+  font-size: 48px;
+}
+
+#homepage p {
+  /* color: var(--gray); */
+  font-size: 18px;
+}
+
+.heroSubtitle {
+  font-size: 48px;
+  font-weight: 600;
+}
+
+.heroBanner {
+  display: flex;
+  flex-direction: column;
+  padding: 150px 50px 50px 50px;
+  row-gap: 50px;
+}
+
+.heroMain {
+  background: rgba(44, 42, 74, 1);
+  padding: 50px 10px;
+  color: white;
+}
+
+.heroButtonSecondary {
+  background-color: white;
+  color: black;
+  box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.25);
+}
+
+.heroButton {
+  background: var(--p1);
+  color: white;
+  box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.25);
+}
+
+.heroEmphasis {
+  color: var(--p1);
+  font-family: Hammersmith One;
+}
+
+.heroDescription {
+  padding: 40px 50px;
+  text-align: center;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.fade-in-section {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease-out;
+  will-change: opacity, visibility;
+  padding-bottom: 200px;
+}
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+}
+
+.heroTwoColumn {
+  /* margin: 20px; */
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+.textLeft {
+  margin-right: 30px;
+  margin-top: 15px;
+}
+
+.heroTwoColumn * {
+  flex: 1;
+}
+
+#section-2 {
+  display: flex;
+  flex-basis: 100%;
+  gap: 50px;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+hr {
+  margin-top: 50px;
+}
+
+.header > h1 {
+  margin: 0;
+}
+
+.header {
+  margin: 30px 0;
+}
+
+.headerTitle {
+  color: var(--ifm-color-primary);
+}
+.headerDescription {
+  font-weight: 400;
+}
+
+.footer--dark {
+  background: var(--logo);
+}
+.footer__link-item:hover {
+  color: var(--grey);
+}
+
+.tabs-container {
+  min-width: 66%;
+  max-width: 66%;
+}
+
+.button:hover {
+  color: var(--p1);
 }

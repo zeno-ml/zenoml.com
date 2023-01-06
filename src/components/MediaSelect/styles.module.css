@@ -1,0 +1,44 @@
+.inactiveSelection {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+  border: solid 1px var(--gray);
+  border-radius: 10px;
+  padding: 5px 20px;
+  margin-bottom: 5px;
+}
+
+.activeSelection {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+  border: solid 1px var(--gray);
+  border-radius: 10px;
+  padding: 5px 20px;
+  margin-bottom: 5px;
+  background-color: #6a1b9a;
+  color: white;
+}
+
+.extra {
+  color: #989895;
+}
+
+.inactiveSelection:hover {
+  border-color: #6a1b9a;
+}
+
+#selectContainer {
+  display: flex;
+  gap: 20px;
+}
+
+.video {
+  width: 75%;
+}
+
+.image {
+  width: 50%;
+}

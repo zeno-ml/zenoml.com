@@ -1,10 +1,10 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Python API
 
-Zeno has 4 primary decorator functions: `model`, `distill`, `metric`, and `transform`.
+Zeno has 3 primary decorator functions: `model`, `metric`, and `distill`.
 
 You can pass any number of files with decorated functions to Zeno, but you **must have one and only one `model`**.
 
@@ -64,6 +64,24 @@ def model(model_path):
     return pred
 ```
 
+## Metric
+
+Functions with the `metric` decorator return a continuous number given a subset of data.
+Metrics can be classic functions such as accuracy, or specific measures such as word prevalence.
+
+```python
+@metric
+def metric_func(df: pd.DataFrame, ops: ZenoOptions) -> float:
+```
+
+Example:
+
+```python title="Calculate accuracy of model"
+@metric
+def accuracy(df, ops):
+    return 100 * (df[ops.label_column] == df[ops.output_column]).sum() / len(df)
+```
+
 ## Distill
 
 `distill` functions return a derived metadata column from input data and/or model outputs.
@@ -84,43 +102,4 @@ def amplitude(df, ops: ZenoOptions):
         y, _ = librosa.load(audio)
         amps.append(np.abs(y).mean())
     return amps
-```
-
-## Metric
-
-Functions with the `metric` decorator return a continuous number given a subset of data.
-Metrics can be classic functions such as accuracy, or specific measures such as word prevalence.
-
-```python
-@metric
-def metric_func(df: pd.DataFrame, ops: ZenoOptions) -> float:
-```
-
-Example:
-
-```python title="Calculate accuracy of model"
-@metric
-def accuracy(df, ops):
-    return 100 * (df[ops.label_column] == df[ops.output_column]).sum() / len(df)
-```
-
-## Transform
-
-Functions with the `transform` decorator return a new, transformed instance.
-
-```python
-@transform
-def metric_func(df: pd.DataFrame, ops: ZenoOptions) -> any:
-```
-
-Example:
-
-```python title="Rotate images 90 degrees"
-@transform
-def rotate(df, ops):
-    for img_path in df[ops.data_column]:
-        img = Image.open(os.path.join(ops.data_path, img_path))
-        rot_img = img.rotate(90)
-        rot_img.save(os.path.join(ops.output_path, "".join(img_path.split("/"))))
-    return ["".join(x.split("/")) for x in list(df[ops.data_column])]
 ```

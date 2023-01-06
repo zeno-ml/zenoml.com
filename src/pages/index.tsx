@@ -1,48 +1,53 @@
-import React, { useEffect } from "react";
-import clsx from "clsx";
-import * as Panelbear from "@panelbear/panelbear-js";
-import Link from "@docusaurus/Link";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import React from "react";
 import Layout from "@theme/Layout";
-import HomepageFeatures from "@site/src/components/HomepageFeatures";
 
-import styles from "./index.module.css";
+import DatatypeSelect from "@site/src/components/DatatypeSelect";
+import ReportSelect from "@site/src/components/ReportSelect";
+import { HomepageHeader } from "@site/src/components/HomepageHeader/HomepageHeader";
+import { Sections } from "@site/src/components/Sections/Sections";
+import { APISnippets } from "@site/src/components/APISnippets/ApiSnippets";
 
-function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext();
+function Header({ title, summary, description }): JSX.Element {
   return (
-    <header className={clsx("hero hero--primary", styles.heroBanner)}>
-      <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro"
-          >
-            Get Started!️
-          </Link>
-        </div>
-      </div>
-    </header>
+    <div className="header">
+      <hr style={{ marginBottom: "10px" }} />
+      <p className="headerTitle">{title}</p>
+      <h1>{summary}</h1>
+      <h3 className="headerDescription">{description}</h3>
+    </div>
   );
 }
 
 export default function Home(): JSX.Element {
-  const { siteConfig } = useDocusaurusContext();
-  useEffect(() => {
-    Panelbear.load("KyRRezHS5mw");
-    Panelbear.trackPageview();
-  });
   return (
     <Layout
       title={`Zeno ML`}
       description="Machine learning evaluation framework"
     >
-      <HomepageHeader />
-      <main>
-        <HomepageFeatures />
-      </main>
+      <div id="homepage">
+        <HomepageHeader />
+        <div id="pageWrapper">
+          <Sections />
+          <Header
+            title="Explore"
+            summary="Explore your data"
+            description="Zeno's modular instance view can be extended to render any data type and model output"
+          ></Header>
+          <DatatypeSelect />
+          <Header
+            title="Report"
+            summary="Create interactive reports"
+            description="Track and compare performance across slices and models"
+          ></Header>
+          <ReportSelect />
+          <Header
+            title="Extend"
+            summary="Extend Zeno with the Python API"
+            description="Add new models, metrics, and metadata columns with the Python API"
+          ></Header>
+          <APISnippets />
+        </div>
+      </div>
     </Layout>
   );
 }
