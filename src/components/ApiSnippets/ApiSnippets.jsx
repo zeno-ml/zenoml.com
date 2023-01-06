@@ -8,11 +8,11 @@ export function APISnippets() {
     <div className="heroTwoColumn">
       <div className="textLeft">
         <p style={{ fontSize: "22px" }}>
-          The <b>Python API</b> is used to add models, metrics, and slices to
-          Zeno.
+          The <b>Python API</b> is used to add models, metrics, and new metadata
+          columns to Zeno.
         </p>
         <p style={{ fontSize: "22px" }}>
-          The <code>@model</code> functions wraps Python libraries, such as
+          The <code>@model</code> functions wraps Python libraries such as
           PyTorch, Tensorflow, Keras, HuggingFace, etc. to get model
           predictions.&nbsp;<code>@metric</code> functions are used to calculate
           different metrics on slices of data.&nbsp;<code>@distill</code>{" "}
