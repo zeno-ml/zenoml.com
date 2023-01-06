@@ -9,13 +9,18 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[Welcome to Zeno]]></title>
+            <title><![CDATA[Zeno: Interactive Model Evaluation]]></title>
             <link>https://zenoml.com/blog/welcome-post</link>
             <guid>welcome-post</guid>
             <pubDate>Fri, 26 Aug 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet]]></description>
-            <content:encoded><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>]]></content:encoded>
-            <category>welcome</category>
+            <description><![CDATA[Model evaluation is a key part of the machine learning development process.]]></description>
+            <content:encoded><![CDATA[<p>Model evaluation is a key part of the machine learning development process.
+Evaluation often stops at measuring metrics such as accuracy, but aggregate metrics are a limited view of model performance.
+It's important to look at specific failures or subgroups of data to develop a nuanced view of model performance and discover issues such as <a href="http://gendershades.org/" target="_blank" rel="noopener noreferrer">biases</a> and <a href="https://en.wikipedia.org/wiki/Death_of_Elaine_Herzberg" target="_blank" rel="noopener noreferrer">safety concerns</a>.</p><p><img loading="lazy" alt="safety concerns" src="/assets/images/overall-946eb5d6678e441074bff0f492f36ca6.png" width="3438" height="962" class="img_ev3q"></p><p><a href="https://zenoml.com" target="_blank" rel="noopener noreferrer"><strong>Zeno</strong></a> is a framework for fine-grained evaluation of diverse machine learning models.
+Zeno is primarily a UI for interactively exploring your data, model outputs, and metrics.
+You can interactively filter your data using metadata and create slices to track and compare model performance.
+Lastly, you can create visualizations and reports to summarize model performance and share insights with other stakeholders.</p><h3 class="anchor anchorWithStickyNavbar_LWe7" id="get-started">Get Started<a class="hash-link" href="#get-started" title="Direct link to heading">​</a></h3><p>Interested in using Zeno? Get started with our <a href="/docs/quickstart">Quickstart</a> guide!</p>]]></content:encoded>
+            <category>introduction</category>
         </item>
     </channel>
 </rss>
