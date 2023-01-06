@@ -5,7 +5,7 @@ import DatatypeSelect from "@site/src/components/DatatypeSelect";
 import ReportSelect from "@site/src/components/ReportSelect";
 import { HomepageHeader } from "@site/src/components/HomepageHeader/HomepageHeader";
 import { Sections } from "@site/src/components/Sections/Sections";
-import { APISnippets } from "@site/src/components/APISnippets/ApiSnippets";
+import { APISnippets } from "@site/src/components/ApiSnippets/ApiSnippets";
 
 function Header({ title, summary, description }): JSX.Element {
   return (
