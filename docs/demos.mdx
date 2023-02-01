@@ -1,0 +1,76 @@
+---
+sidebar_position: 3
+---
+
+import { TryWithZeno } from "@site/src/components/TryWithZeno";
+
+# Demos
+
+Try out some of our hosted demos to get a feel for Zeno.
+
+### Image Classification with CIFAR-10
+
+<TryWithZeno url="http://image-example.zenoml.com/" />
+<br />
+
+For this classic image classification task, we are using Zeno to compare 4 simple
+PyTorch CNN models trained for different number of epochs. It includes multiple distill
+functions for image features such as brightness and certain colors. This model includes
+model projections, which can be used to find potential model errors.
+
+### Audio Transcription
+
+<TryWithZeno url="http://audio-example.zenoml.com/" />
+<br />
+
+We wanted to compare [Open AI's Whisper model](https://github.com/openai/whisper) with existing off-the-shelf
+audio transcription models, in this case the [Silero
+model](https://pytorch.org/hub/snakers4_silero-models_stt/). For our evaluation
+dataset we used the [Speech Accent
+Archive](https://www.kaggle.com/rtatman/speech-accent-archive), a collection of
+audio clips of people from around the world saying the same phrase.
+
+Can you find differences in model performance across geographic regions and other speaker features?
+
+### Sensor Data Exploration
+
+<TryWithZeno url="http://imu-example.zenoml.com/" />
+<br />
+
+Zeno can also be used for unstructured data exploration.
+In this demo, we explore the [MotionSense](https://github.com/mmalekzadeh/motion-sense) dataset of IPhone sensor data.
+This demo could be extended to include activity classification models.
+
+Can you find interesting sensor patterns between the different activities?
+
+### Auditing Image Generation Models
+
+<TryWithZeno url="http://generation-example.zenoml.com/" />
+<br />
+
+:::note
+
+The filtering for this demo is slower as it runs over 2 million images. WIP!
+
+:::
+
+Zeno can also be used for analyses of generative models.
+In this example we are exploring the [DiffusionDB](https://poloclub.github.io/diffusiondb/) dataset.
+Instead of a typical aggregate metric, we measure the average NSFW level of the prompt and images.
+
+Can you find potential biases in diffusion models, e.g. different levels of NSFW for different types of prompt keywords?
+
+### Sentiment Analysis
+
+<TryWithZeno url="http://text-example.zenoml.com/" />
+<br />
+
+We can compare off-the-shelf hugging face sentiment classification models.
+
+### Tabular Logistic Regression
+
+<TryWithZeno url="http://tabular-example.zenoml.com/" />
+<br />
+
+You can also use Zeno for classic tabular model analysis.
+Here we trained multiple different models to predict people's income on the adult dataset.

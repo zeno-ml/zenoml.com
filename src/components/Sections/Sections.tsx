@@ -14,9 +14,9 @@ const SectionList: SectionItem[] = [
     icon: require("@site/static/img/explore-icon.png").default,
   },
   {
-    title: "Slice",
+    title: "Evaluate",
     description:
-      "Interactively discover, create and save slices of data for model analysis and updates",
+      "Interactively discover, test and save model behavior for analysis and updates",
     icon: require("@site/static/img/slice-icon.png").default,
   },
   {

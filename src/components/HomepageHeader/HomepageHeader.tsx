@@ -8,24 +8,36 @@ export function HomepageHeader() {
   return (
     <header className={styles.header}>
       <div className={styles.headerLeft}>
-        <h1>Evaluate ML models beyond aggregate metrics</h1>
+        <h1>The Model Evaluation Framework for Modern AI</h1>
         <h3 className={styles.subheader}>
-          <b>Zeno</b> is a machine learning evaluation framework for
-          interactively exploring data, discovering important slices, and
-          creating visualizations and reports.
+          <b>Zeno</b> is a machine learning evaluation framework for exploring
+          ML data, discovering important model, and tracking and comparing model
+          performace.
         </h3>
-        <div className={styles.buttons}>
+        <div
+          className={styles.buttons}
+          style={{ justifyContent: "space-between" }}
+        >
+          <div className={styles.buttons}>
+            <Link
+              className="button button--lg heroButtonSecondary"
+              to="/docs/quickstart"
+            >
+              Quickstart
+            </Link>
+            <Link
+              className="button button--lg heroButtonSecondary"
+              to="/docs/intro"
+            >
+              Explore Docs
+            </Link>
+          </div>
           <Link
+            style={{ color: "var(--ifm-color-primary)" }}
             className="button button--lg heroButtonSecondary"
-            to="/docs/quickstart"
+            to="/docs/demos"
           >
-            Quickstart
-          </Link>
-          <Link
-            className="button button--lg heroButtonSecondary"
-            to="/docs/intro"
-          >
-            Explore Docs
+            Try it!
           </Link>
         </div>
       </div>
