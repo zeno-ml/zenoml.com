@@ -71,7 +71,8 @@ const config = {
             position: "left",
             label: "Docs",
           },
-          { to: "/blog", label: "Blog", position: "left" },
+          // { to: "/blog", label: "Blog", position: "left" },
+          { to: "/about", label: "About", position: "left" },
           {
             href: "https://github.com/cmudig/zeno",
             // label: "GitHub",
