@@ -27,12 +27,12 @@ export default function About() {
       site: "https://tianqi-wu.github.io/",
       image: "tianqiw.png",
     },
-    // {
-    //   name: "Yi-Chen (Steven) Huang",
-    //   role: "Research Scientist",
-    //   site: "https://www.linkedin.com/in/yh3stevenhuang/",
-    //   image: "steven.jpeg",
-    // },
+    {
+      name: "Yi-Chen (Steven) Huang",
+      role: "Research Scientist",
+      site: "https://www.linkedin.com/in/yh3stevenhuang/",
+      image: "steven.jpg",
+    },
     {
       name: "Josh Zhou",
       role: "Undergraduate Student",
