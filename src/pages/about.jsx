@@ -1,7 +1,23 @@
 import React from "react";
 import Layout from "@theme/Layout";
+import CodeBlock from "@theme/CodeBlock";
 
 export default function About() {
+  const citation = `
+@inproceedings{cabrera23zeno,
+  author = {Cabrera, Ángel Alexander and Fu, Erica and Bertucci, Donald and Holstein, Kenneth and Talwalkar, Ameet and Hong, Jason I. and Perer, Adam},
+  title = {Zeno: An Interactive Framework for Behavioral Evaluation of Machine Learning},
+  year = {2023},
+  isbn = {978-1-4503-9421-5/23/04},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  url = {https://doi.org/10.1145/3544548.3581268},
+  doi = {10.1145/3544548.3581268},
+  booktitle = {CHI Conference on Human Factors in Computing Systems},
+  location = {Hamburg, Germany},
+  series = {CHI '23}
+}`;
+
   let team = [
     {
       name: "Ángel Alexander Cabrera",
@@ -29,7 +45,7 @@ export default function About() {
     },
     {
       name: "Yi-Cheng (Steven) Huang",
-      role: "Research Scientist",
+      role: "Research Assistant",
       site: "https://www.linkedin.com/in/yh3stevenhuang/",
       image: "steven.jpg",
     },
@@ -62,10 +78,9 @@ export default function About() {
     <Layout title="About" description="About Zeno">
       <div
         style={{
-          width: "900px",
+          maxWidth: "900px",
           margin: "0px auto",
-          marginTop: "40px",
-          marginBottom: "40px",
+          padding: "40px",
         }}
       >
         <h1 style={{ fontSize: "3rem" }}>About Us</h1>
@@ -90,13 +105,17 @@ export default function About() {
           />
         </div>
         <h1 style={{ marginTop: "20px" }}>Contact</h1>
-        <h2>Support</h2>
         <p>
           If you have any questions or issues with Zeno please ask in our{" "}
           <a href="https://gitter.im/zeno-ml-eval/community">Gitter Channel</a>{" "}
           or open an issue on{" "}
           <a href="https://github.com/zeno-ml/zeno/issues/new">GitHub</a>
         </p>
+        <h1 style={{ marginTop: "20px" }}>Cite</h1>
+        <p>
+          Please reference our CHI 2023 paper if you would like to cite Zeno:
+        </p>
+        <CodeBlock language="bibtex">{citation}</CodeBlock>
       </div>
     </Layout>
   );

@@ -57,6 +57,8 @@
 }
 
 #pageWrapper {
+  display: flex;
+  flex-direction: column;
   max-width: 1500px;
   padding: 50px;
   padding-top: 30px;
@@ -159,12 +161,41 @@
 
 #section-2 {
   display: flex;
+  flex-direction: row;
+  width: 100%;
   flex-basis: 100%;
   gap: 50px;
   flex-wrap: wrap;
   flex-grow: 1;
   justify-content: space-evenly;
   margin-top: 20px;
+}
+
+.section-container {
+  display: flex;
+  flex-direction: row;
+  width: calc(33% - 40px);
+}
+
+.section-text-container {
+  margin-left: 20px;
+}
+
+@media only screen and (max-width: 700px) {
+  #section-2 {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+  }
+  .section-container {
+    width: 300px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+  }
+  .section-text-container {
+    margin-left: 0px;
+  }
 }
 
 hr {
@@ -193,9 +224,30 @@ hr {
   color: var(--grey);
 }
 
+.intro-image {
+  border-radius: 5px;
+  margin: 5px;
+  width: 50%;
+  margin-right: 20px;
+  object-fit: contain;
+}
+
 .tabs-container {
   min-width: 66%;
   max-width: 66%;
+}
+
+@media only screen and (max-width: 700px) {
+  .intro-container {
+    flex-direction: column;
+  }
+  .tabs-container {
+    min-width: 100%;
+    max-width: 100%;
+  }
+  .intro-image {
+    width: 100%;
+  }
 }
 
 .button:hover {

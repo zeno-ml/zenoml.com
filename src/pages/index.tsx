@@ -11,7 +11,6 @@ function Header({ title, summary, description }): JSX.Element {
   return (
     <div className="header">
       <hr style={{ marginBottom: "10px" }} />
-      <p className="headerTitle">{title}</p>
       <h1>{summary}</h1>
       <h3 className="headerDescription">{description}</h3>
     </div>

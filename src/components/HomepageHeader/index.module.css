@@ -1,6 +1,7 @@
 .buttons {
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 25px;
 }
 
@@ -10,20 +11,34 @@
   position: relative;
   align-items: center;
   justify-content: center;
-  height: 460px;
   background: #6a1b9a;
   width: 100%;
   overflow: hidden;
 }
 
 .headerLeft {
-  width: 50%;
   margin: 30px;
 }
 
 .headerRight {
-  width: 50%;
+  width: 100%;
   margin: 50px;
+}
+
+@media only screen and (max-width: 700px) {
+  .header {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+  .header video {
+    width: 100%;
+  }
+  .headerLeft {
+    width: 100%;
+    margin: 30px;
+  }
 }
 
 .subheader {

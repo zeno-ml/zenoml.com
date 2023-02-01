@@ -53,16 +53,7 @@ export default function Select(props) {
   return (
     <div id={styles.selectContainer}>
       {menu}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          width: "75%",
-          marginLeft: "30px",
-        }}
-      >
+      <div id={styles.imageContainer}>
         {props.list
           .find((element) => {
             return element.select == selection;

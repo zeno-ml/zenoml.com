@@ -30,9 +30,29 @@
   border-color: #6a1b9a;
 }
 
+#imageContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 75%;
+  margin-left: 30px;
+}
+
 #selectContainer {
   display: flex;
   gap: 20px;
+}
+
+@media only screen and (max-width: 700px) {
+  #selectContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  #imageContainer {
+    width: 100%;
+    margin-left: 0px;
+  }
 }
 
 .video {

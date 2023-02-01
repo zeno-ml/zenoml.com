@@ -20,8 +20,8 @@ Zeno uses a Python decorator API to generate data and model information that is 
 
 ### Exploration UI
 
-<div style={{display: 'flex'}}>
-<img style={{borderRadius: '5px', margin: '5px', width: '50%', marginRight: '20px', objectFit: 'contain'}} src="/img/explore.png" />
+<div className="intro-container" style={{display: 'flex'}}>
+<img className="intro-image"  src="/img/explore.png" />
 <div>
 <p>
     Zeno's Exploration UI is the main interface for evaluation.
@@ -39,16 +39,8 @@ Zeno uses a Python decorator API to generate data and model information that is 
 
 ### Report UI
 
-<div style={{ display: "flex" }}>
-  <img
-    style={{
-      padding: "5px",
-      width: "50%",
-      marginRight: "20px",
-      objectFit: "contain",
-    }}
-    src="/img/analyze.png"
-  />
+<div className="intro-container" style={{ display: "flex" }}>
+  <img className="intro-image" src="/img/analyze.png" />
   <p>
     The Report page is used to compare models across slices. You can create
     reports for groups of instance and see how new models compare with sparkline
@@ -60,7 +52,7 @@ Zeno uses a Python decorator API to generate data and model information that is 
 
 ### Python API
 
-<div style={{ display: "flex" }}>
+<div className="intro-container" style={{ display: "flex" }}>
   <p style={{ marginRight: "20px" }}>
     The Python API consists of four core decorator functions that you can use to plug your models in and generate information for evaluation. 
     The <code>@model</code> functions return model outputs for any Python-based model or API, which can then be evaluated with <code>@metric</code> functions.

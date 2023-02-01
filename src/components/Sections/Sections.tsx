@@ -31,39 +31,39 @@ export function Sections() {
   return (
     <div id="section-2">
       {SectionList.map((props, idx) => (
-        <div
+        <SectionBlock {...props} key={idx} />
+      ))}
+    </div>
+  );
+}
+
+function SectionBlock(props) {
+  return (
+    <div className="section-container">
+      <div>
+        <img
           style={{
-            display: "flex",
-            flexDirection: "row",
-            width: "calc(33% - 40px)",
+            borderRadius: "5px",
+            height: "140px",
+            width: "140px",
+            minHeight: "140px",
+            minWidth: "140px",
+            border: "1px solid #EBEBEA",
+          }}
+          src={props.icon}
+        ></img>
+      </div>
+      <div className="section-text-container">
+        <h2
+          style={{
+            fontSize: "30px",
+            marginBottom: "10px",
           }}
         >
-          <div>
-            <img
-              style={{
-                borderRadius: "5px",
-                height: "140px",
-                width: "140px",
-                minHeight: "140px",
-                minWidth: "140px",
-                border: "1px solid #EBEBEA",
-              }}
-              src={props.icon}
-            ></img>
-          </div>
-          <div style={{ marginLeft: "20px" }}>
-            <h2
-              style={{
-                fontSize: "30px",
-                marginBottom: "10px",
-              }}
-            >
-              {props.title}
-            </h2>
-            <p>{props.description}</p>
-          </div>
-        </div>
-      ))}
+          {props.title}
+        </h2>
+        <p>{props.description}</p>
+      </div>
     </div>
   );
 }

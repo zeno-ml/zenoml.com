@@ -1,7 +1,8 @@
 import React from "react";
+import styles from "./styles.module.css";
 
 let imageStyle = {
-  width: "350px",
+  width: "300px",
   objectFit: "contain",
   border: "1px solid var(--gray)",
   borderRadius: "4px",
@@ -12,17 +13,8 @@ let imageStyle = {
 
 export default function DatatypeSelect() {
   return (
-    <div style={{ display: "flex", width: "100%" }}>
-      <div
-        style={{
-          width: "60%",
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          alignItems: "middle",
-        }}
-      >
+    <div className={styles.reportWrapper}>
+      <div className={styles.left} style={{}}>
         <img
           style={imageStyle}
           src={require("@site/static/img/chart.png").default}
@@ -32,20 +24,21 @@ export default function DatatypeSelect() {
           src={require("@site/static/img/line-chart.png").default}
         />
         <img
-          style={{ ...imageStyle, width: "500px" }}
+          style={{ ...imageStyle, width: "400px" }}
           src={require("@site/static/img/trend-chart.png").default}
         />
       </div>
-      <div style={{ width: "40%", marginRight: "10px", marginLeft: "10px" }}>
+      <div className={styles.right}>
         <p style={{ fontSize: "22px" }}>
-          Slices created in the exploration page can be used to build
-          interactive visualizations for deeper analyses of model behavior. This
-          includes bar charts for comparing slice performance across models and
-          trend tables for detecting regressions in slice performance.
+          Slices created in the Exploration page can be used to build
+          interactive visualizations for deeper analyses of model behavior.
+          Visualizations include bar charts for comparing slice performance
+          across models and trend tables for detecting regressions in slice
+          performance.
         </p>
         <p style={{ fontSize: "22px" }}>
-          The charts can be exported as PDFs or PNGs for sharing with other
-          stakeholders.
+          Zeno charts can be exported as PDFs or PNGs for sharing with other
+          stakeholders, or shared as links for live views of model performance.
         </p>
       </div>
     </div>
