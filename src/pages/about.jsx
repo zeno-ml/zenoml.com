@@ -28,7 +28,7 @@ export default function About() {
       image: "tianqiw.png",
     },
     {
-      name: "Yi-Chen (Steven) Huang",
+      name: "Yi-Cheng (Steven) Huang",
       role: "Research Scientist",
       site: "https://www.linkedin.com/in/yh3stevenhuang/",
       image: "steven.jpg",
@@ -89,6 +89,14 @@ export default function About() {
             style={{ width: "150px", alignSelf: "center" }}
           />
         </div>
+        <h1 style={{ marginTop: "20px" }}>Contact</h1>
+        <h2>Support</h2>
+        <p>
+          If you have any questions or issues with Zeno please ask in our{" "}
+          <a href="https://gitter.im/zeno-ml-eval/community">Gitter Channel</a>{" "}
+          or open an issue on{" "}
+          <a href="https://github.com/zeno-ml/zeno/issues/new">GitHub</a>
+        </p>
       </div>
     </Layout>
   );
