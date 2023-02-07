@@ -9,7 +9,7 @@
     <icon>https://zenoml.com/img/favicon.png</icon>
     <entry>
         <title type="html"><![CDATA[Zeno: Interactive Model Evaluation]]></title>
-        <id>welcome-post</id>
+        <id>https://zenoml.com/blog/welcome-post</id>
         <link href="https://zenoml.com/blog/welcome-post"/>
         <updated>2022-08-26T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Model evaluation is a key part of the machine learning development process.]]></summary>
@@ -18,7 +18,7 @@ Evaluation often stops at measuring metrics such as accuracy, but aggregate metr
 It's important to look at specific failures or subgroups of data to develop a nuanced view of model performance and discover issues such as <a href="http://gendershades.org/" target="_blank" rel="noopener noreferrer">biases</a> and <a href="https://en.wikipedia.org/wiki/Death_of_Elaine_Herzberg" target="_blank" rel="noopener noreferrer">safety concerns</a>.</p><p><img loading="lazy" alt="safety concerns" src="/assets/images/overall-946eb5d6678e441074bff0f492f36ca6.png" width="3438" height="962" class="img_ev3q"></p><p><a href="https://zenoml.com" target="_blank" rel="noopener noreferrer"><strong>Zeno</strong></a> is a framework for fine-grained evaluation of diverse machine learning models.
 Zeno is primarily a UI for interactively exploring your data, model outputs, and metrics.
 You can interactively filter your data using metadata and create slices to track and compare model performance.
-Lastly, you can create visualizations and reports to summarize model performance and share insights with other stakeholders.</p><h3 class="anchor anchorWithStickyNavbar_LWe7" id="get-started">Get Started<a class="hash-link" href="#get-started" title="Direct link to heading">​</a></h3><p>Interested in using Zeno? Get started with our <a href="/docs/quickstart">Quickstart</a> guide!</p>]]></content>
+Lastly, you can create visualizations and reports to summarize model performance and share insights with other stakeholders.</p><h3 class="anchor anchorWithStickyNavbar_LWe7" id="get-started">Get Started<a href="#get-started" class="hash-link" aria-label="Direct link to Get Started" title="Direct link to Get Started">​</a></h3><p>Interested in using Zeno? Get started with our <a href="/docs/quickstart">Quickstart</a> guide!</p>]]></content>
         <author>
             <name>Alex Cabrera</name>
             <uri>https://cabreraalex.com</uri>
