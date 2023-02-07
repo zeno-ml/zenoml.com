@@ -16,11 +16,13 @@ export function HomepageHeader() {
   return (
     <header className={styles.header}>
       <div className={styles.headerLeft}>
-        <h1>Evaluation for Modern AI</h1>
+        <h1 style={{ fontSize: "42px" }}>
+          Data Management & Evaluation for Foundational Models
+        </h1>
         <h3 className={styles.subheader}>
           <b>Zeno</b> is a machine learning evaluation framework for exploring
-          your data, debugging foundational models, and tracking and comparing
-          model performance.
+          and managing your data, debugging your models, and tracking and
+          comparing model performance.
         </h3>
         <div
           className={styles.buttons}
