@@ -20,9 +20,9 @@ export function HomepageHeader() {
           Data Management & Evaluation for Foundational Models
         </h1>
         <h3 className={styles.subheader}>
-          <b>Zeno</b> is a machine learning evaluation framework for exploring
-          and managing your data, debugging your models, and tracking and
-          comparing model performance.
+          <b>Zeno</b> is an interactive platform for exploring and managing your
+          data, debugging your models, and tracking and comparing model
+          performance.
         </h3>
         <div
           className={styles.buttons}
