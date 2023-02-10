@@ -18,7 +18,6 @@ function Header({ title, summary, description }): JSX.Element {
 }
 
 export default function Home(): JSX.Element {
-  useEffect(() => Cronitor.track("Home"));
   return (
     <Layout
       title={`Zeno ML`}
