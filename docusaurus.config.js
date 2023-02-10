@@ -14,6 +14,8 @@ const config = {
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.png",
 
+  clientModules: [require.resolve("./src/tracking.js")],
+
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "zenoml", // Usually your GitHub org/user name.

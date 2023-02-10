@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "@theme/Layout";
 
 import DatatypeSelect from "@site/src/components/DatatypeSelect";
@@ -6,9 +6,6 @@ import ReportSelect from "@site/src/components/ReportSelect";
 import { HomepageHeader } from "@site/src/components/HomepageHeader/HomepageHeader";
 import { Sections } from "@site/src/components/Sections/Sections";
 import { APISnippets } from "@site/src/components/ApiSnippets/ApiSnippets";
-
-import * as Cronitor from "@cronitorio/cronitor-rum-js";
-Cronitor.load("ab7ee867e32de637689fa328231ca993");
 
 function Header({ title, summary, description }): JSX.Element {
   return (
@@ -21,7 +18,7 @@ function Header({ title, summary, description }): JSX.Element {
 }
 
 export default function Home(): JSX.Element {
-  Cronitor.track("Home");
+  useEffect(() => Cronitor.track("Home"));
   return (
     <Layout
       title={`Zeno ML`}
