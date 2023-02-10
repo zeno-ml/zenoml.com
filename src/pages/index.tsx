@@ -7,6 +7,9 @@ import { HomepageHeader } from "@site/src/components/HomepageHeader/HomepageHead
 import { Sections } from "@site/src/components/Sections/Sections";
 import { APISnippets } from "@site/src/components/ApiSnippets/ApiSnippets";
 
+import * as Cronitor from "@cronitorio/cronitor-rum-js";
+Cronitor.load("ab7ee867e32de637689fa328231ca993");
+
 function Header({ title, summary, description }): JSX.Element {
   return (
     <div className="header">
@@ -18,6 +21,7 @@ function Header({ title, summary, description }): JSX.Element {
 }
 
 export default function Home(): JSX.Element {
+  Cronitor.track("Home");
   return (
     <Layout
       title={`Zeno ML`}
