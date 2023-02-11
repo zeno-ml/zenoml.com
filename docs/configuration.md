@@ -91,6 +91,11 @@ Where cache outputs are stored. **Optional**
 
 By default it is `.zeno_cache` in the same directory as the `TOML` file. Cache stores preprocesssing and model outputs.
 
+### `calculate_histogram_metrics`
+
+Whether to calculate metrics for each histogram's bins to color them by metric.
+Set to `false` if you have a large dataset where calculating metrics can be costly. Default True. **Optional**
+
 ### `editable`
 
 Whether users should be able to create/delete/edit slices, folder, and reports. If set to false any changes to the frontend will not be saved in the backend. Default True. **Optional**
