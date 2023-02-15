@@ -4,9 +4,9 @@ sidebar_position: 4
 
 # Python API
 
-Zeno has 3 primary decorator functions: `model`, `metric`, and `distill`.
+Zeno has 4 primary decorator functions: `model`, `metric`, `distill`, and `inference`.
 
-You can pass any number of files with decorated functions to Zeno, but you **must have one and only one `model`**.
+You can pass any number of files with decorated functions to Zeno, but you **must have only one `model`**.
 
 ## ZenoOptions
 
@@ -56,11 +56,10 @@ Example:
 
 ```python title="Load mock model and return outputs"
 @model
-def model(model_path):
-    model = load_model(model_path)
+def model_fn(model_path):
+    mod = load_model(model_path)
     def pred(df: DataFrame, ops: ZenoOptions):
-        outputs = model(instances)
-        return model(df[ops.data_column])
+        return mod(df[ops.data_column])
     return pred
 ```
 
@@ -88,7 +87,7 @@ def accuracy(df, ops):
 
 ```python
 @distill
-def distill(df: pd.DataFrame, ops: ZenoOptions) -> Union[pd.Series, List]:
+def distill_fn(df: pd.DataFrame, ops: ZenoOptions) -> Union[pd.Series, List]:
 ```
 
 Example:
@@ -102,4 +101,32 @@ def amplitude(df, ops: ZenoOptions):
         y, _ = librosa.load(audio)
         amps.append(np.abs(y).mean())
     return amps
+```
+
+## Inference
+
+You can create a [Gradio](https://gradio.app/) interface for your model by adding an `inference` decorator.
+This interface allows you to upload new instances and interactively test your model.
+
+The inference function has three returns:
+
+- A list of Gradio input components.
+- A Gradio output component.
+- A list of columns from Zeno that correspond to the input components.
+
+```python
+@inference
+def inference_fn(ops: ZenoOptions) -> Tuple[List[IOComponent],List[IOComponent],List[str]]
+```
+
+Example:
+
+```python title="Create Gradio interface for image classification model"
+@inference
+def gradio_inference(ops: ZenoOptions):
+    return (
+        [gr.Image(type="filepath")],
+        gr.Text(label="Output"),
+        [ops.data_column],
+    )
 ```
