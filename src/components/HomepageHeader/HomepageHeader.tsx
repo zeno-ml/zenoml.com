@@ -17,7 +17,7 @@ export function HomepageHeader() {
     <header className={styles.header}>
       <div className={styles.headerLeft}>
         <h1 style={{ fontSize: "42px" }}>
-          Data Management & Evaluation for Foundational Models
+          Data Management & Evaluation for Foundation Models
         </h1>
         <h3 className={styles.subheader}>
           <b>Zeno</b> is an interactive platform for exploring and managing your
