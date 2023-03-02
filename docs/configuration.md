@@ -91,6 +91,10 @@ Where cache outputs are stored. **Optional**
 
 By default it is `.zeno_cache` in the same directory as the `TOML` file. Cache stores preprocesssing and model outputs.
 
+### `samples`
+
+Number of samples to show by default in view. Default 30. **Optional**
+
 ### `calculate_histogram_metrics`
 
 Whether to calculate metrics for each histogram's bins to color them by metric.
@@ -104,9 +108,9 @@ Whether users should be able to create/delete/edit slices, folder, and reports. 
 
 Whether Zeno should be served on localhost. If False, the FastAPI instance is returned. Useful for hosting on services such as AWS Lambda. Default True. **Optional**
 
-### `samples`
+### `host`
 
-Number of samples to show by default in view. Default 30. **Optional**
+The host to run Zeno on, should be changed to run on custom domains. Default `localhost`. **Optional**
 
 ### `port`
 
