@@ -93,8 +93,26 @@ export default function About() {
             <PersonCard key={member.name} {...member} />
           ))}
         </div>
-        <h1 style={{ marginTop: "20px" }}>Organizations & Sponsors</h1>
+        <h1 style={{ marginTop: "20px" }}>Sponsors & Organizations</h1>
+        <p>
+          We are thankful to our sponsors and affiliated organizations. Zeno is
+          part of the{" "}
+          <a href="https://foundation.mozilla.org/en/blog/auditing-ai-announcing-the-2023-mozilla-technology-fund-cohort/">
+            Mozilla Technology Fund
+          </a>{" "}
+          and developed partly with the support of an NSF grant.
+        </p>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
+          <a
+            href="https://foundation.mozilla.org/en/blog/auditing-ai-announcing-the-2023-mozilla-technology-fund-cohort/"
+            style={{
+              width: "140px",
+              alignSelf: "center",
+              marginRight: "50px",
+            }}
+          >
+            <img src="/img/mozilla.png" />
+          </a>
           <img
             src="/img/nsf.png"
             style={{ width: "300px", alignSelf: "center", marginRight: "50px" }}
