@@ -49,17 +49,38 @@ The function returned by `model` should take two parameters: a Pandas DataFrame 
 
 ```python
 @model
-def model(model_path: Path) -> Callable[[df: DataFrame, ops: ZenoOptions], Any[]]
+def model(model_path: Path) -> Callable[[df: DataFrame, ops: ZenoOptions], ModelReturn]
 ```
 
-Example:
+### ModelReturn
+
+The function should return the following object:
+
+```python
+class ModelReturn(BaseModel):
+    """Return type for model functions.
+
+    Args:
+        model_output (Series | List): Model output for each sample.
+        embedding (Series | List[List[float]] | List[NDArray] | NDArray | None):
+        High-dimensional embedding for each sample. Optional.
+        other_returns (Dict[str, Series | List] | None): Other returns from the model
+        to be shown as metadata columns in the UI.
+    """
+
+    model_output: Union[Series, List[Any]]
+    embedding: Union[Series, List[List[float]], List[NDArray], NDArray, None] = None
+    other_returns: Union[Dict[str, Union[Series, List[Any]]], None] = None
+```
+
+### Example
 
 ```python title="Load mock model and return outputs"
 @model
 def model_fn(model_path):
     mod = load_model(model_path)
     def pred(df: DataFrame, ops: ZenoOptions):
-        return mod(df[ops.data_column])
+        return ModelReturn(model_output=mod(df[ops.data_column]))
     return pred
 ```
 
@@ -70,15 +91,32 @@ Metrics can be classic functions such as accuracy, or specific measures such as 
 
 ```python
 @metric
-def metric_func(df: pd.DataFrame, ops: ZenoOptions) -> float:
+def metric_func(df: pd.DataFrame, ops: ZenoOptions) -> MetricReturn:
 ```
 
-Example:
+### MetricReturn
+
+It should return the following:
+
+```python
+class MetricReturn(BaseModel):
+    """Return type for metric functions.
+
+    Args:
+        metric (float): Average metric over subset of data
+        variance (float): Variance of metric over subset of data
+    """
+
+    metric: float
+    variance: Union[float, None] = None
+```
+
+### Example
 
 ```python title="Calculate accuracy of model"
 @metric
 def accuracy(df, ops):
-    return 100 * (df[ops.label_column] == df[ops.output_column]).sum() / len(df)
+    return MetricReturn(metric=100 * (df[ops.label_column] == df[ops.output_column]).sum() / len(df))
 ```
 
 ## Distill
@@ -87,10 +125,25 @@ def accuracy(df, ops):
 
 ```python
 @distill
-def distill_fn(df: pd.DataFrame, ops: ZenoOptions) -> Union[pd.Series, List]:
+def distill_fn(df: pd.DataFrame, ops: ZenoOptions) -> DistillReturn:
 ```
 
-Example:
+### DistillReturn
+
+They should return the following object:
+
+```python
+class DistillReturn(BaseModel):
+    """Return type for distill functions
+
+    Args:
+        distill_output (Series | List): Distill outputs for each sample.
+    """
+
+    distill_output: Union[Series, List[Any]]
+```
+
+### Example
 
 ```python title="Get amplitude of sound file"
 @distill
@@ -100,7 +153,7 @@ def amplitude(df, ops: ZenoOptions):
     for audio in files:
         y, _ = librosa.load(audio)
         amps.append(np.abs(y).mean())
-    return amps
+    return DistillReturn(distill_output=amps)
 ```
 
 ## Inference
@@ -108,25 +161,40 @@ def amplitude(df, ops: ZenoOptions):
 You can create a [Gradio](https://gradio.app/) interface for your model by adding an `inference` decorator.
 This interface allows you to upload new instances and interactively test your model.
 
-The inference function has three returns:
-
-- A list of Gradio input components.
-- A Gradio output component.
-- A list of columns from Zeno that correspond to the input components.
-
 ```python
 @inference
-def inference_fn(ops: ZenoOptions) -> Tuple[List[IOComponent],List[IOComponent],List[str]]
+def inference_fn(ops: ZenoOptions) -> InferenceReturn
 ```
 
-Example:
+### InferenceReturn
+
+It should return the following:
+
+```python
+class InferenceReturn(BaseModel):
+    """Return type for inference UI functions.
+    Take a look at the Gradio documentation for details.
+
+    Args:
+        input_components (List[Blocks]): List of Gradio input components.
+        output_components (Blocks): Gradio output component.
+        input_columns (List[str]): List of input column names matching the
+        input components.
+    """
+
+    input_components: List[IOComponent]
+    output_component: IOComponent
+    input_columns: List[str]
+```
+
+### Example
 
 ```python title="Create Gradio interface for image classification model"
 @inference
 def gradio_inference(ops: ZenoOptions):
-    return (
-        [gr.Image(type="filepath")],
-        gr.Text(label="Output"),
-        [ops.data_column],
+    return InferenceReturn(
+        input_components=[gr.Image(type="filepath")],
+        output_component=gr.Text(label="Output"),
+        input_columns=[ops.data_column],
     )
 ```
