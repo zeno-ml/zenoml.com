@@ -5,15 +5,21 @@
   gap: 25px;
 }
 
+header {
+  width: 100%;
+  display: flex;
+  background: #6a1b9a;
+}
+
 .header {
   color: white;
   display: inline-flex;
   position: relative;
   align-items: center;
   justify-content: center;
-  background: #6a1b9a;
-  width: 100%;
+  max-width: 1400px;
   overflow: hidden;
+  margin: 0px auto;
 }
 
 .headerLeft {
@@ -37,6 +43,7 @@
 .headerRight {
   width: 100%;
   margin: 50px;
+  margin-bottom: 20px;
 }
 
 @media only screen and (max-width: 700px) {

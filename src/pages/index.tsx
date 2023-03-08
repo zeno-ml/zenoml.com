@@ -1,11 +1,11 @@
-import React from "react";
-import Layout from "@theme/Layout";
-
-import DatatypeSelect from "@site/src/components/DatatypeSelect";
-import ReportSelect from "@site/src/components/ReportSelect";
-import { HomepageHeader } from "@site/src/components/HomepageHeader/HomepageHeader";
-import { Sections } from "@site/src/components/Sections/Sections";
 import { APISnippets } from "@site/src/components/ApiSnippets/ApiSnippets";
+import DatatypeSelect from "@site/src/components/DatatypeSelect";
+import { HomepageHeader } from "@site/src/components/HomepageHeader/HomepageHeader";
+import ReportSelect from "@site/src/components/ReportSelect";
+import { Sections } from "@site/src/components/Sections/Sections";
+import { Sponsors } from "@site/src/components/Sponsors/Sponsors";
+import Layout from "@theme/Layout";
+import React from "react";
 
 function Header({ title, summary, description }): JSX.Element {
   return (
@@ -25,6 +25,7 @@ export default function Home(): JSX.Element {
     >
       <div id="homepage">
         <HomepageHeader />
+        <Sponsors />
         <div id="pageWrapper">
           <Sections />
           <Header

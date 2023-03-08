@@ -1,0 +1,24 @@
+.group {
+  width: 100%;
+  padding: 20px;
+  background: #6a1b9a;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  opacity: 80%;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.intro {
+  padding: 0px;
+  margin: 0px;
+  color: white;
+  font-weight: 700;
+  margin-right: 30px;
+}

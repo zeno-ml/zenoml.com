@@ -45,7 +45,7 @@ export default function About() {
     },
     {
       name: "Yi-Cheng (Steven) Huang",
-      role: "Research Assistant",
+      role: "Research Associate",
       site: "https://www.linkedin.com/in/yh3stevenhuang/",
       image: "steven.jpg",
     },
