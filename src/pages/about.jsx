@@ -22,7 +22,7 @@ export default function About() {
     {
       name: "Ángel Alexander Cabrera",
       role: "PhD Student",
-      site: "cabreraalex.com",
+      site: "https://cabreraalex.com",
       image: "alex.jpg",
     },
     {

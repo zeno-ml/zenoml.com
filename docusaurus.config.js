@@ -99,8 +99,8 @@ const config = {
                 to: "/docs/intro",
               },
               {
-                label: "Blog",
-                to: "/blog/",
+                label: "About",
+                to: "/about/",
               },
             ],
           },
@@ -117,7 +117,7 @@ const config = {
               },
               {
                 label: "Twitter",
-                href: "https://twitter.com/zeno_mlops",
+                href: "https://twitter.com/try_zeno",
               },
             ],
           },
@@ -126,7 +126,7 @@ const config = {
             items: [
               {
                 label: "GitHub",
-                href: "https://github.com/cmudig/zeno",
+                href: "https://github.com/zeno-ml/zeno",
               },
             ],
           },
