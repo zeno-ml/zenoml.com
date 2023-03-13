@@ -131,7 +131,9 @@ export default function About() {
         </p>
         <h1 style={{ marginTop: "20px" }}>Cite</h1>
         <p>
-          Please reference our CHI 2023 paper if you would like to cite Zeno:
+          Please reference our
+          <a href="https://cabreraalex.com/zeno.pdf"> CHI 2023 paper</a> if you
+          would like to cite Zeno:
         </p>
         <CodeBlock language="bibtex">{citation}</CodeBlock>
       </div>
