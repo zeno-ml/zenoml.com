@@ -125,9 +125,8 @@ export default function About() {
         <h1 style={{ marginTop: "20px" }}>Contact</h1>
         <p>
           If you have any questions or issues with Zeno please ask in our{" "}
-          <a href="https://gitter.im/zeno-ml-eval/community">Gitter Channel</a>{" "}
-          or open an issue on{" "}
-          <a href="https://github.com/zeno-ml/zeno/issues/new">GitHub</a>
+          <a href="https://discord.gg/km62pDKAkE">Discord</a> or open an issue
+          on <a href="https://github.com/zeno-ml/zeno/issues/new">GitHub</a>
         </p>
         <h1 style={{ marginTop: "20px" }}>Cite</h1>
         <p>
