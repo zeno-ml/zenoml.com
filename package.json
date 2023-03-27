@@ -15,7 +15,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@cronitorio/cronitor-rum-js": "^0.1.0",
+    "@cronitorio/cronitor-rum-js": "^0.3.0",
     "@docusaurus/core": "^2.3.1",
     "@docusaurus/preset-classic": "^2.3.1",
     "@mdx-js/react": "^1.6.22",
