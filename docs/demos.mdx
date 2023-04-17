@@ -8,19 +8,20 @@ import { TryWithZeno } from "@site/src/components/TryWithZeno";
 
 Try out some of our hosted demos to get a feel for Zeno.
 
-### Image Classification with CIFAR-10
+### Image Classification with Imagenette
 
-<TryWithZeno url="http://image-example.zenoml.com/" />
+<TryWithZeno url="https://zeno-ml-imagenette.hf.space/" />
 <br />
 
-For this classic image classification task, we are using Zeno to compare 4 simple
-PyTorch CNN models trained for different number of epochs. It includes multiple distill
+For this classic image classification task on a subset of the whole Imagenet dataset, we are using Zeno to compare two CNN models. It includes multiple distill
 functions for image features such as brightness and certain colors. This model includes
 model projections, which can be used to find potential model errors.
 
+[Explore the code](https://huggingface.co/spaces/zeno-ml/imagenette/tree/main)
+
 ### Audio Transcription
 
-<TryWithZeno url="http://audio-example.zenoml.com/" />
+<TryWithZeno url="https://zeno-ml-audio-transcription.hf.space/" />
 <br />
 
 We wanted to compare [Open AI's Whisper model](https://github.com/openai/whisper) with existing off-the-shelf
@@ -32,23 +33,7 @@ audio clips of people from around the world saying the same phrase.
 
 Can you find differences in model performance across geographic regions and other speaker features?
 
-### Sensor Data Exploration
-
-<TryWithZeno url="http://imu-example.zenoml.com/" />
-<br />
-
-Zeno can also be used for unstructured data exploration.
-In this demo, we explore the [MotionSense](https://github.com/mmalekzadeh/motion-sense) dataset of IPhone sensor data.
-This demo could be extended to include activity classification models.
-
-Can you find interesting sensor patterns between the different activities?
-
-### Q&A Chatbots
-
-<TryWithZeno url="https://zeno-ml-langchain-qa.hf.space/#/explore/" />
-<br />
-
-Chatbots like ChatGPT are an increasingly popular application of language models, and libraries like [LangChain](https://github.com/hwchase17/langchain) are making it much easier to implement LLM-based applications. In this demo we use Zeno to explore how well a LangChain model for answering questions over a [Notion database](https://github.com/hwchase17/chat-langchain-notion) performs.
+[Explore the code](https://huggingface.co/spaces/zeno-ml/audio-transcription/tree/main)
 
 ### Auditing Image Generation Models
 
@@ -61,17 +46,35 @@ Instead of a typical aggregate metric, we measure the average NSFW level of the 
 
 Can you find potential biases in diffusion models, e.g. different levels of NSFW for different types of prompt keywords?
 
-### Sentiment Analysis
+[Explore the code](https://huggingface.co/spaces/zeno-ml/diffusiondb/tree/main)
 
-<TryWithZeno url="http://text-example.zenoml.com/" />
+### Q&A Chatbots
+
+<TryWithZeno url="https://zeno-ml-langchain-qa.hf.space/#/explore/" />
 <br />
 
-We can compare off-the-shelf hugging face sentiment classification models.
+Chatbots like ChatGPT are an increasingly popular application of language models, and libraries like [LangChain](https://github.com/hwchase17/langchain) are making it much easier to implement LLM-based applications. In this demo we use Zeno to explore how well a LangChain model for answering questions over a [Notion database](https://github.com/hwchase17/chat-langchain-notion) performs.
 
-### Tabular Logistic Regression
+[Explore the code](https://huggingface.co/spaces/zeno-ml/audio-transcription/tree/main)
 
-<TryWithZeno url="http://tabular-example.zenoml.com/" />
+### Sensor Data Exploration
+
+<TryWithZeno url="https://zeno-ml-imu-classification.hf.space/" />
 <br />
 
-You can also use Zeno for classic tabular model analysis.
-Here we trained multiple different models to predict people's income on the adult dataset.
+Zeno can also be used for unstructured data exploration.
+In this demo, we explore the [MotionSense](https://github.com/mmalekzadeh/motion-sense) dataset of IPhone sensor data.
+This demo could be extended to include activity classification models.
+
+Can you find interesting sensor patterns between the different activities?
+
+[Explore the code](https://huggingface.co/spaces/zeno-ml/imu-classification/tree/main)
+
+### Translation
+
+<TryWithZeno url="https://zeno-ml-translation-critique.hf.space" />
+<br />
+
+Explore the performance of a dozen different translation models on a subset of the [WMT 2014 English-German dataset](https://huggingface.co/datasets/wmt14). Compare them across different metrics, including BLEU and BERTScore.
+
+[Explore the code](https://huggingface.co/spaces/zeno-ml/translation-critique/tree/main)
