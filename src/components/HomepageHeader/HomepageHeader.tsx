@@ -37,7 +37,7 @@ export function HomepageHeader() {
                 Quickstart
               </Link>
               <Link
-                style={{ color: "var(--ifm-color-primary)" }}
+                style={{ color: "#6a1b9a" }}
                 className="button button--lg heroButtonSecondary"
                 to="/docs/demos"
               >
