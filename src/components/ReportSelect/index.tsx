@@ -29,14 +29,14 @@ export default function DatatypeSelect() {
         />
       </div>
       <div className={styles.right}>
-        <p style={{ fontSize: "22px" }}>
+        <p>
           Slices created in the Exploration page can be used to build
           interactive visualizations for deeper analyses of model behavior.
           Visualizations include bar charts for comparing slice performance
           across models and trend tables for detecting regressions in slice
           performance.
         </p>
-        <p style={{ fontSize: "22px" }}>
+        <p>
           Zeno charts can be exported as PDFs or PNGs for sharing with other
           stakeholders, or shared as links for live views of model performance.
         </p>

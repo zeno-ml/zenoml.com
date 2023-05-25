@@ -17,8 +17,8 @@ export function HomepageHeader() {
     <header>
       <div className={styles.header}>
         <div className={styles.headerLeft}>
-          <h1 style={{ fontSize: "42px" }}>
-            AI Data Management & <br /> Evaluation Platform
+          <h1 style={{ fontSize: "56px" }}>
+            AI Data Management & Evaluation Platform
           </h1>
           <h3 className={styles.subheader}>
             <b>Zeno</b> is an interactive platform for exploring and managing
@@ -53,16 +53,6 @@ export function HomepageHeader() {
               title="GitHub"
             ></iframe>
           </div>
-        </div>
-        <div className={styles.headerRight}>
-          <video
-            ref={videoRef}
-            controls
-            width="100%"
-            onCanPlay={() => setPlayback()}
-          >
-            <source src={video} type="video/mp4"></source>
-          </video>
         </div>
       </div>
     </header>

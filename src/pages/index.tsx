@@ -4,6 +4,8 @@ import { HomepageHeader } from "@site/src/components/HomepageHeader/HomepageHead
 import ReportSelect from "@site/src/components/ReportSelect";
 import { Sections } from "@site/src/components/Sections/Sections";
 import { Sponsors } from "@site/src/components/Sponsors/Sponsors";
+import { Demo } from "@site/src/components/Demo/Demo";
+
 import Layout from "@theme/Layout";
 import React from "react";
 
@@ -26,6 +28,7 @@ export default function Home(): JSX.Element {
       <div id="homepage">
         <HomepageHeader />
         <Sponsors />
+        <Demo />
         <div id="pageWrapper">
           <Sections />
           <Header

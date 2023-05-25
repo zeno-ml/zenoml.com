@@ -1,7 +1,6 @@
 .group {
   width: 100%;
   padding: 20px;
-  background: #6a1b9a;
   display: flex;
   text-align: center;
   justify-content: center;
@@ -10,15 +9,19 @@
 }
 
 .logo {
-  opacity: 80%;
   margin-left: 20px;
   margin-right: 20px;
 }
 
 .intro {
+  opacity: 50%;
   padding: 0px;
-  margin: 0px;
-  color: white;
-  font-weight: 700;
+  margin: auto;
   margin-right: 30px;
+  text-align: center;
+}
+
+.sponsorsWrap {
+  background-color: #F2F2EE;
+  padding: 20px;
 }
