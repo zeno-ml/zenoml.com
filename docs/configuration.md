@@ -100,6 +100,10 @@ Number of samples to show by default in view. Default 30. **Optional**
 Whether to calculate metrics for each histogram's bins to color them by metric.
 Set to `false` if you have a large dataset where calculating metrics can be costly. Default True. **Optional**
 
+### `multiprocessing`
+
+Whether to run the Zeno data processing pipeline with multiprocessing or not. Default True. **Optional**
+
 ### `editable`
 
 Whether users should be able to create/delete/edit slices, folder, and reports. If set to false any changes to the frontend will not be saved in the backend. Default True. **Optional**
