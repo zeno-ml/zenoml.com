@@ -30,9 +30,11 @@ const config = {
   presets: [
     [
       "classic",
-
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      {
+        gtag: {
+          trackingID: 'GTM-WWXQ3HNL',
+          anonymizeIP: true,
+        },
         googleTagManager: {
           containerId: 'GTM-WWXQ3HNL',
         },
@@ -53,7 +55,7 @@ const config = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
-      }),
+      },
     ],
   ],
 
