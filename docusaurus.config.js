@@ -32,7 +32,7 @@ const config = {
       "classic",
       {
         gtag: {
-          trackingID: 'GTM-WWXQ3HNL',
+          trackingID: 'G-ZL2PD9TQNF',
           anonymizeIP: true,
         },
         googleTagManager: {
