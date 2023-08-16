@@ -1,6 +1,6 @@
-import React from "react";
-import Layout from "@theme/Layout";
 import CodeBlock from "@theme/CodeBlock";
+import Layout from "@theme/Layout";
+import React from "react";
 
 export default function About() {
   const citation = `
@@ -20,7 +20,7 @@ export default function About() {
 
   let team = [
     {
-      name: "Ángel Alexander Cabrera",
+      name: "Alex Cabrera",
       role: "PhD Student",
       site: "https://cabreraalex.com",
       image: "alex.jpg",
@@ -44,7 +44,7 @@ export default function About() {
       image: "tianqiw.png",
     },
     {
-      name: "Yi-Cheng (Steven) Huang",
+      name: "Yi-Cheng Huang",
       role: "Research Associate",
       site: "https://www.linkedin.com/in/yh3stevenhuang/",
       image: "steven.jpg",
@@ -62,6 +62,12 @@ export default function About() {
       image: "ameet.jpeg",
     },
     {
+      name: "Graham Neubig",
+      role: "Associate Professor",
+      site: "http://www.phontron.com/",
+      image: "neubig.jpeg",
+    },
+    {
       name: "Jason Hong",
       role: "Professor",
       site: "http://www.cs.cmu.edu/~jasonh/",
@@ -69,7 +75,7 @@ export default function About() {
     },
     {
       name: "Adam Perer",
-      role: "Assistant Research Professor",
+      role: "Assistant Professor",
       site: "https://perer.org",
       image: "adam.jpg",
     },
@@ -77,6 +83,7 @@ export default function About() {
   return (
     <Layout title="About" description="About Zeno">
       <div
+        id="about"
         style={{
           maxWidth: "900px",
           margin: "0px auto",
@@ -85,7 +92,9 @@ export default function About() {
       >
         <h1 style={{ fontSize: "3rem" }}>About Us</h1>
         <p>
-          Zeno is built by a team of researchers at Carnegie Mellon University.
+          Zeno is designed, built, and maintained by a team of interdisciplinary researchers at <span style={{color: "#c41230", fontWeight: "600"}}>Carnegie Mellon University</span>. 
+          We span research groups in Machine Learning, Human-Computer Interaction, and Language Technologies.
+          We are passionate about empowering people to understand the complexities of AI systems in order to design the future of responsible AI.
         </p>
         <h1>Team</h1>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -100,7 +109,7 @@ export default function About() {
           <a href="https://foundation.mozilla.org/en/blog/auditing-ai-announcing-the-2023-mozilla-technology-fund-cohort/">
             Mozilla Technology Fund
           </a>{" "}
-          and developed partly with the support of an NSF grant.
+          and developed partly with the support of multiple NSF grants and fellowships.
         </p>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           <a
@@ -124,8 +133,8 @@ export default function About() {
         </div>
         <h1 style={{ marginTop: "20px" }}>Contact</h1>
         <p>
-          If you have any questions or issues with Zeno please ask in our{" "}
-          <a href="https://discord.gg/km62pDKAkE">Discord</a> or open an issue
+          If you have any questions or issues with Zeno please send an email to <a href="mailto:hello@zenoml.com">hello@zenoml.com</a>, ask in our{" "}
+          <a href="https://discord.gg/km62pDKAkE">Discord</a>, or open an issue
           on <a href="https://github.com/zeno-ml/zeno/issues/new">GitHub</a>
         </p>
         <h1 style={{ marginTop: "20px" }}>Cite</h1>
@@ -145,7 +154,7 @@ function PersonCard(props) {
     <div style={{ padding: "10px", paddingLeft: "0px", width: "200px" }}>
       <img
         src={"/img/" + props.image}
-        style={{ width: "200px", borderRadius: "10px", width: "175px" }}
+        style={{ width: "200px", height: "180px", objectFit: "cover", borderRadius: "10px" }}
       />
       <div style={{ maxWidth: "175px" }}>
         <a href={props.site}>
