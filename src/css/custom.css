@@ -59,7 +59,7 @@
 #pageWrapper {
   display: flex;
   flex-direction: column;
-  max-width: 1500px;
+  max-width: 1300px;
   padding: 50px;
   padding-top: 30px;
   margin: auto;
@@ -67,16 +67,16 @@
 
 #homepage h1 {
   font-family: "Rubik", sans-serif;
-  font-size: 48px;
+  font-size: 40px;
 }
 
 #homepage p {
   /* color: var(--gray); */
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .heroSubtitle {
-  font-size: 48px;
+  font-size: 40px;
   font-weight: 600;
 }
 

@@ -1,29 +1,21 @@
-import React, { useRef } from "react";
 import Link from "@docusaurus/Link";
+import React from "react";
+import { Demo } from "../Demo/Demo";
 import styles from "./index.module.css";
 
-import video from "@site/static/img/teaser.mp4";
 
 export function HomepageHeader() {
-  let videoRef = useRef();
-
-  function setPlayback() {
-    if (videoRef) {
-      videoRef.current.playbackRate = 1.25;
-    }
-  }
 
   return (
-    <header>
+    <div className={styles.headerContainer}>
       <div className={styles.header}>
         <div className={styles.headerLeft}>
           <h1 style={{ fontSize: "56px" }}>
-            AI Data Management & Evaluation Platform
+            AI Evaluation Platform
           </h1>
           <h3 className={styles.subheader}>
-            <b>Zeno</b> is an interactive platform for exploring and managing
-            your data, debugging your models, and tracking and comparing model
-            performance.
+            <b>Zeno</b> is an interactive platform for evaluating any AI system.
+            You can explore your data, discover failures, and create and share interactive evaluation reports.
           </h3>
           <div
             className={styles.buttons}
@@ -54,7 +46,8 @@ export function HomepageHeader() {
             ></iframe>
           </div>
         </div>
+        <Demo />
       </div>
-    </header>
+    </div>
   );
 }

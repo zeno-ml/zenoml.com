@@ -63,14 +63,14 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       image: "img/zeno.png",
-      announcementBar: {
-        id: "support_us",
-        content:
-          '🎉  Zeno was selected to be part of the <a href="https://foundation.mozilla.org/en/blog/auditing-ai-announcing-the-2023-mozilla-technology-fund-cohort/">Mozilla Technology Fund</a> cohort on AI auditing tools!',
-        backgroundColor: "white",
-        textColor: "#6a1b9a",
-        isCloseable: true,
-      },
+      // announcementBar: {
+      //   id: "support_us",
+      //   content:
+      //     '🎉  Zeno was selected to be part of the <a href="https://foundation.mozilla.org/en/blog/auditing-ai-announcing-the-2023-mozilla-technology-fund-cohort/">Mozilla Technology Fund</a> cohort on AI auditing tools!',
+      //   backgroundColor: "white",
+      //   textColor: "#6a1b9a",
+      //   isCloseable: true,
+      // },
       navbar: {
         // title: "Zeno",
         logo: {

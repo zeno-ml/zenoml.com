@@ -10,7 +10,17 @@ Install the Zeno Python package.
 pip install zenoml
 ```
 
-## Command Line
+## Getting Started with Zeno Build
+
+The best way to get started with Zeno is with [Zeno Build](https://github.com/zeno-ml/zeno-build), a Python library that makes it easy to set up Zeno projects for common AI and ML tasks.
+
+Follow the [Zeno Build Tutorial](https://github.com/zeno-ml/zeno-build/tree/main/docs/tutorial) to learn the basic Zeno concepts on an example LLM task.
+
+You can follow the [Using Zeno](./using_zeno) tutorial to learn more about what you can accomplish with Zeno!
+
+## Running Zeno
+
+### Command Line
 
 Zeno includes a command line helper to set up a new project which guides you through creating the TOML configuration file:
 
@@ -24,7 +34,7 @@ You can then run Zeno with
 zeno config.toml
 ```
 
-## Jupyter Notebooks
+### Jupyter Notebooks
 
 1. Import zeno with `import zeno from zeno`
 

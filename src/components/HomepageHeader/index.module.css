@@ -5,21 +5,21 @@
   gap: 25px;
 }
 
-header {
-  width: 100%;
-  display: flex;
+.headerContainer {
+  width: 100vw;
   background: #6a1b9a;
+  margin: 0px auto;
 }
 
 .header {
+  max-width: 1300px;
+  margin: 0px auto;
   color: white;
-  display: inline-flex;
+  display: flex;
   position: relative;
   align-items: center;
   justify-content: center;
-  max-width: 1400px;
   overflow: hidden;
-  margin: 50px auto;
 }
 
 .headerLeft {
