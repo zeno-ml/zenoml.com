@@ -75,7 +75,7 @@ By default it is `label`.
 
 ### `data_path`
 
-The directory with data instances. **Optional**
+The directory with data instances. **Optional** If data is stored in the metadata file, **Required** if `data_column` contains references to files on disk.
 
 ### `label_path`
 
