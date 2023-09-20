@@ -48,9 +48,9 @@ export default function Select(props) {
           .images.map((img) => (
             <img
               style={{
-                maxHeight: "110px",
-                maxWidth: "325px",
-                objectFit: "contain",
+                maxHeight: "120px",
+                maxWidth: "180px",
+                objectFit: "cover",
                 padding: "10px",
                 margin: "10px",
                 background: "white",

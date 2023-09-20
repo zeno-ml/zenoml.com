@@ -18,10 +18,7 @@ export function HomepageHeader() {
             style={{ justifyContent: "space-between", alignItems: "center" }}
           >
             <div className={styles.buttons}>
-              <Link
-                className="button button--lg heroButtonSecondary"
-                to="/docs/quickstart"
-              >
+              <Link className="button button--lg heroButtonSecondary" to="/docs/intro">
                 Get Started
               </Link>
               <Link
