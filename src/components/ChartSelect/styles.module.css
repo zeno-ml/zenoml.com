@@ -43,7 +43,8 @@
   }
   .left {
     width: 100%;
-    justify-content: left;
+    margin-bottom: 30px;
+    justify-content: center;
   }
   .right {
     width: 100%;

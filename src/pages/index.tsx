@@ -30,6 +30,7 @@ export default function Home(): JSX.Element {
           <ChartSelect />
           <hr />
           <ReportSelect />
+          <hr />
           <Sponsors />
         </div>
       </div>

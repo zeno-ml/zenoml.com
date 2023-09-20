@@ -38,6 +38,12 @@ export default function About() {
       image: "ericaf.jpeg",
     },
     {
+      name: "Ankitha Vasudev",
+      role: "Masters Student",
+      site: "https://ankithavasudev.com/",
+      image: "ankitha.png",
+    },
+    {
       name: "Josh Zhou",
       role: "Undergraduate Student",
       site: "https://www.linkedin.com/in/josh-zhou-11501818b/",

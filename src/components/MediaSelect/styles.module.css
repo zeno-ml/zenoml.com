@@ -50,23 +50,6 @@
   gap: 20px;
 }
 
-@media only screen and (max-width: 700px) {
-  #selectContainer {
-    display: flex;
-    flex-direction: column;
-  }
-  #imageContainer {
-    width: 100%;
-    margin-left: 0px;
-  }
-  .container {
-    flex-direction: column;
-  }
-
-  .sideBar {
-    width: 100%;
-  }
-}
 .container {
   display: flex;
   width: 100%;
@@ -76,4 +59,23 @@
   display: flex;
   flex-direction: column;
   width: 40%;
+}
+
+@media only screen and (max-width: 700px) {
+  #selectContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  #imageContainer {
+    width: 100%;
+    margin: 0px auto;
+    justify-content: center;
+  }
+  .container {
+    flex-direction: column;
+  }
+
+  .sideBar {
+    width: 100%;
+  }
 }

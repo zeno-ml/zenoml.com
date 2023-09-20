@@ -1,3 +1,4 @@
+import useBaseUrl from "@docusaurus/useBaseUrl";
 import { Header } from "@site/src/pages";
 import React from "react";
 import styles from "./styles.module.css";
@@ -13,6 +14,7 @@ let imageStyle = {
 };
 
 export default function DatatypeSelect() {
+  console.log(useBaseUrl("/img/report-long.png"));
   return (
     <div className={styles.reportWrapper}>
       <div className={styles.left} style={{}}>
@@ -31,7 +33,7 @@ export default function DatatypeSelect() {
         </p>
       </div>
       <div className={styles.right}>
-        <img style={imageStyle} src={require("@site/static/img/report.png").default} />
+        <div className={styles.imageWrapper} />
       </div>
     </div>
   );

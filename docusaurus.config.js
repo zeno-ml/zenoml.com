@@ -90,13 +90,14 @@ const config = {
           {
             type: "html",
             position: "right",
-            value: "<a href='https://hub.zenoml.com/signup'>Sign up</a>",
+            value:
+              "<a style='margin-left: 10px' href='https://hub.zenoml.com/signup'>Sign up</a>",
           },
           {
             type: "html",
             position: "right",
             value:
-              "<a href='https://hub.zenoml.com/login'><button class='sign-in'>Sign In</button></a>",
+              "<a style='margin-left: 10px' href='https://hub.zenoml.com/login'><button class='sign-in'>Sign In</button></a>",
           },
           {
             href: "https://github.com/cmudig/zeno",

@@ -39,9 +39,9 @@ export default function DatatypeSelect() {
           across slices and models"
         ></Header>
         <p>
-          Use Zeno's drag-and-drop interface to create interactive charts. Zeno charts
-          can be exported as PDFs or PNGs for sharing with other stakeholders, or shared
-          as links for live views of model performance.
+          Use Zeno's drag-and-drop interface to create interactive charts. Create a
+          radar chart comparing multiple models on different slices of your data, or a
+          beeswarm plot to compare hundreds of models.
         </p>
       </div>
     </div>
