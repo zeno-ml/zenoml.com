@@ -1,4 +1,4 @@
-import { APISnippets } from "@site/src/components/ApiSnippets/ApiSnippets";
+import ChartSelect from "@site/src/components/ChartSelect";
 import DatatypeSelect from "@site/src/components/DatatypeSelect";
 import { HomepageHeader } from "@site/src/components/HomepageHeader/HomepageHeader";
 import ReportSelect from "@site/src/components/ReportSelect";
@@ -20,10 +20,7 @@ function Header({ title, summary, description }): JSX.Element {
 
 export default function Home(): JSX.Element {
   return (
-    <Layout
-      title={`Zeno`}
-      description="AI Evaluation Platform"
-    >
+    <Layout title={`Zeno`} description="AI Evaluation Platform">
       <div id="homepage">
         <HomepageHeader />
         <Sponsors />
@@ -36,17 +33,17 @@ export default function Home(): JSX.Element {
           ></Header>
           <DatatypeSelect />
           <Header
-            title="Report"
-            summary="Create interactive reports"
+            title="Chart"
+            summary="Create interactive visualizations"
             description="Track and compare performance across slices and models"
           ></Header>
-          <ReportSelect />
+          <ChartSelect />
           <Header
-            title="Extend"
-            summary="Extend Zeno with the Python API"
-            description="Add new models, metrics, and metadata columns with the Python API"
+            title="Report"
+            summary="Communicate your findings with reports"
+            description="Create reports with interactive visualizations and markdown"
           ></Header>
-          <APISnippets />
+          <ReportSelect />
         </div>
       </div>
     </Layout>

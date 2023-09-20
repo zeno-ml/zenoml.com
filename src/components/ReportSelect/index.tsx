@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./styles.module.css";
 
 let imageStyle = {
-  width: "300px",
+  width: "400px",
   objectFit: "contain",
   border: "1px solid var(--gray)",
   borderRadius: "4px",
@@ -17,28 +17,17 @@ export default function DatatypeSelect() {
       <div className={styles.left} style={{}}>
         <img
           style={imageStyle}
-          src={require("@site/static/img/chart.png").default}
-        />
-        <img
-          style={imageStyle}
-          src={require("@site/static/img/line-chart.png").default}
-        />
-        <img
-          style={{ ...imageStyle, width: "400px" }}
-          src={require("@site/static/img/trend-chart.png").default}
+          src={require("@site/static/img/report.png").default}
         />
       </div>
       <div className={styles.right}>
         <p>
-          Slices created in the Exploration page can be used to build
-          interactive visualizations for deeper analyses of model behavior.
-          Visualizations include bar charts for comparing slice performance
-          across models and trend tables for detecting regressions in slice
-          performance.
+          Visualizations can be combined with rich markdown text to share
+          insights and tell stories about your data and model performance.
         </p>
         <p>
-          Zeno charts can be exported as PDFs or PNGs for sharing with other
-          stakeholders, or shared as links for live views of model performance.
+          Reports can be shared with other stakeholders or posted on any
+          platform. All that people need to read your report is a link to it.
         </p>
       </div>
     </div>

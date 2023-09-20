@@ -1,7 +1,7 @@
 # Instance views
 
 Zeno Instance Views are modular renderers for different data types and tasks.
-Each of the following views can be passed as the `view` option to a TOML configuration file. To create a new or custom view see [Creating a view](/docs/views/new-view)
+Each of the following views can be passed as the `view` option when creating a new project.
 
 <table>
   <tr>
@@ -11,54 +11,48 @@ Each of the following views can be passed as the `view` option to a TOML configu
   <tr>
     <td>image-classification</td>
     <td>
-      Display images with ground truth and predicted class labels. Works for both binary
-      and multiclass classification. Requires image inputs and text or numeric outputs.
+      Display images with ground truth and predicted class labels. Works for
+      both binary and multiclass classification. Requires image inputs and text
+      or numeric outputs.
     </td>
   </tr>
   <tr>
     <td>text-classification</td>
     <td>
-      Display text with ground truth and predicted class labels. Requires text inputs
-      and text or numeric outputs.
+      Display text with ground truth and predicted class labels. Requires text
+      inputs and text or numeric outputs.
     </td>
   </tr>
   <tr>
     <td>audio-transcription</td>
     <td>
-      Display audio file along with outputed text, e.g. transcription. Requires audio
-      inputs and text outputs.
+      Display audio file along with outputed text, e.g. transcription. Requires
+      audio inputs and text outputs.
     </td>
   </tr>
   <tr>
     <td>image-segmentation</td>
     <td>
-      Display image with overlayed ground truth and predicted segmentation masks. Works
-      for both binary segmentation. Requires image inputs and binary image outputs.
+      Display image with overlayed ground truth and predicted segmentation
+      masks. Works for both binary segmentation. Requires image inputs and
+      binary image outputs.
     </td>
   </tr>
   <tr>
     <td>code-generation</td>
     <td>
-      Show formatted code input and code predictions. Use for evaluating code generation
-      models such as Codex.
+      Show formatted code input and code predictions. Use for evaluating code
+      generation models such as Codex.
     </td>
   </tr>
   <tr>
     <td>openai-chat</td>
     <td>
       Show input-output pairs from chatbot models using the OpenAI API. See the{" "}
-      <a href="https://platform.openai.com/docs/guides/chat">API documentation</a> for
-      details on the required Chat data format.
-    </td>
-  </tr>
-  <tr>
-    <td>openai-chat-markdown</td>
-    <td>
-      Show input-output pairs from chatbot models using the OpenAI API. See the{" "}
-      <a href="https://platform.openai.com/docs/guides/chat">API documentation</a> for
-      details on the required Chat data format. <br />
-      This view is similar to the `openai-chat` view, but it renders assistant blocks and
-      labels with markdown syntax to enable representing more complex queries like tools.
+      <a href="https://platform.openai.com/docs/guides/chat">
+        API documentation
+      </a>{" "}
+      for details on the required Chat data format.
     </td>
   </tr>
   <tr>
@@ -68,8 +62,8 @@ Each of the following views can be passed as the `view` option to a TOML configu
   <tr>
     <td>space-separated-values</td>
     <td>
-      Table view of inputs, outputs, and labels which are space-separated words. Useful
-      for tasks such as part-of-speech tagging.
+      Table view of inputs, outputs, and labels which are space-separated words.
+      Useful for tasks such as part-of-speech tagging.
     </td>
   </tr>
 </table>

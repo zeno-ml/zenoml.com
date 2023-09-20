@@ -29,27 +29,6 @@ export default function Select(props) {
     </div>
   );
 
-  if (
-    props.list
-      .filter((s) => s.select === selection)[0]
-      .select.startsWith("Your")
-  ) {
-    return (
-      <div
-        id={styles.selectContainer}
-        style={{ alignItems: "center", width: "100%" }}
-      >
-        {menu}
-        <h2 style={{ textAlign: "center", width: "100%" }}>
-          <a href="/docs/views/new-view">
-            Learn how to support your custom data type <br />
-            with a single JavaScript file.
-          </a>
-        </h2>
-      </div>
-    );
-  }
-
   return (
     <div id={styles.selectContainer}>
       {menu}

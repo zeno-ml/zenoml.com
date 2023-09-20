@@ -3,19 +3,16 @@ import React from "react";
 import { Demo } from "../Demo/Demo";
 import styles from "./index.module.css";
 
-
 export function HomepageHeader() {
-
   return (
     <div className={styles.headerContainer}>
       <div className={styles.header}>
         <div className={styles.headerLeft}>
-          <h1 style={{ fontSize: "56px" }}>
-            AI Evaluation Platform
-          </h1>
+          <h1 style={{ fontSize: "56px" }}>AI Evaluation Platform</h1>
           <h3 className={styles.subheader}>
             <b>Zeno</b> is an interactive platform for evaluating any AI system.
-            You can explore your data, discover failures, and create and share interactive evaluation reports.
+            You can explore your data, discover failures, and create and share
+            interactive evaluation reports.
           </h3>
           <div
             className={styles.buttons}
@@ -31,9 +28,9 @@ export function HomepageHeader() {
               <Link
                 style={{ color: "#6a1b9a" }}
                 className="button button--lg heroButtonSecondary"
-                to="/docs/demos"
+                to="https://hub.zenoml.com/"
               >
-                Try it!
+                Discover
               </Link>
             </div>
             <iframe

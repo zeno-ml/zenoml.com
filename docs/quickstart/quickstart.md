@@ -4,10 +4,12 @@ sidebar_position: 2
 
 # Quickstart
 
-Install the Zeno Python package.
+You can explore public projects in [Zeno Hub](https://hub.zenoml.com).
+
+To upload your own data, install the [Zeno Client](https://github.com/zeno-ml/zeno-client).
 
 ```bash
-pip install zenoml
+pip install zeno-client
 ```
 
 ## Getting Started with Zeno Build
@@ -15,56 +17,3 @@ pip install zenoml
 The best way to get started with Zeno is with [Zeno Build](https://github.com/zeno-ml/zeno-build), a Python library that makes it easy to set up Zeno projects for common AI and ML tasks.
 
 Follow the [Zeno Build Tutorial](https://github.com/zeno-ml/zeno-build/tree/main/docs/tutorial) to learn the basic Zeno concepts on an example LLM task.
-
-You can follow the [Using Zeno](./using_zeno) tutorial to learn more about what you can accomplish with Zeno!
-
-## Running Zeno
-
-### Command Line
-
-Zeno includes a command line helper to set up a new project which guides you through creating the TOML configuration file:
-
-```bash
-zeno init
-```
-
-You can then run Zeno with
-
-```bash
-zeno config.toml
-```
-
-### Jupyter Notebooks
-
-1. Import zeno with `import zeno from zeno`
-
-2. Create a Pandas DataFrame with your metadata.
-
-3. Run zeno with a dict of options:
-
-```python
-zeno({
-	"view": "image-classification",
-	"metadata": my_dataframe,
-	"data_path": "path/to/data",
-	"data_column": "image_path",
-})
-```
-
-## Adding Models and Metrics
-
-To add model predictions and metrics, you can write functions with the [Python API](/docs/api) wrappers.
-
-If using the command line, create a folder with a Python file including these functions and add the folder as an option to the TOML file:
-
-```toml
-functions = "path/to/functions"
-```
-
-In Jupyter Notebooks, you can pass a list of functions to the `functions` option:
-
-```python
-zeno({
-	"functions": [model_function, accuracy_function]
-})
-```

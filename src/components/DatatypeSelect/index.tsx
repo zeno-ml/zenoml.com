@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import MediaSelect from "@site/src/components/MediaSelect";
+import React from "react";
 
 type DataItem = {
   select: string;
@@ -31,9 +31,6 @@ const DataList: DataItem[] = [
       require("@site/static/img/activity-recognition/2.png").default,
       require("@site/static/img/activity-recognition/3.png").default,
     ],
-  },
-  {
-    select: "Your custom data type",
   },
 ];
 

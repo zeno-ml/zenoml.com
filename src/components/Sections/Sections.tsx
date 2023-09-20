@@ -21,8 +21,7 @@ const SectionList: SectionItem[] = [
   },
   {
     title: "Report",
-    description:
-      "Create exportable visualizations and charts comparing models and slices",
+    description: "Tell stories about findings in your data and models",
     icon: require("@site/static/img/report-icon.png").default,
   },
 ];
