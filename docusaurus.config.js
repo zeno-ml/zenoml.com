@@ -32,11 +32,11 @@ const config = {
       "classic",
       {
         gtag: {
-          trackingID: 'G-ZL2PD9TQNF',
+          trackingID: "G-ZL2PD9TQNF",
           anonymizeIP: true,
         },
         googleTagManager: {
-          containerId: 'GTM-WWXQ3HNL',
+          containerId: "GTM-WWXQ3HNL",
         },
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
@@ -87,6 +87,17 @@ const config = {
           },
           // { to: "/blog", label: "Blog", position: "left" },
           { to: "/about", label: "About", position: "left" },
+          {
+            type: "html",
+            position: "right",
+            value: "<a href='https://hub.zenoml.com/signup'>Sign up</a>",
+          },
+          {
+            type: "html",
+            position: "right",
+            value:
+              "<a href='https://hub.zenoml.com/login'><button class='sign-in'>Sign In</button></a>",
+          },
           {
             href: "https://github.com/cmudig/zeno",
             // label: "GitHub",
@@ -143,7 +154,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Alex Cabrera`,
+        copyright: `Copyright © ${new Date().getFullYear()} Zeno`,
       },
       prism: {
         theme: lightCodeTheme,

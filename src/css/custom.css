@@ -65,6 +65,14 @@
   margin: auto;
 }
 
+#homepage {
+  background: #f2f2ee;
+}
+
+[data-theme="dark"] #homepage {
+  background: var(--ifm-navbar-background-color);
+}
+
 #homepage h1 {
   font-family: "Rubik", sans-serif;
   font-size: 40px;
@@ -207,7 +215,7 @@ hr {
 }
 
 .header > h1 {
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
 .header {
@@ -256,4 +264,19 @@ hr {
 
 .button:hover {
   color: var(--p1);
+}
+
+.sign-in {
+  background: var(--p1);
+  color: white;
+  border-radius: 5px;
+  padding: 7px 20px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sign-in:hover {
+  background: var(--ifm-color-primary-lightest);
 }

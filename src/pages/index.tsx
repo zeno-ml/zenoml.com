@@ -8,10 +8,9 @@ import { Sponsors } from "@site/src/components/Sponsors/Sponsors";
 import Layout from "@theme/Layout";
 import React from "react";
 
-function Header({ title, summary, description }): JSX.Element {
+export function Header({ title, summary, description }): JSX.Element {
   return (
-    <div className="header">
-      <hr style={{ marginBottom: "10px" }} />
+    <div>
       <h1>{summary}</h1>
       <h3 className="headerDescription">{description}</h3>
     </div>
@@ -23,27 +22,15 @@ export default function Home(): JSX.Element {
     <Layout title={`Zeno`} description="AI Evaluation Platform">
       <div id="homepage">
         <HomepageHeader />
-        <Sponsors />
         <div id="pageWrapper">
           <Sections />
-          <Header
-            title="Explore"
-            summary="Explore your data"
-            description="Zeno's modular instance view can be extended to render any data type and model output"
-          ></Header>
+          <hr />
           <DatatypeSelect />
-          <Header
-            title="Chart"
-            summary="Create interactive visualizations"
-            description="Track and compare performance across slices and models"
-          ></Header>
+          <hr />
           <ChartSelect />
-          <Header
-            title="Report"
-            summary="Communicate your findings with reports"
-            description="Create reports with interactive visualizations and markdown"
-          ></Header>
+          <hr />
           <ReportSelect />
+          <Sponsors />
         </div>
       </div>
     </Layout>

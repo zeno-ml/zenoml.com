@@ -1,3 +1,4 @@
+import { Header } from "@site/src/pages";
 import React from "react";
 import styles from "./styles.module.css";
 
@@ -15,20 +16,22 @@ export default function DatatypeSelect() {
   return (
     <div className={styles.reportWrapper}>
       <div className={styles.left} style={{}}>
-        <img
-          style={imageStyle}
-          src={require("@site/static/img/report.png").default}
-        />
+        <Header
+          title="Report"
+          summary="Report Authoring"
+          description="Create reports with interactive visualizations and markdown"
+        ></Header>
+        <p>
+          Visualizations can be combined with rich markdown text to share insights and
+          tell stories about your data and model performance.
+        </p>
+        <p>
+          Reports can be shared with other stakeholders or posted on any platform. All
+          that people need to read your report is a link to it.
+        </p>
       </div>
       <div className={styles.right}>
-        <p>
-          Visualizations can be combined with rich markdown text to share
-          insights and tell stories about your data and model performance.
-        </p>
-        <p>
-          Reports can be shared with other stakeholders or posted on any
-          platform. All that people need to read your report is a link to it.
-        </p>
+        <img style={imageStyle} src={require("@site/static/img/report.png").default} />
       </div>
     </div>
   );

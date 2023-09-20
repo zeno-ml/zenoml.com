@@ -35,5 +35,9 @@ const DataList: DataItem[] = [
 ];
 
 export default function DatatypeSelect() {
-  return <MediaSelect default="Image Classification" list={DataList} />;
+  return (
+    <div>
+      <MediaSelect default="Image Classification" list={DataList} />
+    </div>
+  );
 }

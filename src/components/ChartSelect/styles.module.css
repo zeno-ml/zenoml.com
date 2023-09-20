@@ -19,15 +19,16 @@
 }
 .left {
   width: 60%;
+  height: fit-content;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: middle;
 }
 
 .reportWrapper {
   display: flex;
+  align-items: center;
 }
 
 .right {
