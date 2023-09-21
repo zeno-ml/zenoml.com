@@ -44,6 +44,12 @@ export default function About() {
       image: "ankitha.png",
     },
     {
+      name: "Kathy Yu",
+      role: "Masters Student",
+      site: "http://www.kathyxiaotongyu.com/",
+      image: "kathy.jpg",
+    },
+    {
       name: "Josh Zhou",
       role: "Undergraduate Student",
       site: "https://www.linkedin.com/in/josh-zhou-11501818b/",
