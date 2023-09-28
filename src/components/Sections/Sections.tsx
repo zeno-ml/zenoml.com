@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./styles.module.css";
 
 type SectionItem = {
   title: string;
@@ -9,27 +10,24 @@ type SectionItem = {
 const SectionList: SectionItem[] = [
   {
     title: "Explore",
-    description:
-      "Explore data and model outputs with customizable views for any data type",
+    description: "Visualize data and model outputs with views for any data type",
     icon: require("@site/static/img/explore-icon.png").default,
   },
   {
-    title: "Evaluate",
-    description:
-      "Interactively discover, test and save model behavior for analysis and updates",
+    title: "Analyze",
+    description: "Discover and save errors for model comparison and updates",
     icon: require("@site/static/img/slice-icon.png").default,
   },
   {
     title: "Report",
-    description:
-      "Create exportable visualizations and charts comparing models and slices",
+    description: "Create rich, interactive reports sharing your findings",
     icon: require("@site/static/img/report-icon.png").default,
   },
 ];
 
 export function Sections() {
   return (
-    <div id="section-2">
+    <div className={styles.sectionContainer}>
       {SectionList.map((props, idx) => (
         <SectionBlock {...props} key={idx} />
       ))}
@@ -39,30 +37,22 @@ export function Sections() {
 
 function SectionBlock(props) {
   return (
-    <div className="section-container">
+    <div className={styles.section}>
       <div>
-        <img
-          style={{
-            borderRadius: "5px",
-            height: "140px",
-            width: "140px",
-            minHeight: "140px",
-            minWidth: "140px",
-            border: "1px solid #EBEBEA",
-          }}
-          src={props.icon}
-        ></img>
+        <img className={styles.image} src={props.icon}></img>
       </div>
       <div className="section-text-container">
         <h2
           style={{
-            fontSize: "30px",
+            fontSize: "26px",
+            fontWeight: "600",
             marginBottom: "10px",
+            color: "black",
           }}
         >
           {props.title}
         </h2>
-        <p>{props.description}</p>
+        <p className={styles.description}>{props.description}</p>
       </div>
     </div>
   );

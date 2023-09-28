@@ -2,18 +2,23 @@
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-  width: 250px;
+  width: 100%;
   border: solid 1px var(--gray);
   border-radius: 10px;
   padding: 5px 20px;
   margin-bottom: 5px;
+  background: white;
+  color: black;
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 .activeSelection {
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-  width: 250px;
+  width: 100%;
   border: solid 1px var(--gray);
   border-radius: 10px;
   padding: 5px 20px;
@@ -35,13 +40,26 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 75%;
-  margin-left: 30px;
+  width: 60%;
+  margin-left: 100px;
+  margin-right: 50px;
+  align-items: center;
 }
 
 #selectContainer {
   display: flex;
   gap: 20px;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
 }
 
 @media only screen and (max-width: 700px) {
@@ -51,14 +69,14 @@
   }
   #imageContainer {
     width: 100%;
-    margin-left: 0px;
+    margin: 0px auto;
+    justify-content: center;
   }
-}
+  .container {
+    flex-direction: column;
+  }
 
-.video {
-  width: 75%;
-}
-
-.image {
-  width: 50%;
+  .sideBar {
+    width: 100%;
+  }
 }

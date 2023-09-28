@@ -7,7 +7,23 @@
 
 .headerContainer {
   width: 100vw;
-  background: #6a1b9a;
+  background-image: linear-gradient(
+    140deg,
+    hsl(277deg 70% 35%) 0%,
+    hsl(277deg 62% 38%) 8%,
+    hsl(276deg 57% 40%) 17%,
+    hsl(276deg 53% 42%) 26%,
+    hsl(276deg 50% 43%) 35%,
+    hsl(276deg 47% 45%) 44%,
+    hsl(276deg 45% 46%) 52%,
+    hsl(276deg 43% 48%) 60%,
+    hsl(277deg 41% 49%) 67%,
+    hsl(277deg 40% 51%) 74%,
+    hsl(277deg 41% 52%) 81%,
+    hsl(277deg 42% 53%) 88%,
+    hsl(277deg 42% 54%) 94%,
+    hsl(277deg 43% 55%) 100%
+  );
   margin: 0px auto;
 }
 
@@ -20,15 +36,16 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding: 30px;
 }
 
 .headerLeft {
   margin: 30px;
+  width: 50%;
 }
 
 .video-div {
   position: relative;
-  padding-bottom: 60.810810810810814%;
   height: 0;
 }
 
@@ -41,12 +58,10 @@
 }
 
 .headerRight {
-  width: 100%;
-  margin: 50px;
-  margin-bottom: 20px;
+  width: 50%;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 900px) {
   .header {
     height: fit-content;
     display: flex;
@@ -57,13 +72,17 @@
     width: 100%;
   }
   .headerLeft {
+    padding: 30px;
     width: 100%;
     margin: 30px;
+  }
+  .headerRight {
+    width: 100%;
   }
 }
 
 .subheader {
   font-weight: 300;
   margin-bottom: 50px;
-  font-size: 24px;
+  font-size: 30px;
 }

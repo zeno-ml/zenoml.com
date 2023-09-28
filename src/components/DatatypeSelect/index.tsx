@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import MediaSelect from "@site/src/components/MediaSelect";
+import React from "react";
 
 type DataItem = {
   select: string;
@@ -32,11 +32,12 @@ const DataList: DataItem[] = [
       require("@site/static/img/activity-recognition/3.png").default,
     ],
   },
-  {
-    select: "Your custom data type",
-  },
 ];
 
 export default function DatatypeSelect() {
-  return <MediaSelect default="Image Classification" list={DataList} />;
+  return (
+    <div>
+      <MediaSelect default="Image Classification" list={DataList} />
+    </div>
+  );
 }

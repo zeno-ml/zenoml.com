@@ -1,8 +1,10 @@
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import { Header } from "@site/src/pages";
 import React from "react";
 import styles from "./styles.module.css";
 
 let imageStyle = {
-  width: "300px",
+  width: "400px",
   objectFit: "contain",
   border: "1px solid var(--gray)",
   borderRadius: "4px",
@@ -12,34 +14,26 @@ let imageStyle = {
 };
 
 export default function DatatypeSelect() {
+  console.log(useBaseUrl("/img/report-long.png"));
   return (
     <div className={styles.reportWrapper}>
       <div className={styles.left} style={{}}>
-        <img
-          style={imageStyle}
-          src={require("@site/static/img/chart.png").default}
-        />
-        <img
-          style={imageStyle}
-          src={require("@site/static/img/line-chart.png").default}
-        />
-        <img
-          style={{ ...imageStyle, width: "400px" }}
-          src={require("@site/static/img/trend-chart.png").default}
-        />
+        <Header
+          title="Report"
+          summary="Report Authoring"
+          description="Create reports with interactive visualizations and markdown"
+        ></Header>
+        <p>
+          Visualizations can be combined with rich markdown text to share insights and
+          tell stories about your data and model performance.
+        </p>
+        <p>
+          Reports can be shared with other stakeholders or posted on any platform. All
+          that people need to read your report is a link to it.
+        </p>
       </div>
       <div className={styles.right}>
-        <p>
-          Slices created in the Exploration page can be used to build
-          interactive visualizations for deeper analyses of model behavior.
-          Visualizations include bar charts for comparing slice performance
-          across models and trend tables for detecting regressions in slice
-          performance.
-        </p>
-        <p>
-          Zeno charts can be exported as PDFs or PNGs for sharing with other
-          stakeholders, or shared as links for live views of model performance.
-        </p>
+        <div className={styles.imageWrapper} />
       </div>
     </div>
   );

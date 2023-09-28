@@ -18,18 +18,18 @@ export default function About() {
   series = {CHI '23}
 }`;
 
-  let team = [
+  let currentTeam = [
     {
       name: "Alex Cabrera",
-      role: "PhD Student",
+      role: "PhD Candidate",
       site: "https://cabreraalex.com",
       image: "alex.jpg",
     },
     {
-      name: "Donald Bertucci",
-      role: "Undergraduate Student",
-      site: "https://www.donnybertucci.com/",
-      image: "donnyb.jpg",
+      name: "Alex Bäuerle",
+      role: "Research Scientist",
+      site: "https://a13x.io/",
+      image: "alexb.jpeg",
     },
     {
       name: "Erica Fu",
@@ -38,22 +38,28 @@ export default function About() {
       image: "ericaf.jpeg",
     },
     {
-      name: "Tianqi Wu",
+      name: "Ankitha Vasudev",
       role: "Masters Student",
-      site: "https://tianqi-wu.github.io/",
-      image: "tianqiw.png",
+      site: "https://ankithavasudev.com/",
+      image: "ankitha.png",
     },
     {
-      name: "Yi-Cheng Huang",
-      role: "Research Associate",
-      site: "https://www.linkedin.com/in/yh3stevenhuang/",
-      image: "steven.jpg",
+      name: "Kathy Yu",
+      role: "Masters Student",
+      site: "http://www.kathyxiaotongyu.com/",
+      image: "kathy.jpg",
     },
     {
       name: "Josh Zhou",
       role: "Undergraduate Student",
       site: "https://www.linkedin.com/in/josh-zhou-11501818b/",
       image: "josh.jpeg",
+    },
+    {
+      name: "Donald Bertucci",
+      role: "Undergraduate Student",
+      site: "https://www.donnybertucci.com/",
+      image: "donnyb.jpg",
     },
     {
       name: "Ameet Talwalkar",
@@ -80,6 +86,22 @@ export default function About() {
       image: "adam.jpg",
     },
   ];
+
+  let prevContributors = [
+    {
+      name: "Tianqi Wu",
+      role: "Masters Student",
+      site: "https://tianqi-wu.github.io/",
+      image: "tianqiw.png",
+    },
+    {
+      name: "Yi-Cheng Huang",
+      role: "Research Associate",
+      site: "https://www.linkedin.com/in/yh3stevenhuang/",
+      image: "steven.jpg",
+    },
+  ];
+
   return (
     <Layout title="About" description="About Zeno">
       <div
@@ -92,20 +114,35 @@ export default function About() {
       >
         <h1 style={{ fontSize: "3rem" }}>About Us</h1>
         <p>
-          Zeno is designed, built, and maintained by a team of interdisciplinary researchers at <span style={{color: "#c41230", fontWeight: "600"}}>Carnegie Mellon University</span>. 
-          We span research groups in Machine Learning, Human-Computer Interaction, and Language Technologies.
-          We are passionate about empowering people to understand the complexities of AI systems in order to design the future of responsible AI.
+          <span style={{ fontWeight: "700", color: "var(--ifm-color-primary)" }}>
+            Zeno
+          </span>{" "}
+          is designed, built, and maintained by a team of interdisciplinary researchers
+          at{" "}
+          <span style={{ color: "#c41230", fontWeight: "600" }}>
+            Carnegie Mellon University
+          </span>
+          . We span research groups in Machine Learning, Human-Computer Interaction, and
+          Language Technologies. We are passionate about empowering people to understand
+          the complexities of AI systems in order to design the future of responsible
+          AI.
         </p>
         <h1>Team</h1>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {team.map((member) => (
+          {currentTeam.map((member) => (
+            <PersonCard key={member.name} {...member} />
+          ))}
+        </div>
+        <h1 style={{ marginTop: "20px" }}>Past Members</h1>
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
+          {prevContributors.map((member) => (
             <PersonCard key={member.name} {...member} />
           ))}
         </div>
         <h1 style={{ marginTop: "20px" }}>Sponsors & Organizations</h1>
         <p>
-          We are thankful to our sponsors and affiliated organizations. Zeno is
-          part of the{" "}
+          We are thankful to our sponsors and affiliated organizations. Zeno is part of
+          the{" "}
           <a href="https://foundation.mozilla.org/en/blog/auditing-ai-announcing-the-2023-mozilla-technology-fund-cohort/">
             Mozilla Technology Fund
           </a>{" "}
@@ -126,22 +163,20 @@ export default function About() {
             src="/img/nsf.png"
             style={{ width: "300px", alignSelf: "center", marginRight: "50px" }}
           />
-          <img
-            src="/img/cmu.png"
-            style={{ width: "150px", alignSelf: "center" }}
-          />
+          <img src="/img/cmu.png" style={{ width: "150px", alignSelf: "center" }} />
         </div>
         <h1 style={{ marginTop: "20px" }}>Contact</h1>
         <p>
-          If you have any questions or issues with Zeno please send an email to <a href="mailto:hello@zenoml.com">hello@zenoml.com</a>, ask in our{" "}
-          <a href="https://discord.gg/km62pDKAkE">Discord</a>, or open an issue
-          on <a href="https://github.com/zeno-ml/zeno/issues/new">GitHub</a>
+          If you have any questions or issues with Zeno please send an email to{" "}
+          <a href="mailto:hello@zenoml.com">hello@zenoml.com</a>, ask in our{" "}
+          <a href="https://discord.gg/km62pDKAkE">Discord</a>, or open an issue on{" "}
+          <a href="https://github.com/zeno-ml/zeno/issues/new">GitHub</a>
         </p>
         <h1 style={{ marginTop: "20px" }}>Cite</h1>
         <p>
           Please reference our
-          <a href="https://cabreraalex.com/zeno.pdf"> CHI 2023 paper</a> if you
-          would like to cite Zeno:
+          <a href="https://cabreraalex.com/zeno.pdf"> CHI 2023 paper</a> if you would
+          like to cite Zeno:
         </p>
         <CodeBlock language="bibtex">{citation}</CodeBlock>
       </div>
@@ -151,19 +186,24 @@ export default function About() {
 
 function PersonCard(props) {
   return (
-    <div style={{ padding: "10px", paddingLeft: "0px", width: "200px" }}>
+    <div style={{ width: "200px" }}>
       <img
         src={"/img/" + props.image}
-        style={{ width: "200px", height: "180px", objectFit: "cover", borderRadius: "10px" }}
+        style={{
+          width: "170px",
+          height: "170px",
+          objectFit: "cover",
+          borderRadius: "10px",
+        }}
       />
       <div style={{ maxWidth: "175px" }}>
         <a href={props.site}>
-          <h2 style={{ margin: "0px" }}>{props.name}</h2>
+          <h3 style={{ margin: "0px" }}>{props.name}</h3>
         </a>
         <h4
           style={{
             marginTop: "5px",
-            fontWeight: "500",
+            fontWeight: "400",
             color: "var(--ifm-menu-color)",
           }}
         >
