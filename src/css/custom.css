@@ -16,7 +16,9 @@
   --ifm-color-primary-lighter: #7a1fb1;
   --ifm-color-primary-lightest: #8a23c8;
 
-  --ifm-navbar-background-color: #f2f2ee;
+  --ifm-navbar-background-color: #f5f5f5;
+
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
   --logo: #6a1b9a;
   --p1: #6a1b9a;
@@ -34,6 +36,8 @@
   --ifm-color-primary-light: #ffffff;
   --ifm-color-primary-lighter: #ffffff;
   --ifm-color-primary-lightest: #ffffff;
+
+  --ifm-navbar-background-color: #4a136c;
 }
 
 .header-github-link:hover {
@@ -68,7 +72,7 @@
 }
 
 #homepage {
-  background: #f2f2ee;
+  background: #f5f5f5;
 }
 
 [data-theme="dark"] #homepage {
@@ -232,7 +236,23 @@ hr {
 }
 
 .footer--dark {
-  background: var(--logo);
+  background-image: linear-gradient(
+    140deg,
+    hsl(277deg 70% 35%) 0%,
+    hsl(277deg 62% 38%) 8%,
+    hsl(276deg 57% 40%) 17%,
+    hsl(276deg 53% 42%) 26%,
+    hsl(276deg 50% 43%) 35%,
+    hsl(276deg 47% 45%) 44%,
+    hsl(276deg 45% 46%) 52%,
+    hsl(276deg 43% 48%) 60%,
+    hsl(277deg 41% 49%) 67%,
+    hsl(277deg 40% 51%) 74%,
+    hsl(277deg 41% 52%) 81%,
+    hsl(277deg 42% 53%) 88%,
+    hsl(277deg 42% 54%) 94%,
+    hsl(277deg 43% 55%) 100%
+  );
 }
 .footer__link-item:hover {
   color: var(--grey);

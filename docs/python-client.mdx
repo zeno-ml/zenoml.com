@@ -10,67 +10,7 @@ The Python client is used to create projects and upload data.
 pip install zeno-client
 ```
 
-## Example
-
-First head over to [hub.zenoml.com](hub.zenoml.com) to create an account.
-Navigate to the [user settings page](https://hub.zenoml.com/account) (bottom left corner) and create an API key.
-You can then create the base client:
-
-```python
-from zeno_client import ZenoClient
-
-client = ZenoClient("YOUR_API_KEY")
-```
-
-We can now create a `project`, or a dataset and set of systems/models to evaluate.
-
-```python
-project = client.create_project("my_project", view="text-classification")
-```
-
-Lastly, we can upload our base `dataset` and any number of `systems` or model outputs.
-
-```python
-import pandas as pd
-
-# Upload a simple dataset
-df = pd.DataFrame({
-    "id": [1, 2, 3],
-    "text": ["Zeno", "of", "Elea"],
-    "label": ["A", "B", "B"]
-})
-project.upload_dataset(df, id_column="id", label_column="label", data_column='text')
-
-# Upload a system to the project
-# ... run inference on your model ...
-df = pd.DataFrame({"id": [1, 2, 3], "output": ["A", "B", "A"]})
-project.upload_system("my_system", df, output_column="output", id_column="id")
-```
-
-The final code looks like this:
-
-```python
-from zeno_client import ZenoClient
-import pandas as pd
-
-# Create a Zeno client with your API key
-client = ZenoClient("YOUR_API_KEY")
-
-# Create a project with a specific data renderer.
-# See view options at https://zenoml.com/docs/views/
-project = client.create_project("my_project", "my_view")
-
-# Upload a simple dataset
-df = df.load_csv("my_dataset.csv")
-project.upload_dataset(df, id_column="id", label_column="label", data_column='text')
-
-# Upload a system to the project
-# ... run inference on your model ...
-df = pd.DataFrame({"id": [1, 2, 3], "output": ["A", "B", "A"]})
-project.upload_system("my_system", df, output_column="output", id_column="id")
-```
-
-Functions to upload data to Zeno's backend.
+Please see [Creating a Project](/docs/intro#creating-a-project) to learn how to use the client.
 
 <a id="client.ZenoMetric"></a>
 

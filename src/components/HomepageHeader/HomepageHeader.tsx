@@ -26,7 +26,7 @@ export function HomepageHeader() {
                 className="button button--lg heroButtonSecondary"
                 to="https://hub.zenoml.com/"
               >
-                Explore
+                Try Zeno
               </Link>
             </div>
             <iframe
