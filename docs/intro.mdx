@@ -102,7 +102,7 @@ df_system = pd.DataFrame(
 df_system["id"] = df_system.index
 
 # Measure accuracy for each instance, which is averaged by the ZenoMetric above.
-df_system["correct"] = df_system["output"] == df["label"]
+df_system["correct"] = (df_system["output"] == df["label"]).astype(int)
 
 proj.upload_system("System A", df_system, output_column="output", id_column="id")
 ```
