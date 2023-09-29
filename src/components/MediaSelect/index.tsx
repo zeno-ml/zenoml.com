@@ -17,6 +17,7 @@ export default function Select(props) {
     <div>
       {props.list.map((props, idx) => (
         <div
+          key={props.select}
           className={
             selection == props.select
               ? styles.activeSelection
@@ -47,6 +48,7 @@ export default function Select(props) {
           })
           .images.map((img) => (
             <img
+              key={img}
               style={{
                 maxHeight: "120px",
                 maxWidth: "180px",
