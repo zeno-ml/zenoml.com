@@ -1,3 +1,5 @@
+import CodeBlock from "@theme/CodeBlock";
+
 # Instance views
 
 Zeno Instance Views are modular renderers for different data types and tasks.
@@ -77,8 +79,26 @@ Each of the following views can be passed as the `view` option when creating a n
     <td>rag</td>
     <td>
       Show the input to a generator that can access information from other
-      documents. The documents that are used and the system's answer can also be
-      displayed.
-    </td>
+      documents (retrieval augmented generation). The documents that are used
+      and the system's answer can also be displayed.
+      <br></br>
+      <br></br>
+      Input and label are just plain text whereas ouptut has to be JSON in the form:
+      <CodeBlock language="json">{`{
+    "retrieved": [
+        {
+            "reference": [YOUR_DOCUMENT],
+            "text": [TEXT_IN_YOUR_DOC],
+            "score": [RANKING_OF_DOC]
+        },
+        ...
+    ],
+    "answer": [SYSTEM_ANSWER],
+}
+`}
+</CodeBlock>
+
+</td>
+
   </tr>
 </table>

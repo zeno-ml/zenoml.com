@@ -160,7 +160,7 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ["toml"],
+        additionalLanguages: ["toml", "json"],
       },
     }),
 };
