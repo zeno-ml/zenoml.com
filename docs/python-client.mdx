@@ -64,29 +64,31 @@ Initialize the Project object for API upload calls.
 
 ```python
 def upload_dataset(df: pd.DataFrame,
+                   *,
                    id_column: str,
-                   label_column: Optional[str] = None,
-                   data_column: Optional[str] = None)
+                   data_column: str,
+                   label_column: Optional[str] = None)
 ```
 
 Upload a dataset to a Zeno project.
 
 **Arguments**:
 
-- `df` _pd.DataFrame_ - The dataset to upload.
-- `id_column` _str_ - The name of the column containing the instance IDs.
-- `label_column` _str | None, optional_ - The name of the column containing the
+- `df` _pd.DataFrame_ - The dataset to upload as a Pandas DataFrame.
+- `id_column` _str_ - Column name containing unique instance IDs.
+- `data_column` _str_ - Column containing the
+  instance data. This can be raw data for data types such as
+  text, or URLs for large media data such as images and videos.
+- `label_column` _str | None, optional_ - Column containing the
   instance labels. Defaults to None.
-- `data_column` _str | None, optional_ - The name of the column containing the
-  raw data. Only works for small text data. Defaults to None.
 
 <a id="client.ZenoProject.upload_system"></a>
 
 ### upload_system
 
 ```python
-def upload_system(system_name: str, df: pd.DataFrame, output_column: str,
-                  id_column: str)
+def upload_system(df: pd.DataFrame, *, name: str, id_column: str,
+                  output_column: str)
 ```
 
 Upload a system to a Zeno project.
@@ -94,9 +96,9 @@ Upload a system to a Zeno project.
 **Arguments**:
 
 - `df` _pd.DataFrame_ - The dataset to upload.
-- `system_name` _str_ - The name of the system to upload.
-- `output_column` _str_ - The name of the column containing the system output.
+- `name` _str_ - The name of the system to upload.
 - `id_column` _str_ - The name of the column containing the instance IDs.
+- `output_column` _str_ - The name of the column containing the system output.
 
 <a id="client.ZenoClient"></a>
 
@@ -113,7 +115,7 @@ Client class for data upload functionality to Zeno.
 ### \_\_init\_\_
 
 ```python
-def __init__(api_key, endpoint=DEFAULT_BACKEND) -> None
+def __init__(api_key: str, *, endpoint: str = DEFAULT_BACKEND) -> None
 ```
 
 Initialize the ZenoClient object for API upload calls.
@@ -129,13 +131,15 @@ Initialize the ZenoClient object for API upload calls.
 ### create_project
 
 ```python
-def create_project(name: str,
+def create_project(*,
+                   name: str,
                    view: str,
                    metrics: List[ZenoMetric] = [],
                    data_url: str = "",
                    calculate_histogram_metrics: bool = True,
                    samples_per_page: int = 10,
-                   public: bool = True) -> ZenoProject
+                   public: bool = False,
+                   description: str = "") -> ZenoProject
 ```
 
 Creates an empty project in Zeno's backend.
@@ -148,13 +152,14 @@ Creates an empty project in Zeno's backend.
 - `view` _str_ - The view to use for the project.
 - `metrics` _list[ZenoMetric], optional_ - The metrics to calculate for the
   project. Defaults to [].
-- `data_url` _str, optional_ - The URL to the data to use for the project.
+- `data_url` _str, optional_ - The base URL to load datapoints from.
   Defaults to "".
 - `calculate_histogram_metrics` _bool, optional_ - Whether to calculate histogram
   metrics. Defaults to True.
 - `samples_per_page` _int, optional_ - The number of samples to show per page.
   Defaults to 10.
 - `public` _bool, optional_ - Whether the project is public. Defaults to False.
+- `description` _str, optional_ - The description of the project. Defaults to "".
 
 **Returns**:
 
@@ -164,7 +169,7 @@ not be created.
 **Raises**:
 
 - `ValidationError` - If the config does not match the ProjectConfig schema.
-- `HTTPError` - If the project could not be created.
+- `APIError` - If the project could not be created.
 
 <a id="client.ZenoClient.get_project"></a>
 
@@ -187,4 +192,4 @@ found.
 
 **Raises**:
 
-- `HTTPError` - If the project could not be found.
+- `APIError` - If the project could not be found.

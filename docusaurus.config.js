@@ -100,7 +100,7 @@ const config = {
               "<a style='margin-left: 10px' href='https://hub.zenoml.com/login'><button class='sign-in'>Sign In</button></a>",
           },
           {
-            href: "https://github.com/cmudig/zeno",
+            href: "https://github.com/zeno-ml",
             // label: "GitHub",
             position: "right",
             className: "header-github-link",
