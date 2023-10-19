@@ -6,8 +6,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Zeno",
-  tagline: "Interactive Framework for Machine Learning Evaluation",
+  title: "AI Evaluation Platform",
+  tagline: "Interactive Framework for AI Evaluation",
   url: "https://zenoml.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -90,8 +90,7 @@ const config = {
           {
             type: "html",
             position: "right",
-            value:
-              "<a style='margin-left: 10px' href='https://hub.zenoml.com/signup'>Sign up</a>",
+            value: "<a style='margin-left: 10px' href='https://hub.zenoml.com/signup'>Sign up</a>",
           },
           {
             type: "html",

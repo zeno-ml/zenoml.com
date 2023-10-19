@@ -19,15 +19,18 @@ export default function DatatypeSelect() {
         <img
           style={imageStyle}
           src={require("@site/static/img/radar-chart.png").default}
+          alt="Screenshot of radar chart"
         />
         <div style={{ display: "flex", flexDirection: "column" }}>
           <img
             style={{ ...imageStyle, width: "300px" }}
             src={require("@site/static/img/bar-chart.png").default}
+            alt="Screenshot of bar chart"
           />
           <img
             style={{ ...imageStyle, width: "300px" }}
             src={require("@site/static/img/beeswarm-chart.png").default}
+            alt="Screenshot of beeswarm chart"
           />
         </div>
       </div>
@@ -39,9 +42,9 @@ export default function DatatypeSelect() {
           across slices and models"
         ></Header>
         <p>
-          Use Zeno's drag-and-drop interface to create interactive charts. Create a
-          radar chart comparing multiple models on different slices of your data, or a
-          beeswarm plot to compare hundreds of models.
+          Use Zeno's drag-and-drop interface to create interactive charts. Create a radar chart
+          comparing multiple models on different slices of your data, or a beeswarm plot to compare
+          hundreds of models.
         </p>
       </div>
     </div>

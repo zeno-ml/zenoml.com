@@ -39,7 +39,11 @@ function SectionBlock(props) {
   return (
     <div className={styles.section}>
       <div>
-        <img className={styles.image} src={props.icon}></img>
+        <img
+          className={styles.image}
+          src={props.icon}
+          alt="Diagram showing illustration of Zeno interface"
+        ></img>
       </div>
       <div className="section-text-container">
         <h2

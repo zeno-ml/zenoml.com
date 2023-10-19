@@ -18,11 +18,7 @@ export default function Select(props) {
       {props.list.map((props, idx) => (
         <div
           key={props.select}
-          className={
-            selection == props.select
-              ? styles.activeSelection
-              : styles.inactiveSelection
-          }
+          className={selection == props.select ? styles.activeSelection : styles.inactiveSelection}
           onClick={() => setSelection(props.select)}
         >
           <Selections key={idx} {...props} />
@@ -58,10 +54,10 @@ export default function Select(props) {
                 background: "white",
                 borderRadius: "4px",
                 border: "1px solid var(--gray)",
-                boxShadow:
-                  "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+                boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
               }}
               src={img}
+              alt="Example image from Imagenette"
             />
           ))}
       </div>
