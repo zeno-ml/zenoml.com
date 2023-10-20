@@ -11,7 +11,7 @@ import React from "react";
 export function Header({ title, summary, description }): JSX.Element {
   return (
     <div>
-      <h1>{summary}</h1>
+      <h2 style={{ fontSize: "40px" }}>{summary}</h2>
       <h3 className="headerDescription">{description}</h3>
     </div>
   );

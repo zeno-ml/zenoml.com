@@ -112,37 +112,30 @@ export default function About() {
           padding: "40px",
         }}
       >
-        <h1 style={{ fontSize: "3rem" }}>About Us</h1>
+        <h2 style={{ fontSize: "3rem" }}>About Us</h2>
         <p>
-          <span style={{ fontWeight: "700", color: "var(--ifm-color-primary)" }}>
-            Zeno
-          </span>{" "}
-          is designed, built, and maintained by a team of interdisciplinary researchers
-          at{" "}
-          <span style={{ color: "#c41230", fontWeight: "600" }}>
-            Carnegie Mellon University
-          </span>
-          . We span research groups in Machine Learning, Human-Computer Interaction, and
-          Language Technologies. We are passionate about empowering people to understand
-          the complexities of AI systems in order to design the future of responsible
-          AI.
+          <span style={{ fontWeight: "700", color: "var(--ifm-color-primary)" }}>Zeno</span> is
+          designed, built, and maintained by a team of interdisciplinary researchers at{" "}
+          <span style={{ color: "#c41230", fontWeight: "600" }}>Carnegie Mellon University</span>.
+          We span research groups in Machine Learning, Human-Computer Interaction, and Language
+          Technologies. We are passionate about empowering people to understand the complexities of
+          AI systems in order to design the future of responsible AI.
         </p>
-        <h1>Team</h1>
+        <h2>Team</h2>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {currentTeam.map((member) => (
             <PersonCard key={member.name} {...member} />
           ))}
         </div>
-        <h1 style={{ marginTop: "20px" }}>Past Members</h1>
+        <h2 style={{ marginTop: "20px" }}>Past Members</h2>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {prevContributors.map((member) => (
             <PersonCard key={member.name} {...member} />
           ))}
         </div>
-        <h1 style={{ marginTop: "20px" }}>Sponsors & Organizations</h1>
+        <h2 style={{ marginTop: "20px" }}>Sponsors & Organizations</h2>
         <p>
-          We are thankful to our sponsors and affiliated organizations. Zeno is part of
-          the{" "}
+          We are thankful to our sponsors and affiliated organizations. Zeno is part of the{" "}
           <a href="https://foundation.mozilla.org/en/blog/auditing-ai-announcing-the-2023-mozilla-technology-fund-cohort/">
             Mozilla Technology Fund
           </a>{" "}
@@ -157,26 +150,27 @@ export default function About() {
               marginRight: "50px",
             }}
           >
-            <img src="/img/mozilla.png" />
+            <img src="/img/mozilla.png" alt="Mozilla logo" />
           </a>
           <img
             src="/img/nsf.png"
             style={{ width: "300px", alignSelf: "center", marginRight: "50px" }}
+            alt="Mozilla logo"
           />
-          <img src="/img/cmu.png" style={{ width: "150px", alignSelf: "center" }} />
+          <img src="/img/cmu.png" style={{ width: "150px", alignSelf: "center" }} alt="CMU logo" />
         </div>
-        <h1 style={{ marginTop: "20px" }}>Contact</h1>
+        <h2 style={{ marginTop: "20px" }}>Contact</h2>
         <p>
           If you have any questions or issues with Zeno please send an email to{" "}
           <a href="mailto:hello@zenoml.com">hello@zenoml.com</a>, ask in our{" "}
           <a href="https://discord.gg/km62pDKAkE">Discord</a>, or open an issue on{" "}
           <a href="https://github.com/zeno-ml/zeno/issues/new">GitHub</a>
         </p>
-        <h1 style={{ marginTop: "20px" }}>Cite</h1>
+        <h2 style={{ marginTop: "20px" }}>Cite</h2>
         <p>
           Please reference our
-          <a href="https://cabreraalex.com/zeno.pdf"> CHI 2023 paper</a> if you would
-          like to cite Zeno:
+          <a href="https://cabreraalex.com/zeno.pdf"> CHI 2023 paper</a> if you would like to cite
+          Zeno:
         </p>
         <CodeBlock language="bibtex">{citation}</CodeBlock>
       </div>
