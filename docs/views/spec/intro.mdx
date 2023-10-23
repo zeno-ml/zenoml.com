@@ -1,0 +1,25 @@
+import CodeBlock from "@theme/CodeBlock";
+
+# Toplevel Specification
+
+Each Instance View Specification starts with the definition of a Toplevel Specification.
+The Toplevel Specification is defined as follows:
+
+<CodeBlock language="json" title="Toplevel">
+  {`{
+  "data": ...,
+  "label": ...,
+  "output": ...,
+  "displayType": ...
+}
+`}
+</CodeBlock>
+
+#### Properties
+
+| Property    | Type                                            | Description                                                                                                                                                                                                                                                                                       |
+| ----------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| data        | Optional[[ViewElement](/docs/views/spec/other)] | Specifying how to interpret and display the data column of your Zeno Project.                                                                                                                                                                                                                     |
+| label       | Optional[[ViewElement](/docs/views/spec/other)] | Specifying how to interpret and display the label column of your Zeno Project.                                                                                                                                                                                                                    |
+| output      | Optional[[ViewElement](/docs/views/spec/other)] | Specifying how to interpret and display the ouptut column of your Zeno Project.                                                                                                                                                                                                                   |
+| displayType | Optional[String]                                | The type of display this view uses. If this parameter is omitted, the default view with three sections for data, label, and output will be used. If set as `"table"`, data, label, and output must be a [TableElement](/docs/views/spec/table) instead of a [ViewElement](/docs/views/spec/other) |
