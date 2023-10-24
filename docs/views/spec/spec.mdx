@@ -2,9 +2,9 @@ import CodeBlock from "@theme/CodeBlock";
 
 # View Specification
 
-With the View Specifications, you can create a bespoke Instance View that is just right for your Zeno project.
-In fact, all the [preconfigured views](/docs/views/existing) get turned into such a specification by our backend.
-For example, the **image-classification** view is interpreted as:
+With the View Specifications, you can create a custom Instance View that is just right for your Zeno project.
+In fact, under the hood, Zeno converts all the [Standard Views](/docs/views/existing) into such a specification.
+For example, the **image-classification** view is converted into:
 
 <CodeBlock language="json">
   {`{
@@ -21,5 +21,29 @@ For example, the **image-classification** view is interpreted as:
 `}
 </CodeBlock>
 
-You can explore all the available preconfigured view specifications and experiment with your own specification on our [Instance View Playground](https://zeno-ml.github.io/instances/).
-If you want to learn how to write your own view specification, get started withe [Toplevel Specification](/docs/views/spec/toplevel).
+You can explore all the available preconfigured view specifications and experiment with your own specification on our [Instance View Playground](https://zeno-ml.github.io/zeno-instance-views/).
+If you want to learn how to write your own view specification, the following should help you get started.
+
+## Specification
+
+Each Instance View starts with the definition of a Specification.
+The Specification is defined as follows:
+
+<CodeBlock language="json" title="Toplevel">
+  {`{
+  "data": ...,
+  "label": ...,
+  "output": ...,
+  "displayType": ...
+}
+`}
+</CodeBlock>
+
+#### Properties
+
+| Property    | Type                                            | Description                                                                                                                                                                                                                                                                                        |
+| ----------- | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| data        | Optional[[ViewElement](/docs/views/spec/other)] | Specifying how to interpret and display the data column of your Zeno Project.                                                                                                                                                                                                                      |
+| label       | Optional[[ViewElement](/docs/views/spec/other)] | Specifying how to interpret and display the label column of your Zeno Project.                                                                                                                                                                                                                     |
+| output      | Optional[[ViewElement](/docs/views/spec/other)] | Specifying how to interpret and display the ouptut column of your Zeno Project.                                                                                                                                                                                                                    |
+| displayType | Optional[String]                                | The type of display this view uses. If this parameter is omitted, the default view with three sections for data, label, and output will be used. If set as `"table"`, data, label, and output must be a [TableElement](/docs/views/spec/table) instead of a [ViewElement](/docs/views/spec/other). |
