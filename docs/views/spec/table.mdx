@@ -1,0 +1,28 @@
+import CodeBlock from "@theme/CodeBlock";
+
+# TableElements
+
+TableElements can only be used as direct decentants of the Toplevel specification.
+The following elements can be used in tabular displays:
+
+## Separated Values
+
+Splitting the data into columns using a specified separator. See in [this example](https://zeno-ml.github.io/zeno-instance-views/space-separated-values).
+
+<CodeBlock language="json" title="Separated Values">
+  {`{
+  "type": "separated-values",
+  "separator": ...,
+  "header": ...,
+  "highlight": ...
+}
+`}
+</CodeBlock>
+
+#### Properties
+
+| Property  | Type              | Description                                                                                                                                       |
+| --------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| separator | String            | Character or sequence to separate the data with.                                                                                                  |
+| header    | Optional[String]  | The heading of the row of data. Ignored if not specified.                                                                                         |
+| highlight | Optional[boolean] | Whether or not to highlight the data that is being separated. Can be used to create an alternating pattern of rows in a table. **Default: false** |

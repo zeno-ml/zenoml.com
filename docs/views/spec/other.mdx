@@ -1,0 +1,134 @@
+import CodeBlock from "@theme/CodeBlock";
+
+# View Elements
+
+A View Element defines how to interpret and display data in your Zeno Project.
+The following view elements can be used in your Zeno Projects.
+
+## Text
+
+A plaintext view to display raw text data. See in [this example](https://zeno-ml.github.io/zeno-instance-views/text-classification).
+
+<CodeBlock language="json" title="Separated Values">
+  {`{
+  "type": "text",
+  "label": ...
+}
+`}
+</CodeBlock>
+
+#### Properties
+
+| Property | Type             | Description                                  |
+| -------- | ---------------- | -------------------------------------------- |
+| label    | Optional[String] | Label to be added in front of the text data. |
+
+## Image
+
+A view to display image data. Expects a URL to fetch the image from as its data input. See in [this example](https://zeno-ml.github.io/zeno-instance-views/image-classification).
+
+<CodeBlock language="json" title="Separated Values">
+  {`{
+  "type": "image"
+}
+`}
+</CodeBlock>
+
+## Audio
+
+A view to display audio data. Expects a URL to fetch the audio data from as its input. See in [this example](https://zeno-ml.github.io/zeno-instance-views/audio-transcription).
+
+<CodeBlock language="json" title="Separated Values">
+  {`{
+  "type": "audio"
+}
+`}
+</CodeBlock>
+
+## Code
+
+A code-display with syntax highlighting. See in [this example](https://zeno-ml.github.io/zeno-instance-views/code-generation).
+
+<CodeBlock language="json" title="Separated Values">
+  {`{
+  "type": "code"
+}
+`}
+</CodeBlock>
+
+## Markdown
+
+Markdown visualization for a more flexible text display. See in [this example](https://zeno-ml.github.io/zeno-instance-views/chatbot-markdown).
+
+<CodeBlock language="json" title="Separated Values">
+  {`{
+  "type": "markdown"
+}
+`}
+</CodeBlock>
+
+## Message
+
+Visualization of data in message bubbles akin to a chat view. See in [this example](https://zeno-ml.github.io/zeno-instance-views/chatbot).
+
+<CodeBlock language="json" title="Separated Values">
+  {`{
+  "type": "message"
+  "content": ...,
+  "plain": ...,
+  "ownMessage": ...,
+  "highlight": ...
+}
+`}
+</CodeBlock>
+
+#### Properties
+
+| Property   | Type                                            | Description                                                                                                                                 |
+| ---------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| content    | [ViewElement](/docs/views/spec/other) \| String | Element to use to render the message content. If `plain == true`, this is interpreted as a String and displayed as plain text instead.      |
+| plain      | Optional[[ViewElement](/docs/views/spec/other)] | Element to use to render the message content. Only applicable if `plain == false`.                                                          |
+| ownMessage | Optional[boolean]                               | Whether this message should be displayed as incoming or outgoing. Can also be specified in the data if `plain == false`. True for outgoing. |
+| highlight  | Optional[boolean]                               | Whether this message should be highlighted.                                                                                                 |
+
+## List
+
+A list of ViewElements. Can be used to render multiple view elements at once. See in [this example](https://zeno-ml.github.io/zeno-instance-views/chatbot).
+
+<CodeBlock language="json" title="Separated Values">
+  {`{
+  "type": "list"
+  "elements": ...,
+  "collapsible": ...,
+  "border": ...,
+  "pad": ...
+}
+`}
+</CodeBlock>
+
+#### Properties
+
+| Property    | Type                                  | Description                                                                                                                                         |
+| ----------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| elements    | [ViewElement](/docs/views/spec/other) | Element used to render all the elements of the list.                                                                                                |
+| collapsible | Optional[String]                      | If specified, only renders four elements of the list per default but adds a _show more_ button to expand. Can specify either `"top"` or `"bottom"`. |
+| border      | Optional[boolean]                     | Whether to add a border around each list element.                                                                                                   |
+| pad         | Optional[boolean]                     | Whether to add padding to each list element.                                                                                                        |
+
+## VStack
+
+A vertical stack of keyed elements. Can be used to combine different elemnt types. See in [this example](https://zeno-ml.github.io/zeno-instance-views/rag).
+
+<CodeBlock language="json" title="Separated Values">
+  {`{
+  "type": "vstack"
+  "keys": ...
+}
+`}
+</CodeBlock>
+
+#### Properties
+
+| Property | Type                                                    | Description                                                                                                       |
+| -------- | ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| keys     | List[{[String]:[ViewElement](/docs/views/spec/other) }] | List of objects mapping from a String key to a ViewElement used to render the content of the data behind the key. |

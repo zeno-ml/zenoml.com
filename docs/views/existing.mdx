@@ -1,0 +1,104 @@
+import CodeBlock from "@theme/CodeBlock";
+
+# Standard Views
+
+Zeno has a number of preconfigured views that can be referenced by name.
+The following view names can be passed as the `view` option for a Zeno project.
+
+<table>
+  <tr>
+    <th>View Name</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>image-classification</td>
+    <td>
+      Display images with ground truth and predicted class labels. Works for
+      both binary and multiclass classification. Requires image inputs and text
+      or numeric outputs.
+    </td>
+  </tr>
+  <tr>
+    <td>text-classification</td>
+    <td>
+      Display text with ground truth and predicted class labels. Requires text
+      inputs and text or numeric outputs.
+    </td>
+  </tr>
+  <tr>
+    <td>audio-transcription</td>
+    <td>
+      Display audio file along with outputed text, e.g. transcription. Requires
+      audio inputs and text outputs.
+    </td>
+  </tr>
+  <tr>
+    <td>image-segmentation</td>
+    <td>
+      Display image with overlayed ground truth and predicted segmentation
+      masks. Works for both binary segmentation. Requires image inputs and
+      binary image outputs.
+    </td>
+  </tr>
+  <tr>
+    <td>code-generation</td>
+    <td>
+      Show formatted code input and code predictions. Use for evaluating code
+      generation models such as Codex.
+    </td>
+  </tr>
+  <tr>
+    <td>openai-chat</td>
+    <td>
+      Show input-output pairs from chatbot models using the OpenAI API. See the{" "}
+      <a href="https://platform.openai.com/docs/guides/chat">
+        API documentation
+      </a>{" "}
+      for details on the required Chat data format.
+    </td>
+  </tr>
+  <tr>
+    <td>openai-chat-markdown</td>
+    <td>
+      Same as `openai-chat` but renders each cell block as markdown. Useful for
+      rendering complex interactions with external agents, etc.
+    </td>
+  </tr>
+  <tr>
+    <td>chatbot</td>
+    <td>Show a single input-output pair from chatbot models.</td>
+  </tr>
+  <tr>
+    <td>space-separated-values</td>
+    <td>
+      Table view of inputs, outputs, and labels which are space-separated words.
+      Useful for tasks such as part-of-speech tagging.
+    </td>
+  </tr>
+  <tr>
+    <td>rag</td>
+    <td>
+      Show the input to a generator that can access information from other
+      documents (retrieval augmented generation). The documents that are used
+      and the system's answer can also be displayed.
+      <br></br>
+      <br></br>
+      Input and label are just plain text whereas ouptut has to be JSON in the form:
+      <CodeBlock language="json">{`{
+    "retrieved": [
+        {
+            "reference": [YOUR_DOCUMENT],
+            "text": [TEXT_IN_YOUR_DOC],
+            "score": [RANKING_OF_DOC]
+        },
+        ...
+    ],
+    "answer": [SYSTEM_ANSWER],
+}
+`}
+</CodeBlock>
+
+</td>
+
+  </tr>
+</table>
