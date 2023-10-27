@@ -2,9 +2,9 @@ import CodeBlock from "@theme/CodeBlock";
 
 # View Specification
 
-With the View Specifications, you can create a custom Instance View that is just right for your Zeno project.
-In fact, under the hood, Zeno converts all the [Standard Views](/docs/views/existing) into such a specification.
-For example, the **image-classification** view is converted into:
+With the View Specifications, you can create a custom Instance View for your specific data.
+Under the hood, Zeno converts all the [Standard Views](/docs/views/existing) into these View Specifications.
+For example, the **image-classification** view turns into:
 
 <CodeBlock language="json">
   {`{
@@ -21,15 +21,20 @@ For example, the **image-classification** view is converted into:
 `}
 </CodeBlock>
 
-You can explore all the available preconfigured view specifications and experiment with your own specification on our [Instance View Playground](https://zeno-ml.github.io/zeno-instance-views/).
+Where `type` is one of the [View Element](/docs/views/spec/other) types. You can explore all the available preconfigured view specifications and experiment with your own specification using the [Instance View Playground](https://zeno-ml.github.io/zeno-instance-views/).
 If you want to learn how to write your own view specification, the following should help you get started.
 
-## Specification
+:::tip
 
-Each Instance View starts with the definition of a Specification.
-The Specification is defined as follows:
+Check out the [Instance View Playground](https://zeno-ml.github.io/zeno-instance-views/) to test out existing views and prototype new custom views.
 
-<CodeBlock language="json" title="Toplevel">
+:::
+
+## View Specification
+
+The top level of the View Specification contains keys for the three main inputs, `data`, `label`, and `output`, and an optional `displayType`:
+
+<CodeBlock language="json" title="View Specification">
   {`{
   "data": ...,
   "label": ...,
@@ -39,11 +44,13 @@ The Specification is defined as follows:
 `}
 </CodeBlock>
 
+When `displayType` is omitted (default), each of `data`, `label`, and `output`is a [ViewElement](/docs/views/spec/other). If using the`table` `displayType`, `data`, `label`, and `output` should be [TableElement](/docs/views/spec/other) entries.
+
 #### Properties
 
-| Property    | Type                                            | Description                                                                                                                                                                                                                                                                                        |
-| ----------- | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| data        | Optional[[ViewElement](/docs/views/spec/other)] | Specifying how to interpret and display the data column of your Zeno Project.                                                                                                                                                                                                                      |
-| label       | Optional[[ViewElement](/docs/views/spec/other)] | Specifying how to interpret and display the label column of your Zeno Project.                                                                                                                                                                                                                     |
-| output      | Optional[[ViewElement](/docs/views/spec/other)] | Specifying how to interpret and display the ouptut column of your Zeno Project.                                                                                                                                                                                                                    |
-| displayType | Optional[String]                                | The type of display this view uses. If this parameter is omitted, the default view with three sections for data, label, and output will be used. If set as `"table"`, data, label, and output must be a [TableElement](/docs/views/spec/table) instead of a [ViewElement](/docs/views/spec/other). |
+| Property    | Type                                                                            | Description                                                                                                                                                                                                                                                                   |
+| ----------- | ------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| data        | [ViewElement](/docs/views/spec/other) \| [TableElement](/docs/views/spec/table) | How to render data entries.                                                                                                                                                                                                                                                   |
+| label       | [ViewElement](/docs/views/spec/other) \| [TableElement](/docs/views/spec/table) | How to render label entries.                                                                                                                                                                                                                                                  |
+| output      | [ViewElement](/docs/views/spec/other) \| [TableElement](/docs/views/spec/table) | How to render output entries.                                                                                                                                                                                                                                                 |
+| displayType | Optional[String]                                                                | How to display data, label, and output entries. The default view is a vertical list and each of `data`, `label` and `output` must be [ViewElement](/docs/views/spec/other)s. If set to `"table"`, `data`, `label`, and `output` must [TableElement](/docs/views/spec/table)s. |

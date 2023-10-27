@@ -6,14 +6,18 @@ import CodeBlock from "@theme/CodeBlock";
 
 # Getting Started
 
-Zeno is an **interactive platform for AI evaluation** for exploring, discovering and reporting the performance of your models.
-Use it for any data type or task with Zeno's [modular views](/docs/views/) for everything from object detection to audio transcription and chatbot conversations.
+Zeno is an **interactive AI evaluation platform** for exploring, discovering and reporting the performance of your models.
+Use it for any task and data type with Zeno's [modular views](/docs/views/) for everything from object detection to audio transcription and chatbot conversations.
 Zeno helps you move beyond aggregate metrics and spot-checking model outputs to develop a deep and quantitative understanding of how your model behaves.
 
 To get an idea of Zeno's features, you can explore public projects and reports in [Zeno Hub](https://hub.zenoml.com).
 For example, take a look at a [report evaluating how well LLMs like GPT-4 do on language translation](https://hub.zenoml.com/report/cabreraalex/GPT%20MT%20Benchmark%20Report), along with the [underlying data used to create the report.](https://hub.zenoml.com/project/cabreraalex/GPT%20MT%20Benchmark/explore).
 
-Check out the [Using Zeno](/docs/using-zeno/) section for more information on how to use Zeno to evaluate your models.
+:::tip
+
+Head over to [Zeno Hub](https://hub.zenoml.com) to explore public Zeno projects and reports.
+Check out the [Using Zeno](/docs/using-zeno/) docs for more information on how to use the Zeno interface.
+:::
 
 ## Creating a Project
 
@@ -26,24 +30,14 @@ Next, install the `zeno-client` Python package, which is used to upload new data
 pip install zeno-client
 ```
 
-In a Python script or notebook we can now create a new project:
+We can now create a client with out API key, and use it to create a project and upload data. The client API works with Pandas DataFrames, so we can create a sample DataFrame looking at text sentiment classification:
 
 ```python
 from zeno_client import ZenoClient
-
-client = ZenoClient("YOUR API KEY HERE")
-```
-
-Now lets load some text data to analyze. The client API works with Pandas DataFrames, so we can create a sample DataFrame looking at text sentiment classification:
-
-```python
-from zeno_client import ZenoClient
-# highlight-next-line
 import pandas as pd
 
 client = ZenoClient("YOUR API KEY HERE")
 
-# highlight-start
 df = pd.DataFrame(
     {
         "text": [
@@ -60,11 +54,13 @@ df["id"] = df.index
 
 # Add any additional columns you want to do analysis across.
 df["input length"] = df["text"].str.len()
-
-# highlight-end
 ```
 
-Let's create a project for this task. **Projects** in Zeno are a base dataset and any number of AI system outputs, and are used to evaluate and compare AI system performance. Here we create a project and upload our base dataset.
+Let's create a project for this task. **Projects** in Zeno are a base dataset and any number of AI system outputs, and are used to evaluate and compare model performance. Here we create a project and upload our base dataset.
+
+:::info
+If you are working with tabular data you do not have to pass in a `view` option to `create_project` or a `data_column` option to `upload_dataset`.
+:::
 
 ```python
 from zeno_client import ZenoClient, ZenoMetric

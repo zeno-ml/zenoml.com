@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Python Client API
@@ -42,31 +42,15 @@ Provides data upload functionality for a Zeno project.
 
 Should NOT be initialized directly, but rather through the ZenoClient.
 
-<a id="client.ZenoProject.__init__"></a>
-
-### \_\_init\_\_
-
-```python
-def __init__(api_key: str, project_uuid: str, endpoint: str = DEFAULT_BACKEND)
-```
-
-Initialize the Project object for API upload calls.
-
-**Arguments**:
-
-- `api_key` _str_ - the API key to authenticate uploads with.
-- `project_uuid` _str_ - the ID of the project to add data to.
-- `endpoint` _str, optional_ - the base URL of the Zeno backend.
-
 <a id="client.ZenoProject.upload_dataset"></a>
 
-### upload_dataset
+#### upload_dataset
 
 ```python
 def upload_dataset(df: pd.DataFrame,
                    *,
                    id_column: str,
-                   data_column: str,
+                   data_column: Optional[str] = None,
                    label_column: Optional[str] = None)
 ```
 
@@ -76,15 +60,16 @@ Upload a dataset to a Zeno project.
 
 - `df` _pd.DataFrame_ - The dataset to upload as a Pandas DataFrame.
 - `id_column` _str_ - Column name containing unique instance IDs.
-- `data_column` _str_ - Column containing the
+- `data_column` _str | None, optional_ - Column containing the
   instance data. This can be raw data for data types such as
   text, or URLs for large media data such as images and videos.
+  Defaults to None.
 - `label_column` _str | None, optional_ - Column containing the
   instance labels. Defaults to None.
 
 <a id="client.ZenoProject.upload_system"></a>
 
-### upload_system
+#### upload_system
 
 ```python
 def upload_system(df: pd.DataFrame, *, name: str, id_column: str,
@@ -100,6 +85,30 @@ Upload a system to a Zeno project.
 - `id_column` _str_ - The name of the column containing the instance IDs.
 - `output_column` _str_ - The name of the column containing the system output.
 
+<a id="client.ZenoProject.delete_system"></a>
+
+#### delete_system
+
+```python
+def delete_system(name: str)
+```
+
+Delete a system from a Zeno project.
+
+**Arguments**:
+
+- `name` _str_ - The name of the system to delete.
+
+<a id="client.ZenoProject.delete_all_systems"></a>
+
+#### delete_all_systems
+
+```python
+def delete_all_systems()
+```
+
+Delete all systems from a Zeno project.
+
 <a id="client.ZenoClient"></a>
 
 ## ZenoClient Objects
@@ -112,7 +121,7 @@ Client class for data upload functionality to Zeno.
 
 <a id="client.ZenoClient.__init__"></a>
 
-### \_\_init\_\_
+#### \_\_init\_\_
 
 ```python
 def __init__(api_key: str, *, endpoint: str = DEFAULT_BACKEND) -> None
@@ -128,18 +137,16 @@ Initialize the ZenoClient object for API upload calls.
 
 <a id="client.ZenoClient.create_project"></a>
 
-### create_project
+#### create_project
 
 ```python
 def create_project(*,
                    name: str,
-                   view: str,
+                   view: Union[str, Dict] = "",
+                   description: str = "",
                    metrics: List[ZenoMetric] = [],
-                   data_url: str = "",
-                   calculate_histogram_metrics: bool = True,
                    samples_per_page: int = 10,
-                   public: bool = False,
-                   description: str = "") -> ZenoProject
+                   public: bool = False) -> ZenoProject
 ```
 
 Creates an empty project in Zeno's backend.
@@ -148,18 +155,14 @@ Creates an empty project in Zeno's backend.
 
 - `name` _str_ - The name of the project to be created. The project will be
   created under the current user, e.g. username/name.
-- `project` - str,
-- `view` _str_ - The view to use for the project.
+- `view` _Union[str, Dict], optional_ - The view to use for the project.
+  Defaults to "".
+- `description` _str, optional_ - The description of the project. Defaults to "".
 - `metrics` _list[ZenoMetric], optional_ - The metrics to calculate for the
   project. Defaults to [].
-- `data_url` _str, optional_ - The base URL to load datapoints from.
-  Defaults to "".
-- `calculate_histogram_metrics` _bool, optional_ - Whether to calculate histogram
-  metrics. Defaults to True.
 - `samples_per_page` _int, optional_ - The number of samples to show per page.
   Defaults to 10.
 - `public` _bool, optional_ - Whether the project is public. Defaults to False.
-- `description` _str, optional_ - The description of the project. Defaults to "".
 
 **Returns**:
 
@@ -173,7 +176,7 @@ not be created.
 
 <a id="client.ZenoClient.get_project"></a>
 
-### get_project
+#### get_project
 
 ```python
 def get_project(project_name: str) -> ZenoProject

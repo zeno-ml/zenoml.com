@@ -5,3 +5,38 @@ There are two ways to define instance views:
 
 1. **Standard Views** - Use the string identifier for one of the [Standard Views](/docs/views/existing).
 2. **Custom Views** - Use the [View Specification](/docs/views/spec) to create your own view.
+
+You can either pass in a standard view string, custom view JSON, or custom view `dict` object to the view option of the `create_project` function.
+
+```python
+from zeno-client import ZenoClient
+client = ZenoClient("/** API KEY **/")
+
+# Standard View
+project = client.create_project(
+    name="My Project",
+    view="text-classification"
+)
+
+# Custom View (JSON)
+project = client.create_project(
+    name="My Project",
+    view='{"data": {"type": "image"},"label": {"type": "text"},"output": {"type": "text"}}'
+)
+
+# Custom View (dict)
+project = client.create_project(
+    name="My Project",
+    view={
+        "data": {
+            "type": "image"
+        },
+        "label": {
+            "type": "text"
+        },
+        "output": {
+            "type": "text"
+        }
+    }
+)
+```
