@@ -6,7 +6,6 @@
 }
 
 .headerContainer {
-  width: 100vw;
   background-image: linear-gradient(
     140deg,
     hsl(277deg 70% 35%) 0%,

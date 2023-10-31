@@ -10,15 +10,18 @@ export function HomepageHeader() {
         <div className={styles.headerLeft}>
           <h1 style={{ fontSize: "45px" }}>AI Evaluation Made Easy</h1>
           <h4 className={styles.subheader}>
-            Discover how your AI performs with <b>Zeno</b>. Explore your data, uncover
-            failures, and create beautiful, interactive reports.
+            Discover how your AI performs with <b>Zeno</b>. Explore your data,
+            uncover failures, and create beautiful, interactive reports.
           </h4>
           <div
             className={styles.buttons}
             style={{ justifyContent: "space-between", alignItems: "center" }}
           >
             <div className={styles.buttons}>
-              <Link className="button button--lg heroButtonSecondary" to="/docs/intro">
+              <Link
+                className="button button--lg heroButtonSecondary"
+                to="/docs/intro"
+              >
                 Get Started
               </Link>
               <Link
