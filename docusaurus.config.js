@@ -79,14 +79,14 @@ const config = {
           srcDark: "img/zeno_dark.png",
         },
         items: [
+          { to: "/about", label: "About", position: "left" },
           {
             type: "doc",
             docId: "intro",
             position: "left",
             label: "Docs",
           },
-          // { to: "/blog", label: "Blog", position: "left" },
-          { to: "/about", label: "About", position: "left" },
+          { to: "/faq", label: "FAQ", position: "left" },
           {
             type: "html",
             position: "right",
@@ -118,12 +118,16 @@ const config = {
                 to: "/",
               },
               {
+                label: "About",
+                to: "/about/",
+              },
+              {
                 label: "Docs",
                 to: "/docs/intro",
               },
               {
-                label: "About",
-                to: "/about/",
+                label: "FAQ",
+                to: "/faq/",
               },
             ],
           },
