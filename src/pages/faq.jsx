@@ -3,9 +3,9 @@ import React from "react";
 
 export default function FAQ() {
   return (
-    <Layout title="About" description="About Zeno">
+    <Layout title="FAQ" description="Frequently Asked Questions">
       <div
-        id="about"
+        id="faq"
         style={{
           maxWidth: "900px",
           margin: "0px auto",
@@ -39,6 +39,16 @@ export default function FAQ() {
             evaluations
           </li>
         </ul>
+        <h3>How can I report an issue with Zeno?</h3>
+        <p>
+          Please send us a message on our{" "}
+          <a href="https://discord.gg/km62pDKAkE">Discord channel</a>, file a bug on{" "}
+          <a href="https://github.com/zeno-ml/zeno-hub/issues">GitHub</a>, or email{" "}
+          <a href="mailto:hello@zenoml.com">
+            <code>hello@zenoml.com</code>
+          </a>{" "}
+          if you run into any issues!
+        </p>
         <h3>How do I get started?</h3>
         <p>
           You can start by{" "}
@@ -74,16 +84,6 @@ export default function FAQ() {
             Zeno Hub Developer documentation
           </a>{" "}
           for instructions on how to run the Docker containers and host Zeno yourself.
-        </p>
-        <h3>How can I report an issue with Zeno?</h3>
-        <p>
-          Please send us a message on our{" "}
-          <a href="https://discord.gg/km62pDKAkE">Discord channel</a>, file a bug on{" "}
-          <a href="https://github.com/zeno-ml/zeno-hub/issues">GitHub</a>, or email{" "}
-          <a href="mailto:hello@zenoml.com">
-            <code>hello@zenoml.com</code>
-          </a>{" "}
-          if you run into any issues!
         </p>
         <h3>Where did the name Zeno come from?</h3>
         <p>
