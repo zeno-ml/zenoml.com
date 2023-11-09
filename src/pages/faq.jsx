@@ -12,7 +12,19 @@ export default function FAQ() {
           padding: "40px",
         }}
       >
-        <h2 style={{ fontSize: "3rem" }}>Frequently Asked Questions</h2>
+        <h1 style={{ fontSize: "3rem" }}>Frequently Asked Questions</h1>
+        <h2 style={{ fontSize: "2rem" }}>Support</h2>
+        <h3>How can I report an issue with Zeno?</h3>
+        <p>
+          Please send us a message on our{" "}
+          <a href="https://discord.gg/km62pDKAkE">Discord channel</a>, file a bug on{" "}
+          <a href="https://github.com/zeno-ml/zeno-hub/issues">GitHub</a>, or email{" "}
+          <a href="mailto:hello@zenoml.com">
+            <code>hello@zenoml.com</code>
+          </a>{" "}
+          if you run into any issues!
+        </p>
+        <h2 style={{ fontSize: "2rem" }}>General</h2>
         <h3>What is Zeno?</h3>
         <p>
           <span style={{ fontWeight: "600", color: "var(--logo)" }}>Zeno</span> is an AI evaluation
@@ -39,16 +51,6 @@ export default function FAQ() {
             evaluations
           </li>
         </ul>
-        <h3>How can I report an issue with Zeno?</h3>
-        <p>
-          Please send us a message on our{" "}
-          <a href="https://discord.gg/km62pDKAkE">Discord channel</a>, file a bug on{" "}
-          <a href="https://github.com/zeno-ml/zeno-hub/issues">GitHub</a>, or email{" "}
-          <a href="mailto:hello@zenoml.com">
-            <code>hello@zenoml.com</code>
-          </a>{" "}
-          if you run into any issues!
-        </p>
         <h3>How do I get started?</h3>
         <p>
           You can start by{" "}
@@ -85,6 +87,7 @@ export default function FAQ() {
           </a>{" "}
           for instructions on how to run the Docker containers and host Zeno yourself.
         </p>
+        <h2 style={{ fontSize: "2rem" }}>Misc</h2>
         <h3>Where did the name Zeno come from?</h3>
         <p>
           Zeno is named after <a href="https://en.wikipedia.org/wiki/Zeno_of_Elea">Zeno of Elea</a>,

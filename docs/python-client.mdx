@@ -179,14 +179,15 @@ not be created.
 #### get_project
 
 ```python
-def get_project(project_name: str) -> ZenoProject
+def get_project(owner_name: str, project_name: str) -> ZenoProject
 ```
 
-Get a project object by its name. Names are split into owner/project_name.
+Get a project object by its owner and name.
 
 **Arguments**:
 
-- `project_name` _str_ - The owner/project_name of the project to get.
+- `owner_name` _str_ - The owner of the project to get.
+- `project_name` _str_ - The name of the project to get.
 
 **Returns**:
 

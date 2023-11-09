@@ -21,12 +21,12 @@ For example, the **image-classification** view turns into:
 `}
 </CodeBlock>
 
-Where `type` is one of the [View Element](/docs/views/spec/other) types. You can explore all the available preconfigured view specifications and experiment with your own specification using the [Instance View Playground](https://zeno-ml.github.io/zeno-instance-views/).
+Where `type` is one of the [View Element](/docs/views/spec/other) types. You can explore all the available preconfigured view specifications and experiment with your own specification using the [Instance View Playground](https://hub.zenoml.com/playground?).
 If you want to learn how to write your own view specification, the following should help you get started.
 
 :::tip
 
-Check out the [Instance View Playground](https://zeno-ml.github.io/zeno-instance-views/) to test out existing views and prototype new custom views.
+Check out the [Instance View Playground](https://hub.zenoml.com/playground?) to test out existing views and prototype new custom views.
 
 :::
 
@@ -44,13 +44,11 @@ The top level of the View Specification contains keys for the three main inputs,
 `}
 </CodeBlock>
 
-When `displayType` is omitted (default), each of `data`, `label`, and `output`is a [ViewElement](/docs/views/spec/other). If using the`table` `displayType`, `data`, `label`, and `output` should be [TableElement](/docs/views/spec/other) entries.
-
 #### Properties
 
-| Property    | Type                                                                            | Description                                                                                                                                                                                                                                                                   |
-| ----------- | ------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| data        | [ViewElement](/docs/views/spec/other) \| [TableElement](/docs/views/spec/table) | How to render data entries.                                                                                                                                                                                                                                                   |
-| label       | [ViewElement](/docs/views/spec/other) \| [TableElement](/docs/views/spec/table) | How to render label entries.                                                                                                                                                                                                                                                  |
-| output      | [ViewElement](/docs/views/spec/other) \| [TableElement](/docs/views/spec/table) | How to render output entries.                                                                                                                                                                                                                                                 |
-| displayType | Optional[String]                                                                | How to display data, label, and output entries. The default view is a vertical list and each of `data`, `label` and `output` must be [ViewElement](/docs/views/spec/other)s. If set to `"table"`, `data`, `label`, and `output` must [TableElement](/docs/views/spec/table)s. |
+| Property    | Type                                  | Description                                                                                                                                                                                                                                                                                         |
+| ----------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| data        | [ViewElement](/docs/views/spec/other) | How to render data entries.                                                                                                                                                                                                                                                                         |
+| label       | [ViewElement](/docs/views/spec/other) | How to render label entries.                                                                                                                                                                                                                                                                        |
+| output      | [ViewElement](/docs/views/spec/other) | How to render output entries.                                                                                                                                                                                                                                                                       |
+| displayType | Optional[String]                      | How to display data, label, and output entries. The default view is a vertical list and each of `data`, `label` and `output` must be [ViewElement](/docs/views/spec/other)s. If set to `"table"`, `data`, `label`, and `output` must be [Separated Values](/docs/view/spec/other#separated-values). |

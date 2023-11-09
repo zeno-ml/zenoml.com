@@ -16,6 +16,7 @@ For example, take a look at a [report evaluating how well LLMs like GPT-4 do on 
 :::tip
 
 Head over to [Zeno Hub](https://hub.zenoml.com) to explore public Zeno projects and reports.
+
 Check out the [Using Zeno](/docs/using-zeno/) docs for more information on how to use the Zeno interface.
 :::
 
@@ -59,7 +60,9 @@ df["input length"] = df["text"].str.len()
 Let's create a project for this task. **Projects** in Zeno are a base dataset and any number of AI system outputs, and are used to evaluate and compare model performance. Here we create a project and upload our base dataset.
 
 :::info
-If you are working with tabular data you do not have to pass in a `view` option to `create_project` or a `data_column` option to `upload_dataset`.
+The `view` option can take a [`string`](/docs/views/existing) for one of the standard views or a [`dict`](http://localhost:3000/docs/views/spec/) with a custom view specification.
+
+When using tabular data, you can omit `view` from `create_project` and `data_column` from `upload_dataset`.
 :::
 
 ```python
@@ -157,6 +160,8 @@ project.upload_system(df_system, name="System A", id_column="id", output_column=
 
 ## Quickstart with Zeno Build
 
-[Zeno Build](https://github.com/zeno-ml/zeno-build) is a Python library that makes it easy to set up Zeno projects for common AI and ML tasks.
+[Zeno Build](https://github.com/zeno-ml/zeno-build) is a Python library that makes it easy to set up Zeno projects for common AI and ML tasks. Check out some common Zeno Build notebooks:
 
-Follow the [Zeno Build Tutorial](https://github.com/zeno-ml/zeno-build/tree/main/docs/tutorial) to learn the basic Zeno concepts on an example LLM task.
+- [EleutherAI LM Evaluation Harness](https://github.com/zeno-ml/zeno-build/tree/main/examples/eleuther_harness)
+- [🤗 OpenLLM Leaderboard](https://github.com/zeno-ml/zeno-build/tree/main/examples/open_llm_leaderboard)
+- [Audio Transcription Bias](https://github.com/zeno-ml/zeno-build/tree/main/examples/transcription)
