@@ -60,9 +60,9 @@ df["input length"] = df["text"].str.len()
 Let's create a project for this task. **Projects** in Zeno are a base dataset and any number of AI system outputs, and are used to evaluate and compare model performance. Here we create a project and upload our base dataset.
 
 :::info
-The `view` option can take a [`string`](/docs/views/existing) for one of the standard views or a [`dict`](http://localhost:3000/docs/views/spec/) with a custom view specification.
+The `view` option can take a [`string`](/docs/views/existing) for one of the standard views or a [`dict`](/docs/views/spec/) with a custom view specification.
 
-When using tabular data, you can omit `view` from `create_project` and `data_column` from `upload_dataset`.
+If you just want to look at tabular metadata, you can omit `view` from `create_project` and `data_column` from `upload_dataset`.
 :::
 
 ```python
