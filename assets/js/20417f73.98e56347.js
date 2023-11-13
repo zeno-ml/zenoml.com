@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkzeno_docs=self.webpackChunkzeno_docs||[]).push([[743],{7456:s=>{s.exports=JSON.parse('{"label":"introduction","permalink":"/blog/tags/introduction","allTagsPath":"/blog/tags","count":1,"unlisted":false}')}}]);
