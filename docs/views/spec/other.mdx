@@ -12,7 +12,7 @@ A plaintext view to display raw text data. See in [this example](https://zeno-ml
 <CodeBlock language="json" title="Separated Values">
   {`{
   "type": "text",
-  "label": ...
+  "label": string
 }
 `}
 </CodeBlock>
@@ -29,7 +29,8 @@ A view to display image data. Expects a URL to fetch the image from as its data 
 
 <CodeBlock language="json" title="Separated Values">
   {`{
-  "type": "image"
+  "type": "image",
+  "maxWidth": "small" | "medium" | "large" | "full" 
 }
 `}
 </CodeBlock>
@@ -74,22 +75,22 @@ Visualization of data in message bubbles akin to a chat view. See in [this examp
 <CodeBlock language="json" title="Separated Values">
   {`{
   "type": "message"
-  "content": ...,
-  "plain": ...,
-  "ownMessage": ...,
-  "highlight": ...
+  "plain": boolean,
+  "content": ViewElement | string,
+  "ownMessage": boolean,
+  "highlight": boolean
 }
 `}
 </CodeBlock>
 
 #### Properties
 
-| Property   | Type                                            | Description                                                                                                                                 |
-| ---------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| content    | [ViewElement](/docs/views/spec/other) \| String | Element to use to render the message content. If `plain == true`, this is interpreted as a String and displayed as plain text instead.      |
-| plain      | Optional[[ViewElement](/docs/views/spec/other)] | Element to use to render the message content. Only applicable if `plain == false`.                                                          |
-| ownMessage | Optional[boolean]                               | Whether this message should be displayed as incoming or outgoing. Can also be specified in the data if `plain == false`. True for outgoing. |
-| highlight  | Optional[boolean]                               | Whether this message should be highlighted.                                                                                                 |
+| Property   | Type                                            | Description                                                                                                                                                             |
+| ---------- | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| content    | [ViewElement](/docs/views/spec/other) \| String | Element to use to render the message content. If `plain == true`, this is interpreted as a String and displayed as plain text instead of a OpenAI-style message object. |
+| plain      | Optional[boolean]                               | How to render the content.                                                                                                                                              |
+| ownMessage | Optional[boolean]                               | Whether this message should be displayed as incoming or outgoing. Can also be specified in the data if `plain == false`. True for outgoing.                             |
+| highlight  | Optional[boolean]                               | Whether this message should be highlighted.                                                                                                                             |
 
 ## List
 
@@ -98,10 +99,10 @@ A list of ViewElements. Can be used to render multiple view elements at once. Se
 <CodeBlock language="json" title="Separated Values">
   {`{
   "type": "list"
-  "elements": ...,
-  "collapsible": ...,
-  "border": ...,
-  "pad": ...
+  "elements": ViewElement,
+  "collapsible": "top" | "bottom",
+  "border": boolean,
+  "pad": boolean
 }
 `}
 </CodeBlock>
@@ -122,13 +123,35 @@ A vertical stack of keyed elements. Can be used to combine different element typ
 <CodeBlock language="json" title="Separated Values">
   {`{
   "type": "vstack"
-  "keys": ...
+  "keys": Record<string, ViewElement>
 }
 `}
 </CodeBlock>
 
 #### Properties
 
-| Property | Type                                                    | Description                                                                                                       |
-| -------- | ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| keys     | List[{[String]:[ViewElement](/docs/views/spec/other) }] | List of objects mapping from a String key to a ViewElement used to render the content of the data behind the key. |
+| Property | Type                                                 | Description                                                                                                       |
+| -------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| keys     | Record<string:[ViewElement](/docs/views/spec/other)> | List of objects mapping from a String key to a ViewElement used to render the content of the data behind the key. |
+
+## Separated Values
+
+Splitting the data into columns using a specified separator. See in [this example](https://zeno-ml.github.io/zeno-instance-views/?params=eyJzYW1wbGUiOiJzcGFjZS1zZXBhcmF0ZWQtdmFsdWVzIn0=).
+
+<CodeBlock language="json" title="Separated Values">
+  {`{
+  "type": "separatedValues",
+  "separator": string,
+  "header": string,
+  "highlight": boolean
+}
+`}
+</CodeBlock>
+
+#### Properties
+
+| Property  | Type              | Description                                                                                                                                       |
+| --------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| separator | String            | Character or sequence to separate the data with.                                                                                                  |
+| header    | Optional[String]  | The heading of the row of data. Ignored if not specified.                                                                                         |
+| highlight | Optional[boolean] | Whether or not to highlight the data that is being separated. Can be used to create an alternating pattern of rows in a table. **Default: false** |
