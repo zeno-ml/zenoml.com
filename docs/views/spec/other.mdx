@@ -100,6 +100,7 @@ A list of ViewElements. Can be used to render multiple view elements at once. Se
   {`{
   "type": "list"
   "elements": ViewElement,
+  "horizontal": boolean,
   "collapsible": "top" | "bottom",
   "border": boolean,
   "pad": boolean
@@ -112,6 +113,7 @@ A list of ViewElements. Can be used to render multiple view elements at once. Se
 | Property    | Type                                  | Description                                                                                                                                         |
 | ----------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | elements    | [ViewElement](/docs/views/spec/other) | Element used to render all the elements of the list.                                                                                                |
+| horizontal  | Optional[boolean]                     | If specified, renders list horizontally.                                                                                                            |
 | collapsible | Optional[String]                      | If specified, only renders four elements of the list per default but adds a _show more_ button to expand. Can specify either `"top"` or `"bottom"`. |
 | border      | Optional[boolean]                     | Whether to add a border around each list element.                                                                                                   |
 | pad         | Optional[boolean]                     | Whether to add padding to each list element.                                                                                                        |
@@ -130,9 +132,9 @@ A vertical stack of keyed elements. Can be used to combine different element typ
 
 #### Properties
 
-| Property | Type                                                 | Description                                                                                                       |
-| -------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| keys     | Record<string:[ViewElement](/docs/views/spec/other)> | List of objects mapping from a String key to a ViewElement used to render the content of the data behind the key. |
+| Property | Type                                                   | Description                                                                                                       |
+| -------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
+| keys     | Record\<string:[ViewElement](/docs/views/spec/other)\> | List of objects mapping from a String key to a ViewElement used to render the content of the data behind the key. |
 
 ## Separated Values
 
