@@ -43,10 +43,6 @@ export default function FAQ() {
             <a href="https://github.com/zeno-ml/zeno-hub">Zeno Hub</a> - Core Zeno platform code
           </li>
           <li>
-            <a href="https://github.com/zeno-ml/zeno-instance-views">Zeno Instance Views</a> -
-            Specification and rendering for custom data views.
-          </li>
-          <li>
             <a href="https://github.com/zeno-ml/zeno-build">Zeno Build</a> - Repository of example
             evaluations
           </li>
