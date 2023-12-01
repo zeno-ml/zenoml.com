@@ -39,6 +39,7 @@ The top level of the View Specification contains keys for the three main inputs,
   "data": ...,
   "label": ...,
   "output": ...,
+  "size": ...,
   "displayType": ...
 }
 `}
@@ -51,4 +52,5 @@ The top level of the View Specification contains keys for the three main inputs,
 | data        | [ViewElement](/docs/views/spec/other) | How to render data entries.                                                                                                                                                                                                                                                                          |
 | label       | [ViewElement](/docs/views/spec/other) | How to render label entries.                                                                                                                                                                                                                                                                         |
 | output      | [ViewElement](/docs/views/spec/other) | How to render output entries.                                                                                                                                                                                                                                                                        |
+| size        | "medium" \| "large"                   | Width of the instance.                                                                                                                                                                                                                                                                               |
 | displayType | Optional[String]                      | How to display data, label, and output entries. The default view is a vertical list and each of `data`, `label` and `output` must be [ViewElement](/docs/views/spec/other)s. If set to `"table"`, `data`, `label`, and `output` must be [Separated Values](/docs/views/spec/other#separated-values). |
