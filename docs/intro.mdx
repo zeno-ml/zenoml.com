@@ -4,18 +4,181 @@ sidebar_position: 1
 
 import CodeBlock from "@theme/CodeBlock";
 
-# What is Zeno?
+# Getting Started
 
 Zeno is an **interactive AI evaluation platform** for exploring, discovering and reporting the performance of your models.
 Use it for any task and data type with Zeno's [modular views](/docs/views/) for everything from object detection to audio transcription and chatbot conversations.
-Zeno helps you move beyond aggregate metrics and spot-checking model outputs to develop a deep and quantitative understanding of how your model behaves.
+
+## Creating a Project
+
+Creating a new Zeno project is super easy.
+All you need is a Zeno account and some data you want to upload and investigate.
+We will go thruogh creating your first project step by step, but also have the complete code example right here for your reference:
+
+<details>
+  <summary>Complete Example</summary>
+  <div>
+    ```python
+    from zeno_client import ZenoClient, ZenoMetric
+    import pandas as pd
+    
+    client = ZenoClient("YOUR API KEY HERE")
+    
+    df = pd.DataFrame(
+      {
+          "id": [1, 2, 3],
+          "text": [
+              "I love this movie!",
+              "I hate this movie!",
+              "This movie is ok.",
+          ],
+          "label": ["positive", "negative", "neutral"],
+      }
+    )
+
+    # Add any additional columns you want to do analysis across.
+    df["input length"] = df["text"].str.len()
+
+    # Create a project.
+    project = client.create_project(
+    name="Sentiment Classification",
+    view="text-classification",
+    metrics=[
+        ZenoMetric(name="accuracy", type="mean", columns=["correct"]),
+      ]
+    )
+
+    # Upload the data.
+    project.upload_dataset(df, id_column="id", data_column='text', label_column="label")
+
+    # Create a system DataFrame.
+    df_system = pd.DataFrame(
+      {
+        "output": ["positive", "negative", "negative"],
+      }
+    )
+
+    # Create an id column to match the base dataset.
+    df_system["id"] = df_system.index
+
+    # Measure accuracy for each instance, which is averaged by the ZenoMetric above.
+    df_system["correct"] = (df_system["output"] == df["label"]).astype(int)
+
+    proj.upload_system(df_system, name="System A", id_column="id", output_column="output")
+    ```
+
+  </div>
+</details>
+
+### Zeno Account
+
+If you don't have a Zeno account already, create one on [Zeno Hub](https://hub.zenoml.com/signup).
+After logging in to Zeno Hub, generate your API key by clicking on your profile at the top right to navigate to your [account page](https://hub.zenoml.com/account).
+
+### Data Upload
+
+We're uploading data directly from Python.
+This makes it easy for you to start your evaluation right where you do your AI system development.
+
+To get all the functions used to upload new datasets and AI system outputs, install the `zeno-client` Python package:
+
+```bash
+pip install zeno-client
+```
+
+We can now initialize a client with our API key and use it to create a project and upload data.
+
+```python
+from zeno_client import ZenoClient, ZenoMetric
+import pandas as pd
+
+# Initialize a client with our API key.
+client = ZenoClient("YOUR API KEY HERE")
+```
 
 :::tip
-Head over to [Zeno Hub](https://hub.zenoml.com) to explore public Zeno projects and reports.
-For example, take a look at a [report evaluating how well LLMs like GPT-4 do on language translation](https://hub.zenoml.com/report/cabreraalex/GPT%20MT%20Benchmark%20Report), along with the [underlying data used to create the report](https://hub.zenoml.com/project/cabreraalex/GPT%20MT%20Benchmark/explore).
-
-Check out the [Using Zeno](/docs/using-zeno/) docs for more information on how to use the Zeno interface.
+If you want to learn more about our Python client, read our [client API docs](/docs/python-client).
 :::
 
-The best way to use Zeno is with your own data and models.
-Learn how to create your [own projects](/docs/start)!
+### Data Format
+
+Zeno takes any data that you provide in a **Pandas DataFrame**.
+In this example, we look at text sentiment classification:
+
+```python
+...
+
+# Put all data in a Pandas DataFrame
+df = pd.DataFrame(
+    {
+        "id": [1, 2, 3],
+        "text": [
+            "I love this movie!",
+            "I hate this movie!",
+            "This movie is ok.",
+        ],
+        "label": ["positive", "negative", "neutral"],
+    }
+)
+
+# Add any additional columns you want to do analysis across.
+df["input length"] = df["text"].str.len()
+```
+
+### Zeno Project
+
+**Projects** in Zeno are a base dataset and any number of AI system outputs used to evaluate and compare model performance.
+Here we create a project and upload our base dataset.
+
+```python
+...
+
+project = client.create_project(
+    name="Sentiment Classification",
+    view="text-classification",
+    metrics=[
+        ZenoMetric(name="accuracy", type="mean", columns=["correct"]),
+    ]
+)
+
+project.upload_dataset(df, id_column="id", data_column='text', label_column="label")
+```
+
+We named our project _Sentiment Classification_ and specified to use the _text_classification_ view.
+We also added an _accuracy_ metric which takes the mean of the `correct` column that will be present in the system outputs we upload later.
+
+:::tip
+If you want to learn more about Zeno's powerful `view` option and what to best use for your data, read our [instance view docs](/docs/views).
+:::
+
+### System Outputs
+
+Next, we can upload some system outputs to evaluate. Here we'll upload some fake predictions from a model:
+
+```python
+...
+
+df_system = pd.DataFrame(
+    {
+        "output": ["positive", "negative", "negative"],
+    }
+)
+
+# Create an id column to match the base dataset.
+df_system["id"] = df_system.index
+
+# Measure accuracy for each instance, which is averaged by the ZenoMetric above.
+df_system["correct"] = (df_system["output"] == df["label"]).astype(int)
+
+proj.upload_system(df_system, name="System A", id_column="id", output_column="output")
+```
+
+You can now navigate to the project URL in Zeno Hub to see the uploaded data and metrics and start exploring your AI system's performance!
+
+## Quickstart with Zeno Build
+
+[Zeno Build](https://github.com/zeno-ml/zeno-build) is a Python project that contains a collection of example projects for common AI and ML tasks. Check out some common Zeno Build notebooks:
+
+- [EleutherAI LM Evaluation Harness](https://github.com/zeno-ml/zeno-build/tree/main/examples/eleuther_harness)
+- [🤗 OpenLLM Leaderboard](https://github.com/zeno-ml/zeno-build/tree/main/examples/open_llm_leaderboard)
+- [Audio Transcription Bias](https://github.com/zeno-ml/zeno-build/tree/main/examples/transcription)
