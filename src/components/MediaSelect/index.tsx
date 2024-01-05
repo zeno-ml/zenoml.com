@@ -46,11 +46,10 @@ export default function Select(props) {
             <img
               key={img}
               style={{
-                maxHeight: "120px",
+                maxHeight: "130px",
                 maxWidth: "180px",
                 objectFit: "cover",
                 padding: "10px",
-                margin: "10px",
                 background: "white",
                 borderRadius: "4px",
                 border: "1px solid var(--gray)",

@@ -6,41 +6,26 @@
 }
 
 .headerContainer {
-  background-image: linear-gradient(
-    140deg,
-    hsl(277deg 70% 35%) 0%,
-    hsl(277deg 62% 38%) 8%,
-    hsl(276deg 57% 40%) 17%,
-    hsl(276deg 53% 42%) 26%,
-    hsl(276deg 50% 43%) 35%,
-    hsl(276deg 47% 45%) 44%,
-    hsl(276deg 45% 46%) 52%,
-    hsl(276deg 43% 48%) 60%,
-    hsl(277deg 41% 49%) 67%,
-    hsl(277deg 40% 51%) 74%,
-    hsl(277deg 41% 52%) 81%,
-    hsl(277deg 42% 53%) 88%,
-    hsl(277deg 42% 54%) 94%,
-    hsl(277deg 43% 55%) 100%
+  background: linear-gradient(
+    180deg,
+    rgba(106, 27, 154, 0.8) 2.15%,
+    rgba(178, 138, 202, 0.8) 54.61%,
+    rgba(245, 245, 245, 0.8) 77.98%
   );
-  margin: 0px auto;
+  backdrop-filter: blur(2px);
+  margin: auto;
 }
 
 .header {
   max-width: 1300px;
-  margin: 0px auto;
+  margin: auto;
   color: white;
   display: flex;
-  position: relative;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 30px;
-}
-
-.headerLeft {
-  margin: 30px;
-  width: 50%;
+  padding: 70px 30px 30px;
 }
 
 .video-div {
@@ -56,32 +41,9 @@
   height: 100%;
 }
 
-.headerRight {
-  width: 50%;
-}
-
-@media only screen and (max-width: 900px) {
-  .header {
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-  }
-  .header video {
-    width: 100%;
-  }
-  .headerLeft {
-    padding: 30px;
-    width: 100%;
-    margin: 30px;
-  }
-  .headerRight {
-    width: 100%;
-  }
-}
-
 .subheader {
   font-weight: 300;
   margin-bottom: 50px;
   font-size: 30px;
+  text-align: center;
 }

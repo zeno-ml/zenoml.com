@@ -17,13 +17,20 @@
   flex-wrap: wrap;
   flex-grow: 1;
 }
-.left {
+.right {
   width: 60%;
   height: fit-content;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: middle;
+  justify-content: end;
+}
+/* Add this at the bottom of your CSS file */
+@media (max-width: 768px) {
+  .right {
+    justify-content: start;
+  }
 }
 
 .reportWrapper {
@@ -31,7 +38,7 @@
   align-items: center;
 }
 
-.right {
+.left {
   width: 40%;
   margin-right: 10px;
   margin-left: 10px;

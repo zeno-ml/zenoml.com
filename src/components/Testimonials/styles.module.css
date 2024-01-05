@@ -1,0 +1,45 @@
+.container {
+  background-image: linear-gradient(
+    140deg,
+    hsl(277deg 70% 35%) 0%,
+    hsl(277deg 62% 38%) 8%,
+    hsl(276deg 57% 40%) 17%,
+    hsl(276deg 53% 42%) 26%,
+    hsl(276deg 50% 43%) 35%,
+    hsl(276deg 47% 45%) 44%,
+    hsl(276deg 45% 46%) 52%,
+    hsl(276deg 43% 48%) 60%,
+    hsl(277deg 41% 49%) 67%,
+    hsl(277deg 40% 51%) 74%,
+    hsl(277deg 41% 52%) 81%,
+    hsl(277deg 42% 53%) 88%,
+    hsl(277deg 42% 54%) 94%,
+    hsl(277deg 43% 55%) 100%
+  );
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.testimonials {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+@media (max-width: 768px) {
+  .testimonials {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.innerContainer {
+  padding: 50px;
+  max-width: 1300px;
+  padding-top: 30px;
+  margin: auto;
+}

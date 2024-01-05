@@ -2,12 +2,13 @@ import ChartSelect from "@site/src/components/ChartSelect";
 import DatatypeSelect from "@site/src/components/DatatypeSelect";
 import { HomepageHeader } from "@site/src/components/HomepageHeader/HomepageHeader";
 import ReportSelect from "@site/src/components/ReportSelect";
-import { Sections } from "@site/src/components/Sections/Sections";
 import { Sponsors } from "@site/src/components/Sponsors/Sponsors";
 import { Trending } from "@site/src/components/Trending/Trending";
 
 import Layout from "@theme/Layout";
 import React from "react";
+import DiscoverSelect from "../components/DiscoverSelect";
+import { Testimonials } from "../components/Testimonials/Testimonials";
 
 export function Header({ title, summary, description }): JSX.Element {
   return (
@@ -25,10 +26,12 @@ export default function Home(): JSX.Element {
         <HomepageHeader />
         <div id="pageWrapper">
           <Trending />
-          <hr />
-          <Sections />
-          <hr />
+        </div>
+        <Testimonials />
+        <div id="pageWrapper">
           <DatatypeSelect />
+          <hr />
+          <DiscoverSelect />
           <hr />
           <ChartSelect />
           <hr />
