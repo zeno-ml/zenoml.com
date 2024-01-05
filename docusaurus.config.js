@@ -118,12 +118,12 @@ const config = {
                 to: "/",
               },
               {
-                label: "About",
-                to: "/about/",
-              },
-              {
                 label: "Docs",
                 to: "/docs/intro",
+              },
+              {
+                label: "About",
+                to: "/about/",
               },
               {
                 label: "FAQ",
