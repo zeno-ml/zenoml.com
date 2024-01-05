@@ -15,6 +15,10 @@
   --ifm-color-primary-light: #751ea9;
   --ifm-color-primary-lighter: #7a1fb1;
   --ifm-color-primary-lightest: #8a23c8;
+  --ifm-color-info-contrast-background: #f7f1fb;
+  --ifm-color-info-dark: #6a1b9a;
+  --ifm-color-success-contrast-background: #f7f1fb;
+  --ifm-color-success-dark: #6a1b9a;
 
   --ifm-navbar-background-color: #f5f5f5;
 
@@ -36,6 +40,10 @@
   --ifm-color-primary-light: #ffffff;
   --ifm-color-primary-lighter: #ffffff;
   --ifm-color-primary-lightest: #ffffff;
+  --ifm-color-info-contrast-background: #4a136c !important;
+  --ifm-color-info-dark: #8a23c8;
+  --ifm-color-success-contrast-background: #4a136c !important;
+  --ifm-color-success-dark: #8a23c8;
 
   --ifm-navbar-background-color: #4a136c;
 }
@@ -301,4 +309,8 @@ hr {
 
 .sign-in:hover {
   background: var(--ifm-color-primary-lightest);
+}
+
+.alert a {
+  text-decoration: var(--ifm-link-decoration);
 }

@@ -54,7 +54,7 @@ export default function FAQ() {
             exploring public projects and reports
           </a>{" "}
           to get an idea of how Zeno works. To create your own projects please follow the{" "}
-          <a href="/docs/intro#creating-a-project">Getting Started Guide</a>{" "}
+          <a href="/docs/intro#creating-a-project">Getting Started Guide.</a>{" "}
         </p>
         <h3>How do I create a new project?</h3>
         <p>
