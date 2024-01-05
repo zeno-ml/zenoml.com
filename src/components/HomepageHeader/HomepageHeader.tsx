@@ -1,40 +1,11 @@
 import Link from "@docusaurus/Link";
-import React, { useCallback, useState } from "react";
+import React from "react";
 import { Demo } from "../Demo/Demo";
 import styles from "./index.module.css";
 
 export function HomepageHeader() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  let frameId = null;
-
-  const updatePosition = (newPosition) => {
-    setPosition(newPosition);
-    frameId = null;
-  };
-
-  const handleMouseMove = useCallback((e) => {
-    if (frameId) {
-      cancelAnimationFrame(frameId);
-    }
-
-    const boundingRect = e.target.getBoundingClientRect();
-
-    frameId = requestAnimationFrame(() =>
-      updatePosition({
-        x: e.clientX - boundingRect.left,
-        y: e.clientY - boundingRect.top,
-      })
-    );
-  }, []);
-
-  const gradientStyle = {
-    width: "100%",
-    height: "100%",
-    background: `radial-gradient(circle at ${position.x}px ${position.y}px, #6A1B9A, rgba(106, 27, 154, 0.80))`,
-  };
-
   return (
-    <div className={styles.headerContainer} style={gradientStyle} onMouseMove={handleMouseMove}>
+    <div className={styles.headerContainer}>
       <div className={styles.header}>
         <h1 style={{ fontSize: "72px", textAlign: "center", fontFamily: "'Hammersmith One'" }}>
           AI Evaluation Made Easy

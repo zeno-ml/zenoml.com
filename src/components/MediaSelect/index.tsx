@@ -33,7 +33,7 @@ export default function Select(props) {
         <Header
           title="Explore"
           summary="Data Exploration"
-          description="Zeno can visualize any type of data, from images to text, audio, sensor data, and more."
+          description="Visualize any type of data with Zeno, from images to text, audio, sensor data, and more."
         ></Header>
         {menu}
       </div>

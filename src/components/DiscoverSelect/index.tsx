@@ -21,7 +21,7 @@ export default function DiscoverSelect() {
         <Header
           title="Error Discovery"
           summary="Error Discovery"
-          description="Use advanced methods for automatically discovering model errors and differences."
+          description="Discover where your models fail with automated error analysis."
         ></Header>
         <p>
           Zeno includes advanced error discovery techniques such as{" "}

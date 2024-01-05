@@ -25,9 +25,13 @@ export default function Home(): JSX.Element {
       <div id="homepage">
         <HomepageHeader />
         <div id="pageWrapper">
+          <br />
           <Trending />
+          <br />
         </div>
         <Testimonials />
+        <br />
+        <br />
         <div id="pageWrapper">
           <DatatypeSelect />
           <hr />
