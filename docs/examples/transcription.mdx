@@ -1,0 +1,214 @@
+# Audio Transcription
+
+[![Open with Zeno](https://img.shields.io/badge/%20-Open_with_Zeno-612593.svg?labelColor=white&logo=data:image/svg%2bxml;base64,PHN2ZyB3aWR0aD0iMzMiIGhlaWdodD0iMzMiIHZpZXdCb3g9IjAgMCAzMyAzMyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMyIDE1Ljc4NDJMMTYuNDg2MiAxNS43ODQyTDE2LjQ4NjIgMC4yNzA0MDFMMjQuMzAyIDguMDg2MTdMMzIgMTUuNzg0MloiIGZpbGw9IiM2MTI1OTMiLz4KPHBhdGggZD0iTTE1Ljc5MTcgMTUuODMxMUw4LjAzNDc5IDguMDc0MjJMMTUuNzkxNyAwLjMxNzMyOEwxNS43OTE3IDE1LjgzMTFaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuOCIvPgo8cGF0aCBkPSJNMTQuODY1NSAxNS44MzExTDcuNTk0ODUgMTUuODMxMUw3LjU5NDg1IDguNTYwNDJMMTQuODY1NSAxNS44MzExWiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjYiLz4KPHBhdGggZD0iTTYuMTEyOSAxNS44MzExTDMuMjQxNyAxNS44MzExTDMuMjQxNyAxMi44NjcyTDYuMTEyOSAxNS44MzExWiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPHBhdGggZD0iTTIuNzMyMjggMTUuODMxTDEuNTE1NSAxNC42MTQzTDIuNzQyNzEgMTMuMzg3TDIuNzMyMjggMTUuODMxWiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjMiLz4KPHBhdGggZD0iTTIuMDM3NiAxNS43ODQyTDEuMTU3NzEgMTUuNzg0MkwxLjE1NzcxIDE0Ljk1MDZMMi4wMzc2IDE1Ljc4NDJaIiBmaWxsPSIjNkExQjlBIiBmaWxsLW9wYWNpdHk9IjAuMiIvPgo8cGF0aCBkPSJNMC44MzM1NjggMTUuNzg0MUwwLjUwOTM5OSAxNS40NkwwLjgzMzU2NyAxNS4xMzU4TDAuODMzNTY4IDE1Ljc4NDFaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8cGF0aCBkPSJNMC4xMDYxODcgMTUuNzk0NEwwLjMwMTAyNSAxNS41OTk2TDAuNDk1ODYzIDE1Ljc5NDRIMC4xMDYxODdaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8cGF0aCBkPSJNNi45NTIxMyAxNS44MjQ4TDMuNjQwOTkgMTIuNTEzN0w2Ljk2OTYzIDkuMTg1MDNMNi45NTIxMyAxNS44MjQ4WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjUiLz4KPHBhdGggZD0iTTAuMjk0MjM1IDE2LjQ3OTVMMTUuODA4IDE2LjQ3OTVMMTUuODA4IDMxLjk5MzNMNy45OTIyMyAyNC4xNzc1TDAuMjk0MjM1IDE2LjQ3OTVaIiBmaWxsPSIjNjEyNTkzIi8+CjxwYXRoIGQ9Ik0xNi40OTU2IDE3LjI0MzZMMjMuODUwNyAyNC41ODVMMTYuNDk1NiAzMS45NEwxNi40OTU2IDE3LjI0MzZaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuOCIvPgo8cGF0aCBkPSJNMTYuNTMyNiAxNi40Nzk1TDI0LjQ1MTUgMTYuNDc5NUwyNC40NTE1IDI0LjAyOEwxNi41MzI2IDE2LjQ3OTVaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuNiIvPgo8cGF0aCBkPSJNMjYuMTgxMyAxNi40MzI2TDI5LjA1MjUgMTYuNDMyNkwyOS4wNTI1IDE5LjM5NjRMMjYuMTgxMyAxNi40MzI2WiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPHBhdGggZD0iTTI5LjU2MTkgMTYuNDMyNkwzMC43Nzg3IDE3LjY0OTRMMjkuNTUxNSAxOC44NzY2TDI5LjU2MTkgMTYuNDMyNloiIGZpbGw9IiM2QTFCOUEiIGZpbGwtb3BhY2l0eT0iMC4zIi8+CjxwYXRoIGQ9Ik0zMC4yNTY2IDE2LjQ3OTVMMzEuMTM2NSAxNi40Nzk1TDMxLjEzNjUgMTcuMzEzMUwzMC4yNTY2IDE2LjQ3OTVaIiBmaWxsPSIjNkExQjlBIiBmaWxsLW9wYWNpdHk9IjAuMiIvPgo8cGF0aCBkPSJNMzEuNDYwNiAxNi40Nzk1TDMxLjc4NDggMTYuODAzN0wzMS40NjA2IDE3LjEyNzlMMzEuNDYwNiAxNi40Nzk1WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjEiLz4KPHBhdGggZD0iTTMyLjE4OCAxNi40NjkyTDMxLjk5MzIgMTYuNjY0MUwzMS43OTgzIDE2LjQ2OTJIMzIuMTg4WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjEiLz4KPHBhdGggZD0iTTI1LjM0MjEgMTYuNDM4OUwyOC42NTMyIDE5Ljc1TDI1LjMyNDYgMjMuMDc4NkwyNS4zNDIxIDE2LjQzODlaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuNSIvPgo8L3N2Zz4K)](https://hub.zenoml.com/project/62ec4e74-7358-4801-b80c-d19e51ff2a4f/Audio%20Transcription%20Accents)
+[![Open Notebook](https://img.shields.io/badge/%20-Open_Notebook-F37726.svg?labelColor=white&logo=Jupyter)](https://github.com/zeno-ml/zeno-build/blob/main/transcription/transcription.ipynb)
+
+Audio transcription is an essential task for applications such as voice assistants,
+podcast search, and video captioning. There are numerous open-source and commercial
+tools for audio transcription, and it can be difficult to know which one to use.
+[OpenAI's Whisper](https://github.com/openai/whisper) API is often people's
+go-to choice, but there are nine different models to choose from with different
+sizes, speeds, and cost.
+
+In this example, we'll use Zeno to compare the performance of the different
+models on the [Speech Accent Archive](https://accent.gmu.edu/) dataset.
+The dataset has over 2,000 people from around the world reading the same
+paragraph in English.We'll use the dataset to evaluate the performance of
+the different models on different accents and English fluency levels.
+
+## Dependencies
+
+Let's start by installing the required dependencies for this project.
+We'll need some python packages:
+
+```bash
+pip install jiwer pandas openai-whisper zeno-client torch transformers tqdm
+```
+
+Additionally, we'll need ffmpeg to run this example.
+You can test if it is installed by running `ffmpeg --help`.
+If it is not found, you should install it through your package manager.
+For example, if you are using conda, you can just run the following (and other managers such as brew and apt also work).
+
+```bash
+conda install ffmpeg
+```
+
+## Data
+
+We're loading the raw data files directly in code.
+However, we will also use some metadata in this example.
+This metadata can be found [here](https://github.com/zeno-ml/zeno-build/blob/main/transcription/speech_accent_archive.csv).
+
+### Getting Started
+
+After this is all set up, we can now start running our analysis code and uploading data to Zeno.
+We'll first import relevant libraries which we're going to use:
+
+```python
+from jiwer import wer
+import os
+import pandas as pd
+import whisper
+import zeno_client
+import torch
+from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
+import pandas as pd
+import requests
+from io import BytesIO
+import wave
+import struct
+from tqdm import tqdm
+
+tqdm.pandas()
+device = "cuda:0" if torch.cuda.is_available() else "cpu"
+torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
+```
+
+#### Loading Metadata
+
+Next, we're going to load the metadata frome the aforementioned [metadata file](https://github.com/zeno-ml/zeno-build/blob/main/transcription/speech_accent_archive.csv) and fetch the raw data for each row of our metadata table:
+
+```python
+df = pd.read_csv("speech_accent_archive.csv")
+df["data"] = "https://zenoml.s3.amazonaws.com/accents/" + df["id"]
+```
+
+#### Enriching Metadata
+
+In Zeno, we'll often want to enrich our metadata with some extra fields that might be useful for our analysis.
+In this case, we are going to add the amplitude and length of the audio snippet as additional metadata fields:
+
+```python
+# Define the function to get amplitude and length
+def get_amplitude_and_length_from_url(url):
+    # Download the WAV file content from the URL
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # will raise an HTTPError if the HTTP request returned an unsuccessful status code
+
+        # Use the BytesIO object as input for the wave module
+        with wave.open(BytesIO(response.content), 'rb') as wav_file:
+            frame_rate = wav_file.getframerate()
+            n_frames = wav_file.getnframes()
+            n_channels = wav_file.getnchannels()
+            sample_width = wav_file.getsampwidth()
+            duration = n_frames / frame_rate
+
+            frames = wav_file.readframes(n_frames)
+            if sample_width == 1:  # 8-bit audio
+                fmt = '{}B'.format(n_frames * n_channels)
+            elif sample_width == 2:  # 16-bit audio
+                fmt = '{}h'.format(n_frames * n_channels)
+            else:
+                raise ValueError("Only supports up to 16-bit audio.")
+
+            frame_amplitudes = struct.unpack(fmt, frames)
+            max_amplitude = max(frame_amplitudes)
+            max_amplitude_normalized = max_amplitude / float(int((2 ** (8 * sample_width)) / 2))
+
+            return max_amplitude_normalized, duration
+    except requests.RequestException as e:
+        print(f"Request failed: {e}")
+        return None, None
+
+# Define a wrapper function for apply to work row-wise
+def apply_get_amplitude_and_length(row):
+    url = row['data']  # Assuming the URL is in the 'data' column
+    amplitude, length = get_amplitude_and_length_from_url(url)
+    return pd.Series({'amplitude': amplitude, 'length': length})
+
+# Usage with apply on the DataFrame
+# This will create two new columns 'amplitude' and 'length' in the DataFrame
+df[['amplitude', 'length']] = df.progress_apply(apply_get_amplitude_and_length, axis=1)
+```
+
+#### Zeno project
+
+Now that we have all relevant data collected in a dataframe, we can upload it to a Zeno project.
+You will need your `ZENO_API_KEY` for this.
+If you don't have one yet, generate your API key by clicking on your profile at the top right to navigate to your [account page](https://hub.zenoml.com/account).
+
+Once you have your API key, you can authenticate with the Zeno client and upload your project as follows:
+
+```python
+client = zeno_client.ZenoClient(YOUR_API_KEY)
+
+project = client.create_project(
+    name="Transcription Whisper Distil",
+    view="audio-transcription",
+    description="Test of audio transcription",
+    metrics=[
+        zeno_client.ZenoMetric(name="avg wer", type="mean", columns=["wer"])
+    ]
+)
+```
+
+We've already added a metric to our project that will help us track the average word error rate of different systems.
+
+#### Getting System Outputs
+
+We can already look at our data in Zeno.
+However, we don't yet have any system outputs to look at.
+To change this and make the Zeno project we just created more interesting to investigate further, we'll run inference on different models.
+
+```python
+# Define what models to run inference on
+models = ["medium.en", "large-v1", "large-v2", "large-v3", "distil-medium.en", "distil-large-v2"]
+os.makedirs("cache", exist_ok=True)
+
+# Load inference data from cache or run inference for each model and add the data to a dataframe.
+df_systems = []
+for model_name in models:
+    try:
+        df_system = pd.read_parquet(f"cache/{model_name}.parquet")
+    except:
+        df_system = df[["id", "data", "label"]].copy()
+
+        if "distil" in model_name:
+            model_id = "distil-whisper/" + model_name
+            model = AutoModelForSpeechSeq2Seq.from_pretrained(
+                model_id, torch_dtype=torch_dtype, low_cpu_mem_usage=True, use_safetensors=True
+            )
+            model.to(device)
+
+            processor = AutoProcessor.from_pretrained(model_id)
+            pipe = pipeline(
+                "automatic-speech-recognition",
+                model=model,
+                tokenizer=processor.tokenizer,
+                feature_extractor=processor.feature_extractor,
+                max_new_tokens=128,
+                chunk_length_s=15,
+                batch_size=16,
+                torch_dtype=torch_dtype,
+                device=device,
+            )
+            df_system["output"] = df_system["data"].progress_apply(lambda x: pipe(x)['text'])
+            pass
+        else:
+            whisper_model = whisper.load_model(model_name)
+            df_system["output"] = df_system["data"].progress_apply(
+              lambda x: whisper_model.transcribe(x)["text"]
+            )
+
+        df_system["wer"] = df_system.progress_apply(lambda x: wer(x["label"], x["output"]), axis=1)
+        df_system.to_parquet(f"cache/{model_name}.parquet", index=False)
+    df_systems.append(df_system)
+```
+
+#### Uploading System Outputs
+
+Now that we have system outputs for all of these models, all we have to do is add them to the project we've created before:
+
+```python
+for i, df_system in enumerate(df_systems):
+    project.upload_system(
+      df_system[["id", "output", "wer"]], name=models[i], id_column="id", output_column="output"
+    )
+```
+
+## Conclusion
+
+If you've followed this example you should have a Zeno project very similar to the one linked at the top of this page.
+Looking at [high wer samples](https://hub.zenoml.com/project/62ec4e74-7358-4801-b80c-d19e51ff2a4f/Audio%20Transcription%20Accents/explore?params=eyJtb2RlbCI6IndoaXNwZXItYmFzZSIsIm1ldHJpYyI6eyJpZCI6NzYwLCJuYW1lIjoiYXZnX3dlciIsInR5cGUiOiJtZWFuIiwiY29sdW1ucyI6WyJ3ZXIiXX0sImNvbXBhcmlzb25Nb2RlbCI6InNpbGVyb19zc3QiLCJjb21wYXJpc29uQ29sdW1uIjp7ImlkIjoiNDhhYWM0ODgtNmU2Yi00YmNmLTkwYWYtMDUyMzM4OWI3YmNkIiwibmFtZSI6Im91dHB1dCIsImNvbHVtblR5cGUiOiJPVVRQVVQiLCJkYXRhVHlwZSI6Ik5PTUlOQUwiLCJtb2RlbCI6IndoaXNwZXItYmFzZSJ9LCJjb21wYXJlU29ydCI6W251bGwsdHJ1ZV0sIm1ldHJpY1JhbmdlIjpbMCwxLjYyMzE4ODQwNTc5NzEwMTZdLCJzZWxlY3Rpb25zIjp7InNsaWNlcyI6WzU2Ml0sIm1ldGFkYXRhIjp7fSwidGFncyI6W119fQ==) in Zeno is a good starting point for analyzing the data in your new Zeno project.

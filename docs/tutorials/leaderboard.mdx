@@ -1,0 +1,222 @@
+# Open LLM Leaderboard Outputs
+
+The [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard) is the go-to place for comparing large language models on different benchmark tasks.
+However, the leaderboard only surfaces average metric scores, which hide a lot of the details and intricacies that can be found in raw model outputs.
+
+In this tutorial, you are going to learn how you can extract the raw model outputs for almost any model in the leaderboard.
+We're also going to show you how the extracted results can be uploaded to Zeno for further inspection.
+
+## Dependencies
+
+We are going to use python to download the model outputs for the leaderboard.
+Hence, let us first install some dependencies that we're going to use in this tutorial:
+
+```bash
+pip install datasets numpy pandas zeno-client
+```
+
+We can also go ahead and import these dependencies right away:
+
+```python
+from zeno_client import ZenoClient, ZenoMetric
+import datasets
+import numpy as np
+import pandas as pd
+import os
+```
+
+## Tasks
+
+The leaderboard features six different benchmarks, namely [ARC](https://arxiv.org/abs/1803.05457), [HellaSwag](https://arxiv.org/abs/1905.07830), [MMLU](https://arxiv.org/abs/2009.03300), [TruthfulQA](https://arxiv.org/abs/2109.07958), [Winogrande](https://arxiv.org/abs/1907.10641), and [GSM8k](https://arxiv.org/abs/2110.14168).
+Models that are included in the leaderboard are evaluated on all of these tasks.
+To form a leaderboard, an average score is calculated for each of the six tasks before these scores are averaged again to get an overall score.
+
+HuggingFace really stand behind their Open Source approach and make not only these score, but also the raw outputs of most models in the leaderboard publically available.
+Even if they're not directly surfaced, we can download the model outputs with a bit of Python code.
+
+To get started, let's set up a list of models we want to download outputs for:
+
+```python
+models = [
+  "meta-llama/Llama-2-70b-hf", "mistralai/Mistral-7B-v0.1", "tiiuae/falcon-40b"
+]
+```
+
+Feel free to change the list of models used to any available on the leaderboard.
+Very few of them might not have associated data, you can check this by clicking on the little icon next to the model name.
+If you get a 404 after clicking, we won't be able to fetch the model data.
+
+Fetching the data differs slightly between benchmarks.
+Let's look at how to fetch data for the ARC and HellaSwag benchmarks for now.
+Data for the other benchmarks can be loaded in a similar manner.
+
+### ARC
+
+[![Open with Zeno](https://img.shields.io/badge/%20-Open_with_Zeno-612593.svg?labelColor=white&logo=data:image/svg%2bxml;base64,PHN2ZyB3aWR0aD0iMzMiIGhlaWdodD0iMzMiIHZpZXdCb3g9IjAgMCAzMyAzMyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMyIDE1Ljc4NDJMMTYuNDg2MiAxNS43ODQyTDE2LjQ4NjIgMC4yNzA0MDFMMjQuMzAyIDguMDg2MTdMMzIgMTUuNzg0MloiIGZpbGw9IiM2MTI1OTMiLz4KPHBhdGggZD0iTTE1Ljc5MTcgMTUuODMxMUw4LjAzNDc5IDguMDc0MjJMMTUuNzkxNyAwLjMxNzMyOEwxNS43OTE3IDE1LjgzMTFaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuOCIvPgo8cGF0aCBkPSJNMTQuODY1NSAxNS44MzExTDcuNTk0ODUgMTUuODMxMUw3LjU5NDg1IDguNTYwNDJMMTQuODY1NSAxNS44MzExWiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjYiLz4KPHBhdGggZD0iTTYuMTEyOSAxNS44MzExTDMuMjQxNyAxNS44MzExTDMuMjQxNyAxMi44NjcyTDYuMTEyOSAxNS44MzExWiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPHBhdGggZD0iTTIuNzMyMjggMTUuODMxTDEuNTE1NSAxNC42MTQzTDIuNzQyNzEgMTMuMzg3TDIuNzMyMjggMTUuODMxWiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjMiLz4KPHBhdGggZD0iTTIuMDM3NiAxNS43ODQyTDEuMTU3NzEgMTUuNzg0MkwxLjE1NzcxIDE0Ljk1MDZMMi4wMzc2IDE1Ljc4NDJaIiBmaWxsPSIjNkExQjlBIiBmaWxsLW9wYWNpdHk9IjAuMiIvPgo8cGF0aCBkPSJNMC44MzM1NjggMTUuNzg0MUwwLjUwOTM5OSAxNS40NkwwLjgzMzU2NyAxNS4xMzU4TDAuODMzNTY4IDE1Ljc4NDFaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8cGF0aCBkPSJNMC4xMDYxODcgMTUuNzk0NEwwLjMwMTAyNSAxNS41OTk2TDAuNDk1ODYzIDE1Ljc5NDRIMC4xMDYxODdaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8cGF0aCBkPSJNNi45NTIxMyAxNS44MjQ4TDMuNjQwOTkgMTIuNTEzN0w2Ljk2OTYzIDkuMTg1MDNMNi45NTIxMyAxNS44MjQ4WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjUiLz4KPHBhdGggZD0iTTAuMjk0MjM1IDE2LjQ3OTVMMTUuODA4IDE2LjQ3OTVMMTUuODA4IDMxLjk5MzNMNy45OTIyMyAyNC4xNzc1TDAuMjk0MjM1IDE2LjQ3OTVaIiBmaWxsPSIjNjEyNTkzIi8+CjxwYXRoIGQ9Ik0xNi40OTU2IDE3LjI0MzZMMjMuODUwNyAyNC41ODVMMTYuNDk1NiAzMS45NEwxNi40OTU2IDE3LjI0MzZaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuOCIvPgo8cGF0aCBkPSJNMTYuNTMyNiAxNi40Nzk1TDI0LjQ1MTUgMTYuNDc5NUwyNC40NTE1IDI0LjAyOEwxNi41MzI2IDE2LjQ3OTVaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuNiIvPgo8cGF0aCBkPSJNMjYuMTgxMyAxNi40MzI2TDI5LjA1MjUgMTYuNDMyNkwyOS4wNTI1IDE5LjM5NjRMMjYuMTgxMyAxNi40MzI2WiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPHBhdGggZD0iTTI5LjU2MTkgMTYuNDMyNkwzMC43Nzg3IDE3LjY0OTRMMjkuNTUxNSAxOC44NzY2TDI5LjU2MTkgMTYuNDMyNloiIGZpbGw9IiM2QTFCOUEiIGZpbGwtb3BhY2l0eT0iMC4zIi8+CjxwYXRoIGQ9Ik0zMC4yNTY2IDE2LjQ3OTVMMzEuMTM2NSAxNi40Nzk1TDMxLjEzNjUgMTcuMzEzMUwzMC4yNTY2IDE2LjQ3OTVaIiBmaWxsPSIjNkExQjlBIiBmaWxsLW9wYWNpdHk9IjAuMiIvPgo8cGF0aCBkPSJNMzEuNDYwNiAxNi40Nzk1TDMxLjc4NDggMTYuODAzN0wzMS40NjA2IDE3LjEyNzlMMzEuNDYwNiAxNi40Nzk1WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjEiLz4KPHBhdGggZD0iTTMyLjE4OCAxNi40NjkyTDMxLjk5MzIgMTYuNjY0MUwzMS43OTgzIDE2LjQ2OTJIMzIuMTg4WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjEiLz4KPHBhdGggZD0iTTI1LjM0MjEgMTYuNDM4OUwyOC42NTMyIDE5Ljc1TDI1LjMyNDYgMjMuMDc4NkwyNS4zNDIxIDE2LjQzODlaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuNSIvPgo8L3N2Zz4K)](https://hub.zenoml.com/project/6258d30d-23fc-4112-8231-760770b73a41/ARC)
+[![Open Notebook](https://img.shields.io/badge/%20-Open_Notebook-F37726.svg?labelColor=white&logo=Jupyter)](https://github.com/zeno-ml/zeno-build/blob/main/open_llm_leaderboard/arc.ipynb)
+
+For ARC, we can get the data by loading a single dataset file from HuggingFace:
+
+```python
+def get_arc_data(model: str):
+    data_path = "details_" + model.replace("/", "__")
+    return datasets.load_dataset(
+        "open-llm-leaderboard/" + data_path,
+        "harness_arc_challenge_25",
+    )
+```
+
+We'll then also want to parse the data into a Pandas DataFrame for the raw dataset and each system as follows:
+
+```python
+labels = ["A", "B", "C", "D", "E"]
+
+def generate_dataset(df):
+    df_lim = df[["example", "choices", "gold"]]
+    df_lim.loc[:, "data"] = df_lim.apply(
+      lambda x: "\n" + x["example"] + "\n" + "\n".join(
+        f"{labels[i]}: {x}" for i,x in enumerate(x['choices'])
+      ),
+      axis=1
+    )
+    df_lim.loc[:, "num_choices"] = df_lim.apply(lambda x: str(len(x['choices'])), axis=1)
+    df_lim.loc[:, "label"] = df_lim.apply(lambda x: labels[x["gold"]], axis=1)
+    df_lim = df_lim.drop(columns=["example", "choices", "gold"])
+    df_lim["id"] = df_lim.index
+    return df_lim
+
+def generate_system(df):
+    df_system = df[["predictions", "acc_norm", "choices", "acc"]]
+    df_system["answer_raw"] = df_system.apply(lambda x: labels[np.argmax(x['predictions'])], axis=1)
+    df_system["answer_norm"] = df_system.apply(
+      lambda x: labels[np.argmax(x['predictions']/np.array([float(len(i)) for i in x['choices']]))],
+      axis=1
+    )
+    df_system["predictions"] = df_system.apply(
+      lambda x: x['answer_norm'] + "\n\n" + "Raw Pred.: " + ", ".join(
+        map(lambda y: str(round(y, 2)), x['predictions'])) + "\nNorm Pred.: " + ", ".join(
+          map(lambda y: str(round(y, 2)), x['predictions']/np.array([float(len(i)) for i in x['choices']])
+        )
+      ),
+      axis=1
+    )
+    df_system["correct"] = df_system.apply(lambda x: True if x['acc_norm'] > 0 else False, axis=1)
+    df_system["correct_raw"] = df_system.apply(lambda x: True if x['acc'] > 0 else False, axis=1)
+    df_system = df_system.drop(columns=["acc_norm", "choices", "acc"])
+    df_system["id"] = df_system.index
+    return df_system
+```
+
+This will convert the raw dataframe we get when loading the dataset into an enriched, analyzable dataframe that we can use going forward.
+We're then going to call these functions to get the raw data and system outputs for the ARC benchmark as follows:
+
+```python
+arc_df = generate_dataset(get_arc_data(models[0])['latest'].to_pandas())
+num_rows = len(df)
+arc_system_dfs = []
+for model in models:
+    dataset = get_arc_data(model)['latest'].to_pandas()
+    if len(dataset) != num_rows:
+        print("Skipping {} because it has {} rows instead of {}".format(model, len(dataset), num_rows))
+        continue
+    arc_system_dfs.append({"model": model, "df": generate_system(dataset)})
+```
+
+To make sure we're working with the right data, we check whether the number of rows for each system matches the number of rows in the dataset.
+
+### HellaSwag
+
+[![Open with Zeno](https://img.shields.io/badge/%20-Open_with_Zeno-612593.svg?labelColor=white&logo=data:image/svg%2bxml;base64,PHN2ZyB3aWR0aD0iMzMiIGhlaWdodD0iMzMiIHZpZXdCb3g9IjAgMCAzMyAzMyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMyIDE1Ljc4NDJMMTYuNDg2MiAxNS43ODQyTDE2LjQ4NjIgMC4yNzA0MDFMMjQuMzAyIDguMDg2MTdMMzIgMTUuNzg0MloiIGZpbGw9IiM2MTI1OTMiLz4KPHBhdGggZD0iTTE1Ljc5MTcgMTUuODMxMUw4LjAzNDc5IDguMDc0MjJMMTUuNzkxNyAwLjMxNzMyOEwxNS43OTE3IDE1LjgzMTFaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuOCIvPgo8cGF0aCBkPSJNMTQuODY1NSAxNS44MzExTDcuNTk0ODUgMTUuODMxMUw3LjU5NDg1IDguNTYwNDJMMTQuODY1NSAxNS44MzExWiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjYiLz4KPHBhdGggZD0iTTYuMTEyOSAxNS44MzExTDMuMjQxNyAxNS44MzExTDMuMjQxNyAxMi44NjcyTDYuMTEyOSAxNS44MzExWiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPHBhdGggZD0iTTIuNzMyMjggMTUuODMxTDEuNTE1NSAxNC42MTQzTDIuNzQyNzEgMTMuMzg3TDIuNzMyMjggMTUuODMxWiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjMiLz4KPHBhdGggZD0iTTIuMDM3NiAxNS43ODQyTDEuMTU3NzEgMTUuNzg0MkwxLjE1NzcxIDE0Ljk1MDZMMi4wMzc2IDE1Ljc4NDJaIiBmaWxsPSIjNkExQjlBIiBmaWxsLW9wYWNpdHk9IjAuMiIvPgo8cGF0aCBkPSJNMC44MzM1NjggMTUuNzg0MUwwLjUwOTM5OSAxNS40NkwwLjgzMzU2NyAxNS4xMzU4TDAuODMzNTY4IDE1Ljc4NDFaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8cGF0aCBkPSJNMC4xMDYxODcgMTUuNzk0NEwwLjMwMTAyNSAxNS41OTk2TDAuNDk1ODYzIDE1Ljc5NDRIMC4xMDYxODdaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8cGF0aCBkPSJNNi45NTIxMyAxNS44MjQ4TDMuNjQwOTkgMTIuNTEzN0w2Ljk2OTYzIDkuMTg1MDNMNi45NTIxMyAxNS44MjQ4WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjUiLz4KPHBhdGggZD0iTTAuMjk0MjM1IDE2LjQ3OTVMMTUuODA4IDE2LjQ3OTVMMTUuODA4IDMxLjk5MzNMNy45OTIyMyAyNC4xNzc1TDAuMjk0MjM1IDE2LjQ3OTVaIiBmaWxsPSIjNjEyNTkzIi8+CjxwYXRoIGQ9Ik0xNi40OTU2IDE3LjI0MzZMMjMuODUwNyAyNC41ODVMMTYuNDk1NiAzMS45NEwxNi40OTU2IDE3LjI0MzZaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuOCIvPgo8cGF0aCBkPSJNMTYuNTMyNiAxNi40Nzk1TDI0LjQ1MTUgMTYuNDc5NUwyNC40NTE1IDI0LjAyOEwxNi41MzI2IDE2LjQ3OTVaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuNiIvPgo8cGF0aCBkPSJNMjYuMTgxMyAxNi40MzI2TDI5LjA1MjUgMTYuNDMyNkwyOS4wNTI1IDE5LjM5NjRMMjYuMTgxMyAxNi40MzI2WiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPHBhdGggZD0iTTI5LjU2MTkgMTYuNDMyNkwzMC43Nzg3IDE3LjY0OTRMMjkuNTUxNSAxOC44NzY2TDI5LjU2MTkgMTYuNDMyNloiIGZpbGw9IiM2QTFCOUEiIGZpbGwtb3BhY2l0eT0iMC4zIi8+CjxwYXRoIGQ9Ik0zMC4yNTY2IDE2LjQ3OTVMMzEuMTM2NSAxNi40Nzk1TDMxLjEzNjUgMTcuMzEzMUwzMC4yNTY2IDE2LjQ3OTVaIiBmaWxsPSIjNkExQjlBIiBmaWxsLW9wYWNpdHk9IjAuMiIvPgo8cGF0aCBkPSJNMzEuNDYwNiAxNi40Nzk1TDMxLjc4NDggMTYuODAzN0wzMS40NjA2IDE3LjEyNzlMMzEuNDYwNiAxNi40Nzk1WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjEiLz4KPHBhdGggZD0iTTMyLjE4OCAxNi40NjkyTDMxLjk5MzIgMTYuNjY0MUwzMS43OTgzIDE2LjQ2OTJIMzIuMTg4WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjEiLz4KPHBhdGggZD0iTTI1LjM0MjEgMTYuNDM4OUwyOC42NTMyIDE5Ljc1TDI1LjMyNDYgMjMuMDc4NkwyNS4zNDIxIDE2LjQzODlaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuNSIvPgo8L3N2Zz4K)](https://hub.zenoml.com/project/e7b0a2e9-c8ef-4f3d-beb1-45d96f63cd7f/HellaSwag)
+[![Open Notebook](https://img.shields.io/badge/%20-Open_Notebook-F37726.svg?labelColor=white&logo=Jupyter)](https://github.com/zeno-ml/zeno-build/blob/main/open_llm_leaderboard/hellaswag.ipynb)
+
+For HellaSwag, we can reuse most of the functionality we've created for ARC.
+We'll need to fetch a different file to get the data:
+
+```python
+def get_hellaswag_data(model: str):
+    data_path = "details_" + model.replace("/", "__")
+    return datasets.load_dataset(
+        "open-llm-leaderboard/" + data_path,
+        "harness_hellaswag_10",
+    )
+```
+
+But can re-use the data transformation functions.
+We'll just need to create the appropriate dataframes for HellaSwag using these functions:
+
+```python
+hellaswag_df = generate_dataset(get_hellaswag_data(models[0])['latest'].to_pandas())
+num_rows = len(df)
+hellaswag_system_dfs = []
+for model in models:
+    dataset = get_hellaswag_data(model)['latest'].to_pandas()
+    if len(dataset) != num_rows:
+        print("Skipping {} because it has {} rows instead of {}".format(model, len(dataset), num_rows))
+        continue
+    hellaswag_system_dfs.append({"model": model, "df": generate_system(dataset)})
+```
+
+## Visualization
+
+To visualize the data we've just downloaded and extracted, we're going to use Zeno.
+You will need your `ZENO_API_KEY` for this.
+If you don't have one yet, generate your API key by clicking on your profile at the top right to navigate to your [account page](https://hub.zenoml.com/account).
+
+We will then create one Zeno project for each benchmark as follows:
+
+```python
+client = ZenoClient(YOUR_API_KEY)
+
+# ARC
+proj = client.create_project(
+    name="ARC",
+    view="text-classification",
+    description="ARC (https://arxiv.org/abs/1803.05457) task in the Open-LLM-Leaderboard.",
+    metrics=[
+        ZenoMetric(name="accuracy", type="mean", columns=["correct"])
+    ]
+)
+proj.upload_dataset(arc_df, id_column="id", label_column="label", data_column="data")
+for arc_system_df in arc_system_dfs:
+  proj.upload_system(
+    proj.upload_system(arc_system_df['df'], name=arc_system_df['model'].replace('/', "__"),
+      output_column="predictions", id_column="id"
+    )
+  )
+
+# HellaSwag
+proj = client.create_project(
+    name="HellaSwag",
+    view="text-classification",
+    description="HellaSwag (https://arxiv.org/abs/1905.07830) task in the Open-LLM-Leaderboard.",
+    metrics=[
+        ZenoMetric(name="accuracy", type="mean", columns=["correct"])
+    ]
+)
+proj.upload_dataset(hellaswag_df, id_column="id", label_column="label", data_column="data")
+for hellaswag_system_df in hellaswag_system_dfs:
+  proj.upload_system(
+    proj.upload_system(hellaswag_system_df['df'], name=hellaswag_system_df['model'].replace('/', "__"),
+      output_column="predictions", id_column="id"
+    )
+  )
+```
+
+## Other Tasks
+
+This tutorial is only meant to demonstrate how you can get the raw system outputs for the different tasks in the [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard).
+We've done this by explaining how to download the data for two benchmarks, namely ARC and HellaSwag.
+If you are interested in doing the same for the remaining tasks, check out the following:
+
+| Benchmark  | Links                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| MMLU       | [![Open with Zeno](https://img.shields.io/badge/%20-Open_with_Zeno-612593.svg?labelColor=white&logo=data:image/svg%2bxml;base64,PHN2ZyB3aWR0aD0iMzMiIGhlaWdodD0iMzMiIHZpZXdCb3g9IjAgMCAzMyAzMyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMyIDE1Ljc4NDJMMTYuNDg2MiAxNS43ODQyTDE2LjQ4NjIgMC4yNzA0MDFMMjQuMzAyIDguMDg2MTdMMzIgMTUuNzg0MloiIGZpbGw9IiM2MTI1OTMiLz4KPHBhdGggZD0iTTE1Ljc5MTcgMTUuODMxMUw4LjAzNDc5IDguMDc0MjJMMTUuNzkxNyAwLjMxNzMyOEwxNS43OTE3IDE1LjgzMTFaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuOCIvPgo8cGF0aCBkPSJNMTQuODY1NSAxNS44MzExTDcuNTk0ODUgMTUuODMxMUw3LjU5NDg1IDguNTYwNDJMMTQuODY1NSAxNS44MzExWiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjYiLz4KPHBhdGggZD0iTTYuMTEyOSAxNS44MzExTDMuMjQxNyAxNS44MzExTDMuMjQxNyAxMi44NjcyTDYuMTEyOSAxNS44MzExWiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPHBhdGggZD0iTTIuNzMyMjggMTUuODMxTDEuNTE1NSAxNC42MTQzTDIuNzQyNzEgMTMuMzg3TDIuNzMyMjggMTUuODMxWiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjMiLz4KPHBhdGggZD0iTTIuMDM3NiAxNS43ODQyTDEuMTU3NzEgMTUuNzg0MkwxLjE1NzcxIDE0Ljk1MDZMMi4wMzc2IDE1Ljc4NDJaIiBmaWxsPSIjNkExQjlBIiBmaWxsLW9wYWNpdHk9IjAuMiIvPgo8cGF0aCBkPSJNMC44MzM1NjggMTUuNzg0MUwwLjUwOTM5OSAxNS40NkwwLjgzMzU2NyAxNS4xMzU4TDAuODMzNTY4IDE1Ljc4NDFaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8cGF0aCBkPSJNMC4xMDYxODcgMTUuNzk0NEwwLjMwMTAyNSAxNS41OTk2TDAuNDk1ODYzIDE1Ljc5NDRIMC4xMDYxODdaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8cGF0aCBkPSJNNi45NTIxMyAxNS44MjQ4TDMuNjQwOTkgMTIuNTEzN0w2Ljk2OTYzIDkuMTg1MDNMNi45NTIxMyAxNS44MjQ4WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjUiLz4KPHBhdGggZD0iTTAuMjk0MjM1IDE2LjQ3OTVMMTUuODA4IDE2LjQ3OTVMMTUuODA4IDMxLjk5MzNMNy45OTIyMyAyNC4xNzc1TDAuMjk0MjM1IDE2LjQ3OTVaIiBmaWxsPSIjNjEyNTkzIi8+CjxwYXRoIGQ9Ik0xNi40OTU2IDE3LjI0MzZMMjMuODUwNyAyNC41ODVMMTYuNDk1NiAzMS45NEwxNi40OTU2IDE3LjI0MzZaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuOCIvPgo8cGF0aCBkPSJNMTYuNTMyNiAxNi40Nzk1TDI0LjQ1MTUgMTYuNDc5NUwyNC40NTE1IDI0LjAyOEwxNi41MzI2IDE2LjQ3OTVaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuNiIvPgo8cGF0aCBkPSJNMjYuMTgxMyAxNi40MzI2TDI5LjA1MjUgMTYuNDMyNkwyOS4wNTI1IDE5LjM5NjRMMjYuMTgxMyAxNi40MzI2WiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPHBhdGggZD0iTTI5LjU2MTkgMTYuNDMyNkwzMC43Nzg3IDE3LjY0OTRMMjkuNTUxNSAxOC44NzY2TDI5LjU2MTkgMTYuNDMyNloiIGZpbGw9IiM2QTFCOUEiIGZpbGwtb3BhY2l0eT0iMC4zIi8+CjxwYXRoIGQ9Ik0zMC4yNTY2IDE2LjQ3OTVMMzEuMTM2NSAxNi40Nzk1TDMxLjEzNjUgMTcuMzEzMUwzMC4yNTY2IDE2LjQ3OTVaIiBmaWxsPSIjNkExQjlBIiBmaWxsLW9wYWNpdHk9IjAuMiIvPgo8cGF0aCBkPSJNMzEuNDYwNiAxNi40Nzk1TDMxLjc4NDggMTYuODAzN0wzMS40NjA2IDE3LjEyNzlMMzEuNDYwNiAxNi40Nzk1WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjEiLz4KPHBhdGggZD0iTTMyLjE4OCAxNi40NjkyTDMxLjk5MzIgMTYuNjY0MUwzMS43OTgzIDE2LjQ2OTJIMzIuMTg4WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjEiLz4KPHBhdGggZD0iTTI1LjM0MjEgMTYuNDM4OUwyOC42NTMyIDE5Ljc1TDI1LjMyNDYgMjMuMDc4NkwyNS4zNDIxIDE2LjQzODlaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuNSIvPgo8L3N2Zz4K)](https://hub.zenoml.com/project/c72065fa-9fea-4904-82f8-5e1fe4b5a685/MMLU) [![Open Notebook](https://img.shields.io/badge/%20-Open_Notebook-F37726.svg?labelColor=white&logo=Jupyter)](https://github.com/zeno-ml/zeno-build/blob/main/open_llm_leaderboard/mmlu.ipynb)                                     |
+| TruthfulQA | [![Open with Zeno](https://img.shields.io/badge/%20-Open_with_Zeno-612593.svg?labelColor=white&logo=data:image/svg%2bxml;base64,PHN2ZyB3aWR0aD0iMzMiIGhlaWdodD0iMzMiIHZpZXdCb3g9IjAgMCAzMyAzMyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMyIDE1Ljc4NDJMMTYuNDg2MiAxNS43ODQyTDE2LjQ4NjIgMC4yNzA0MDFMMjQuMzAyIDguMDg2MTdMMzIgMTUuNzg0MloiIGZpbGw9IiM2MTI1OTMiLz4KPHBhdGggZD0iTTE1Ljc5MTcgMTUuODMxMUw4LjAzNDc5IDguMDc0MjJMMTUuNzkxNyAwLjMxNzMyOEwxNS43OTE3IDE1LjgzMTFaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuOCIvPgo8cGF0aCBkPSJNMTQuODY1NSAxNS44MzExTDcuNTk0ODUgMTUuODMxMUw3LjU5NDg1IDguNTYwNDJMMTQuODY1NSAxNS44MzExWiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjYiLz4KPHBhdGggZD0iTTYuMTEyOSAxNS44MzExTDMuMjQxNyAxNS44MzExTDMuMjQxNyAxMi44NjcyTDYuMTEyOSAxNS44MzExWiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPHBhdGggZD0iTTIuNzMyMjggMTUuODMxTDEuNTE1NSAxNC42MTQzTDIuNzQyNzEgMTMuMzg3TDIuNzMyMjggMTUuODMxWiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjMiLz4KPHBhdGggZD0iTTIuMDM3NiAxNS43ODQyTDEuMTU3NzEgMTUuNzg0MkwxLjE1NzcxIDE0Ljk1MDZMMi4wMzc2IDE1Ljc4NDJaIiBmaWxsPSIjNkExQjlBIiBmaWxsLW9wYWNpdHk9IjAuMiIvPgo8cGF0aCBkPSJNMC44MzM1NjggMTUuNzg0MUwwLjUwOTM5OSAxNS40NkwwLjgzMzU2NyAxNS4xMzU4TDAuODMzNTY4IDE1Ljc4NDFaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8cGF0aCBkPSJNMC4xMDYxODcgMTUuNzk0NEwwLjMwMTAyNSAxNS41OTk2TDAuNDk1ODYzIDE1Ljc5NDRIMC4xMDYxODdaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8cGF0aCBkPSJNNi45NTIxMyAxNS44MjQ4TDMuNjQwOTkgMTIuNTEzN0w2Ljk2OTYzIDkuMTg1MDNMNi45NTIxMyAxNS44MjQ4WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjUiLz4KPHBhdGggZD0iTTAuMjk0MjM1IDE2LjQ3OTVMMTUuODA4IDE2LjQ3OTVMMTUuODA4IDMxLjk5MzNMNy45OTIyMyAyNC4xNzc1TDAuMjk0MjM1IDE2LjQ3OTVaIiBmaWxsPSIjNjEyNTkzIi8+CjxwYXRoIGQ9Ik0xNi40OTU2IDE3LjI0MzZMMjMuODUwNyAyNC41ODVMMTYuNDk1NiAzMS45NEwxNi40OTU2IDE3LjI0MzZaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuOCIvPgo8cGF0aCBkPSJNMTYuNTMyNiAxNi40Nzk1TDI0LjQ1MTUgMTYuNDc5NUwyNC40NTE1IDI0LjAyOEwxNi41MzI2IDE2LjQ3OTVaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuNiIvPgo8cGF0aCBkPSJNMjYuMTgxMyAxNi40MzI2TDI5LjA1MjUgMTYuNDMyNkwyOS4wNTI1IDE5LjM5NjRMMjYuMTgxMyAxNi40MzI2WiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPHBhdGggZD0iTTI5LjU2MTkgMTYuNDMyNkwzMC43Nzg3IDE3LjY0OTRMMjkuNTUxNSAxOC44NzY2TDI5LjU2MTkgMTYuNDMyNloiIGZpbGw9IiM2QTFCOUEiIGZpbGwtb3BhY2l0eT0iMC4zIi8+CjxwYXRoIGQ9Ik0zMC4yNTY2IDE2LjQ3OTVMMzEuMTM2NSAxNi40Nzk1TDMxLjEzNjUgMTcuMzEzMUwzMC4yNTY2IDE2LjQ3OTVaIiBmaWxsPSIjNkExQjlBIiBmaWxsLW9wYWNpdHk9IjAuMiIvPgo8cGF0aCBkPSJNMzEuNDYwNiAxNi40Nzk1TDMxLjc4NDggMTYuODAzN0wzMS40NjA2IDE3LjEyNzlMMzEuNDYwNiAxNi40Nzk1WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjEiLz4KPHBhdGggZD0iTTMyLjE4OCAxNi40NjkyTDMxLjk5MzIgMTYuNjY0MUwzMS43OTgzIDE2LjQ2OTJIMzIuMTg4WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjEiLz4KPHBhdGggZD0iTTI1LjM0MjEgMTYuNDM4OUwyOC42NTMyIDE5Ljc1TDI1LjMyNDYgMjMuMDc4NkwyNS4zNDIxIDE2LjQzODlaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuNSIvPgo8L3N2Zz4K)](https://hub.zenoml.com/project/aeac24ae-82af-467a-bbcc-56d9be0134a5/TruthfulQA) [![Open Notebook](https://img.shields.io/badge/%20-Open_Notebook-F37726.svg?labelColor=white&logo=Jupyter)](https://github.com/zeno-ml/zeno-build/blob/main/open_llm_leaderboard/truthfulqa.ipynb)                         |
+| Winogrande | [![Open with Zeno](https://img.shields.io/badge/%20-Open_with_Zeno-612593.svg?labelColor=white&logo=data:image/svg%2bxml;base64,PHN2ZyB3aWR0aD0iMzMiIGhlaWdodD0iMzMiIHZpZXdCb3g9IjAgMCAzMyAzMyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMyIDE1Ljc4NDJMMTYuNDg2MiAxNS43ODQyTDE2LjQ4NjIgMC4yNzA0MDFMMjQuMzAyIDguMDg2MTdMMzIgMTUuNzg0MloiIGZpbGw9IiM2MTI1OTMiLz4KPHBhdGggZD0iTTE1Ljc5MTcgMTUuODMxMUw4LjAzNDc5IDguMDc0MjJMMTUuNzkxNyAwLjMxNzMyOEwxNS43OTE3IDE1LjgzMTFaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuOCIvPgo8cGF0aCBkPSJNMTQuODY1NSAxNS44MzExTDcuNTk0ODUgMTUuODMxMUw3LjU5NDg1IDguNTYwNDJMMTQuODY1NSAxNS44MzExWiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjYiLz4KPHBhdGggZD0iTTYuMTEyOSAxNS44MzExTDMuMjQxNyAxNS44MzExTDMuMjQxNyAxMi44NjcyTDYuMTEyOSAxNS44MzExWiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPHBhdGggZD0iTTIuNzMyMjggMTUuODMxTDEuNTE1NSAxNC42MTQzTDIuNzQyNzEgMTMuMzg3TDIuNzMyMjggMTUuODMxWiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjMiLz4KPHBhdGggZD0iTTIuMDM3NiAxNS43ODQyTDEuMTU3NzEgMTUuNzg0MkwxLjE1NzcxIDE0Ljk1MDZMMi4wMzc2IDE1Ljc4NDJaIiBmaWxsPSIjNkExQjlBIiBmaWxsLW9wYWNpdHk9IjAuMiIvPgo8cGF0aCBkPSJNMC44MzM1NjggMTUuNzg0MUwwLjUwOTM5OSAxNS40NkwwLjgzMzU2NyAxNS4xMzU4TDAuODMzNTY4IDE1Ljc4NDFaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8cGF0aCBkPSJNMC4xMDYxODcgMTUuNzk0NEwwLjMwMTAyNSAxNS41OTk2TDAuNDk1ODYzIDE1Ljc5NDRIMC4xMDYxODdaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8cGF0aCBkPSJNNi45NTIxMyAxNS44MjQ4TDMuNjQwOTkgMTIuNTEzN0w2Ljk2OTYzIDkuMTg1MDNMNi45NTIxMyAxNS44MjQ4WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjUiLz4KPHBhdGggZD0iTTAuMjk0MjM1IDE2LjQ3OTVMMTUuODA4IDE2LjQ3OTVMMTUuODA4IDMxLjk5MzNMNy45OTIyMyAyNC4xNzc1TDAuMjk0MjM1IDE2LjQ3OTVaIiBmaWxsPSIjNjEyNTkzIi8+CjxwYXRoIGQ9Ik0xNi40OTU2IDE3LjI0MzZMMjMuODUwNyAyNC41ODVMMTYuNDk1NiAzMS45NEwxNi40OTU2IDE3LjI0MzZaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuOCIvPgo8cGF0aCBkPSJNMTYuNTMyNiAxNi40Nzk1TDI0LjQ1MTUgMTYuNDc5NUwyNC40NTE1IDI0LjAyOEwxNi41MzI2IDE2LjQ3OTVaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuNiIvPgo8cGF0aCBkPSJNMjYuMTgxMyAxNi40MzI2TDI5LjA1MjUgMTYuNDMyNkwyOS4wNTI1IDE5LjM5NjRMMjYuMTgxMyAxNi40MzI2WiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPHBhdGggZD0iTTI5LjU2MTkgMTYuNDMyNkwzMC43Nzg3IDE3LjY0OTRMMjkuNTUxNSAxOC44NzY2TDI5LjU2MTkgMTYuNDMyNloiIGZpbGw9IiM2QTFCOUEiIGZpbGwtb3BhY2l0eT0iMC4zIi8+CjxwYXRoIGQ9Ik0zMC4yNTY2IDE2LjQ3OTVMMzEuMTM2NSAxNi40Nzk1TDMxLjEzNjUgMTcuMzEzMUwzMC4yNTY2IDE2LjQ3OTVaIiBmaWxsPSIjNkExQjlBIiBmaWxsLW9wYWNpdHk9IjAuMiIvPgo8cGF0aCBkPSJNMzEuNDYwNiAxNi40Nzk1TDMxLjc4NDggMTYuODAzN0wzMS40NjA2IDE3LjEyNzlMMzEuNDYwNiAxNi40Nzk1WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjEiLz4KPHBhdGggZD0iTTMyLjE4OCAxNi40NjkyTDMxLjk5MzIgMTYuNjY0MUwzMS43OTgzIDE2LjQ2OTJIMzIuMTg4WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjEiLz4KPHBhdGggZD0iTTI1LjM0MjEgMTYuNDM4OUwyOC42NTMyIDE5Ljc1TDI1LjMyNDYgMjMuMDc4NkwyNS4zNDIxIDE2LjQzODlaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuNSIvPgo8L3N2Zz4K)](https://hub.zenoml.com/project/6a783208-c8c0-45b6-b7d7-4b3f89298314/WinoGrande%20OpenLLM%20Leaderboard) [![Open Notebook](https://img.shields.io/badge/%20-Open_Notebook-F37726.svg?labelColor=white&logo=Jupyter)](https://github.com/zeno-ml/zeno-build/blob/main/open_llm_leaderboard/winogrande.ipynb) |
+| GSM8k      | [![Open with Zeno](https://img.shields.io/badge/%20-Open_with_Zeno-612593.svg?labelColor=white&logo=data:image/svg%2bxml;base64,PHN2ZyB3aWR0aD0iMzMiIGhlaWdodD0iMzMiIHZpZXdCb3g9IjAgMCAzMyAzMyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMyIDE1Ljc4NDJMMTYuNDg2MiAxNS43ODQyTDE2LjQ4NjIgMC4yNzA0MDFMMjQuMzAyIDguMDg2MTdMMzIgMTUuNzg0MloiIGZpbGw9IiM2MTI1OTMiLz4KPHBhdGggZD0iTTE1Ljc5MTcgMTUuODMxMUw4LjAzNDc5IDguMDc0MjJMMTUuNzkxNyAwLjMxNzMyOEwxNS43OTE3IDE1LjgzMTFaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuOCIvPgo8cGF0aCBkPSJNMTQuODY1NSAxNS44MzExTDcuNTk0ODUgMTUuODMxMUw3LjU5NDg1IDguNTYwNDJMMTQuODY1NSAxNS44MzExWiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjYiLz4KPHBhdGggZD0iTTYuMTEyOSAxNS44MzExTDMuMjQxNyAxNS44MzExTDMuMjQxNyAxMi44NjcyTDYuMTEyOSAxNS44MzExWiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPHBhdGggZD0iTTIuNzMyMjggMTUuODMxTDEuNTE1NSAxNC42MTQzTDIuNzQyNzEgMTMuMzg3TDIuNzMyMjggMTUuODMxWiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjMiLz4KPHBhdGggZD0iTTIuMDM3NiAxNS43ODQyTDEuMTU3NzEgMTUuNzg0MkwxLjE1NzcxIDE0Ljk1MDZMMi4wMzc2IDE1Ljc4NDJaIiBmaWxsPSIjNkExQjlBIiBmaWxsLW9wYWNpdHk9IjAuMiIvPgo8cGF0aCBkPSJNMC44MzM1NjggMTUuNzg0MUwwLjUwOTM5OSAxNS40NkwwLjgzMzU2NyAxNS4xMzU4TDAuODMzNTY4IDE1Ljc4NDFaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8cGF0aCBkPSJNMC4xMDYxODcgMTUuNzk0NEwwLjMwMTAyNSAxNS41OTk2TDAuNDk1ODYzIDE1Ljc5NDRIMC4xMDYxODdaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8cGF0aCBkPSJNNi45NTIxMyAxNS44MjQ4TDMuNjQwOTkgMTIuNTEzN0w2Ljk2OTYzIDkuMTg1MDNMNi45NTIxMyAxNS44MjQ4WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjUiLz4KPHBhdGggZD0iTTAuMjk0MjM1IDE2LjQ3OTVMMTUuODA4IDE2LjQ3OTVMMTUuODA4IDMxLjk5MzNMNy45OTIyMyAyNC4xNzc1TDAuMjk0MjM1IDE2LjQ3OTVaIiBmaWxsPSIjNjEyNTkzIi8+CjxwYXRoIGQ9Ik0xNi40OTU2IDE3LjI0MzZMMjMuODUwNyAyNC41ODVMMTYuNDk1NiAzMS45NEwxNi40OTU2IDE3LjI0MzZaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuOCIvPgo8cGF0aCBkPSJNMTYuNTMyNiAxNi40Nzk1TDI0LjQ1MTUgMTYuNDc5NUwyNC40NTE1IDI0LjAyOEwxNi41MzI2IDE2LjQ3OTVaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuNiIvPgo8cGF0aCBkPSJNMjYuMTgxMyAxNi40MzI2TDI5LjA1MjUgMTYuNDMyNkwyOS4wNTI1IDE5LjM5NjRMMjYuMTgxMyAxNi40MzI2WiIgZmlsbD0iIzZBMUI5QSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPHBhdGggZD0iTTI5LjU2MTkgMTYuNDMyNkwzMC43Nzg3IDE3LjY0OTRMMjkuNTUxNSAxOC44NzY2TDI5LjU2MTkgMTYuNDMyNloiIGZpbGw9IiM2QTFCOUEiIGZpbGwtb3BhY2l0eT0iMC4zIi8+CjxwYXRoIGQ9Ik0zMC4yNTY2IDE2LjQ3OTVMMzEuMTM2NSAxNi40Nzk1TDMxLjEzNjUgMTcuMzEzMUwzMC4yNTY2IDE2LjQ3OTVaIiBmaWxsPSIjNkExQjlBIiBmaWxsLW9wYWNpdHk9IjAuMiIvPgo8cGF0aCBkPSJNMzEuNDYwNiAxNi40Nzk1TDMxLjc4NDggMTYuODAzN0wzMS40NjA2IDE3LjEyNzlMMzEuNDYwNiAxNi40Nzk1WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjEiLz4KPHBhdGggZD0iTTMyLjE4OCAxNi40NjkyTDMxLjk5MzIgMTYuNjY0MUwzMS43OTgzIDE2LjQ2OTJIMzIuMTg4WiIgZmlsbD0iIzYxMjU5MyIgZmlsbC1vcGFjaXR5PSIwLjEiLz4KPHBhdGggZD0iTTI1LjM0MjEgMTYuNDM4OUwyOC42NTMyIDE5Ljc1TDI1LjMyNDYgMjMuMDc4NkwyNS4zNDIxIDE2LjQzODlaIiBmaWxsPSIjNjEyNTkzIiBmaWxsLW9wYWNpdHk9IjAuNSIvPgo8L3N2Zz4K)](https://hub.zenoml.com/project/5923340c-1c44-4500-aba3-0be34ac82175/GSM8k%20OpenLLM%20Leaderboard) [![Open Notebook](https://img.shields.io/badge/%20-Open_Notebook-F37726.svg?labelColor=white&logo=Jupyter)](https://github.com/zeno-ml/zeno-build/blob/main/open_llm_leaderboard/gsm8k.ipynb)           |
+
+## Conclusion
+
+As we've seen, it is relatively easy to get the raw outputs behind the Open LLM Leaderboard.
+When fetching these raw outputs, we can analyze model behavior in much more detail compared to when just looking at the average benchmark scores.
+Zeno can be very helpful in such an in-depth analysis and comparison of different models.
