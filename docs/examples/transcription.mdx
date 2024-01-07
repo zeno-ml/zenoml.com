@@ -13,13 +13,12 @@ sizes, speeds, and cost.
 In this example, we'll use Zeno to compare the performance of the different
 models on the [Speech Accent Archive](https://accent.gmu.edu/) dataset.
 The dataset has over 2,000 people from around the world reading the same
-paragraph in English.We'll use the dataset to evaluate the performance of
+paragraph in English. We'll use the dataset to evaluate the performance of
 the different models on different accents and English fluency levels.
 
 ## Dependencies
 
-Let's start by installing the required dependencies for this project.
-We'll need some python packages:
+Let's start by installing the required dependencies for this project:
 
 ```bash
 pip install jiwer pandas openai-whisper zeno-client torch transformers tqdm
@@ -34,13 +33,7 @@ For example, if you are using conda, you can just run the following (and other m
 conda install ffmpeg
 ```
 
-## Data
-
-We're loading the raw data files directly in code.
-However, we will also use some metadata in this example.
-This metadata can be found [here](https://github.com/zeno-ml/zeno-build/blob/main/transcription/speech_accent_archive.csv).
-
-### Getting Started
+## Imports
 
 After this is all set up, we can now start running our analysis code and uploading data to Zeno.
 We'll first import relevant libraries which we're going to use:
@@ -65,19 +58,19 @@ device = "cuda:0" if torch.cuda.is_available() else "cpu"
 torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
 ```
 
-#### Loading Metadata
+### Loading Metadata
 
-Next, we're going to load the metadata frome the aforementioned [metadata file](https://github.com/zeno-ml/zeno-build/blob/main/transcription/speech_accent_archive.csv) and fetch the raw data for each row of our metadata table:
+We'll be evaluating our model on raw audio, but will use a metadata file with additional information about each audio file [here](https://github.com/zeno-ml/zeno-build/blob/main/transcription/speech_accent_archive.csv).
 
 ```python
 df = pd.read_csv("speech_accent_archive.csv")
 df["data"] = "https://zenoml.s3.amazonaws.com/accents/" + df["id"]
 ```
 
-#### Enriching Metadata
+### Adding New Features
 
 In Zeno, we'll often want to enrich our metadata with some extra fields that might be useful for our analysis.
-In this case, we are going to add the amplitude and length of the audio snippet as additional metadata fields:
+In this case, we are going to add the _amplitude_ and _length_ of the audio snippet as additional metadata fields:
 
 ```python
 # Define the function to get amplitude and length
@@ -85,7 +78,7 @@ def get_amplitude_and_length_from_url(url):
     # Download the WAV file content from the URL
     try:
         response = requests.get(url)
-        response.raise_for_status()  # will raise an HTTPError if the HTTP request returned an unsuccessful status code
+        response.raise_for_status()
 
         # Use the BytesIO object as input for the wave module
         with wave.open(BytesIO(response.content), 'rb') as wav_file:
@@ -112,32 +105,28 @@ def get_amplitude_and_length_from_url(url):
         print(f"Request failed: {e}")
         return None, None
 
-# Define a wrapper function for apply to work row-wise
 def apply_get_amplitude_and_length(row):
     url = row['data']  # Assuming the URL is in the 'data' column
     amplitude, length = get_amplitude_and_length_from_url(url)
     return pd.Series({'amplitude': amplitude, 'length': length})
 
-# Usage with apply on the DataFrame
-# This will create two new columns 'amplitude' and 'length' in the DataFrame
 df[['amplitude', 'length']] = df.progress_apply(apply_get_amplitude_and_length, axis=1)
 ```
 
-#### Zeno project
+### Create a Zeno Project
 
-Now that we have all relevant data collected in a dataframe, we can upload it to a Zeno project.
-You will need your `ZENO_API_KEY` for this.
-If you don't have one yet, generate your API key by clicking on your profile at the top right to navigate to your [account page](https://hub.zenoml.com/account).
+We can now upload our data to a Zeno project.
+You will need your `ZENO_API_KEY` here, which you can generate by clicking on your profile at the top right to navigate to your [account page](https://hub.zenoml.com/account).
 
-Once you have your API key, you can authenticate with the Zeno client and upload your project as follows:
+Once you have your API key, you can authenticate with the Zeno client and create a project as follows:
 
 ```python
 client = zeno_client.ZenoClient(YOUR_API_KEY)
 
 project = client.create_project(
-    name="Transcription Whisper Distil",
+    name="Audio Transcription Accents Evaluation",
     view="audio-transcription",
-    description="Test of audio transcription",
+    description="Comparison of multiple audio transcription models",
     metrics=[
         zeno_client.ZenoMetric(name="avg wer", type="mean", columns=["wer"])
     ]
@@ -146,11 +135,12 @@ project = client.create_project(
 
 We've already added a metric to our project that will help us track the average word error rate of different systems.
 
-#### Getting System Outputs
+You can click on the link provided in the output to start exploring your data!
 
-We can already look at our data in Zeno.
-However, we don't yet have any system outputs to look at.
-To change this and make the Zeno project we just created more interesting to investigate further, we'll run inference on different models.
+### Running Inference and Uploading Results
+
+We can already look at our data in Zeno, but would like to start evaluating the output transcriptions of models.
+Let's run inference for some of the popular OpenAI Whisper models.
 
 ```python
 # Define what models to run inference on
@@ -197,9 +187,9 @@ for model_name in models:
     df_systems.append(df_system)
 ```
 
-#### Uploading System Outputs
+You can see that we also calculate the word error rate (WER) for each model, a common metric for evaluating transcription models.
 
-Now that we have system outputs for all of these models, all we have to do is add them to the project we've created before:
+We can now upload these results to our project:
 
 ```python
 for i, df_system in enumerate(df_systems):
@@ -210,5 +200,5 @@ for i, df_system in enumerate(df_systems):
 
 ## Conclusion
 
-If you've followed this example you should have a Zeno project very similar to the one linked at the top of this page.
-Looking at [high wer samples](https://hub.zenoml.com/project/62ec4e74-7358-4801-b80c-d19e51ff2a4f/Audio%20Transcription%20Accents/explore?params=eyJtb2RlbCI6IndoaXNwZXItYmFzZSIsIm1ldHJpYyI6eyJpZCI6NzYwLCJuYW1lIjoiYXZnX3dlciIsInR5cGUiOiJtZWFuIiwiY29sdW1ucyI6WyJ3ZXIiXX0sImNvbXBhcmlzb25Nb2RlbCI6InNpbGVyb19zc3QiLCJjb21wYXJpc29uQ29sdW1uIjp7ImlkIjoiNDhhYWM0ODgtNmU2Yi00YmNmLTkwYWYtMDUyMzM4OWI3YmNkIiwibmFtZSI6Im91dHB1dCIsImNvbHVtblR5cGUiOiJPVVRQVVQiLCJkYXRhVHlwZSI6Ik5PTUlOQUwiLCJtb2RlbCI6IndoaXNwZXItYmFzZSJ9LCJjb21wYXJlU29ydCI6W251bGwsdHJ1ZV0sIm1ldHJpY1JhbmdlIjpbMCwxLjYyMzE4ODQwNTc5NzEwMTZdLCJzZWxlY3Rpb25zIjp7InNsaWNlcyI6WzU2Ml0sIm1ldGFkYXRhIjp7fSwidGFncyI6W119fQ==) in Zeno is a good starting point for analyzing the data in your new Zeno project.
+If you've followed this example you should have a Zeno project similar to the one linked at the top of this page.
+Looking at [high wer samples](https://hub.zenoml.com/project/62ec4e74-7358-4801-b80c-d19e51ff2a4f/Audio%20Transcription%20Accents/explore?params=eyJtb2RlbCI6IndoaXNwZXItYmFzZSIsIm1ldHJpYyI6eyJpZCI6NzYwLCJuYW1lIjoiYXZnX3dlciIsInR5cGUiOiJtZWFuIiwiY29sdW1ucyI6WyJ3ZXIiXX0sImNvbXBhcmlzb25Nb2RlbCI6InNpbGVyb19zc3QiLCJjb21wYXJpc29uQ29sdW1uIjp7ImlkIjoiNDhhYWM0ODgtNmU2Yi00YmNmLTkwYWYtMDUyMzM4OWI3YmNkIiwibmFtZSI6Im91dHB1dCIsImNvbHVtblR5cGUiOiJPVVRQVVQiLCJkYXRhVHlwZSI6Ik5PTUlOQUwiLCJtb2RlbCI6IndoaXNwZXItYmFzZSJ9LCJjb21wYXJlU29ydCI6W251bGwsdHJ1ZV0sIm1ldHJpY1JhbmdlIjpbMCwxLjYyMzE4ODQwNTc5NzEwMTZdLCJzZWxlY3Rpb25zIjp7InNsaWNlcyI6WzU2Ml0sIm1ldGFkYXRhIjp7fSwidGFncyI6W119fQ==) by filtering for them using the histograms on the left is a great starting point to start finding the limitations of these state of the art models!
