@@ -19,7 +19,7 @@ export default function DatatypeSelect() {
         <Header
           title="Chart"
           summary="Chart Building"
-          description="Create beautiful, interactive visualizations to compare model performnce
+          description="Create beautiful, interactive visualizations to compare model performance
           across slices and models"
         ></Header>
         <p>
