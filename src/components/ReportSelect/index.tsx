@@ -16,22 +16,19 @@ export default function DatatypeSelect() {
   return (
     <div className={styles.reportWrapper}>
       <div className={styles.left} style={{}}>
+        <div className={styles.imageWrapper} />
+      </div>
+      <div className={styles.right}>
         <Header
           title="Report"
           summary="Report Authoring"
           description="Create reports with interactive visualizations and markdown"
         ></Header>
         <p>
-          Visualizations can be combined with rich markdown text to share insights and
-          tell stories about your data and model performance.
+          Visualizations can be combined with rich markdown text to share insights and tell stories
+          about your data and model performance.
         </p>
-        <p>
-          Reports can be shared with other stakeholders or posted on any platform. All
-          that people need to read your report is a link to it.
-        </p>
-      </div>
-      <div className={styles.right}>
-        <div className={styles.imageWrapper} />
+        <p>Reports can be authored collaboratively and published broadly.</p>
       </div>
     </div>
   );

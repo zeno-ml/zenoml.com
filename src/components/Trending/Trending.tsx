@@ -7,9 +7,10 @@ export function Trending(props) {
     <div className={styles.container}>
       <Header
         title="Trending"
-        summary="Trending"
-        description="Explore trending reports and projects on Zeno."
+        summary="Trending Projects and Reports"
+        description="Explore popular public projects and reports on Zeno Hub"
       ></Header>
+      <br />
       <div className={styles.iframe}>
         <iframe
           height="250"
