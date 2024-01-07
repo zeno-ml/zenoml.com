@@ -23,7 +23,7 @@ export function HomepageHeader() {
               Get Started
             </Link>
             <Link className="button button--lg heroButtonSecondary" to="https://hub.zenoml.com/">
-              Try Zeno
+              Explore Projects
             </Link>
           </div>
         </div>

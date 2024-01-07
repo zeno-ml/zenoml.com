@@ -8,7 +8,6 @@ import { Trending } from "@site/src/components/Trending/Trending";
 import Layout from "@theme/Layout";
 import React from "react";
 import DiscoverSelect from "../components/DiscoverSelect";
-import { Testimonials } from "../components/Testimonials/Testimonials";
 
 export function Header({ title, summary, description }): JSX.Element {
   return (
@@ -27,11 +26,12 @@ export default function Home(): JSX.Element {
         <div id="pageWrapper">
           <br />
           <Trending />
-          <br />
+          {/* <br /> */}
         </div>
-        <Testimonials />
+        <hr />
+        {/* <Testimonials />
         <br />
-        <br />
+        <br /> */}
         <div id="pageWrapper">
           <DatatypeSelect />
           <hr />

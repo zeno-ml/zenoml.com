@@ -9,7 +9,7 @@
   background: radial-gradient(
     circle,
     hsl(277deg 70% 35%) 0%,
-    hsl(277deg 43% 55%)
+    hsl(277deg 38.44% 69.63%)
   ); /* Replace with your colors */
   background-size: 200% 200%; /* This helps in creating the effect */
   animation: gradientAnimation 10s linear infinite; /* Adjust timing as needed */
