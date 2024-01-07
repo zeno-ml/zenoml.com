@@ -1,8 +1,7 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+import { themes as prismThemes } from "prism-react-renderer";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -79,13 +78,13 @@ const config = {
           srcDark: "img/zeno_dark.png",
         },
         items: [
-          { to: "/about", label: "About", position: "left" },
           {
             type: "doc",
             docId: "intro",
             position: "left",
             label: "Docs",
           },
+          { to: "/about", label: "About", position: "left" },
           { to: "/faq", label: "FAQ", position: "left" },
           {
             type: "html",
@@ -118,12 +117,12 @@ const config = {
                 to: "/",
               },
               {
-                label: "About",
-                to: "/about/",
-              },
-              {
                 label: "Docs",
                 to: "/docs/intro",
+              },
+              {
+                label: "About",
+                to: "/about/",
               },
               {
                 label: "FAQ",
@@ -161,8 +160,8 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} Zeno`,
       },
       prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
+        theme: prismThemes.oneLight,
+        darkTheme: prismThemes.oneDark,
         additionalLanguages: ["toml", "json"],
       },
     }),

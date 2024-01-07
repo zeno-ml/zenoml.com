@@ -33,7 +33,7 @@ export default function Select(props) {
         <Header
           title="Explore"
           summary="Data Exploration"
-          description="Zeno can visualize any type of data, from images to text, audio, sensor data, and more."
+          description="Visualize any type of data with Zeno, from images to text, audio, sensor data, and more."
         ></Header>
         {menu}
       </div>
@@ -46,11 +46,10 @@ export default function Select(props) {
             <img
               key={img}
               style={{
-                maxHeight: "120px",
+                maxHeight: "130px",
                 maxWidth: "180px",
                 objectFit: "cover",
                 padding: "10px",
-                margin: "10px",
                 background: "white",
                 borderRadius: "4px",
                 border: "1px solid var(--gray)",
