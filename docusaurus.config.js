@@ -62,16 +62,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       image: "img/zeno.png",
-      // announcementBar: {
-      //   id: "support_us",
-      //   content:
-      //     '🎉  Zeno was selected to be part of the <a href="https://foundation.mozilla.org/en/blog/auditing-ai-announcing-the-2023-mozilla-technology-fund-cohort/">Mozilla Technology Fund</a> cohort on AI auditing tools!',
-      //   backgroundColor: "white",
-      //   textColor: "#6a1b9a",
-      //   isCloseable: true,
-      // },
       navbar: {
-        // title: "Zeno",
         logo: {
           alt: "Zeno Logo",
           src: "img/zeno.png",
@@ -98,8 +89,13 @@ const config = {
               "<a style='margin-left: 10px' href='https://hub.zenoml.com/login'><button class='sign-in'>Sign In</button></a>",
           },
           {
+            href: "https://twitter.com/try_zeno",
+            position: "right",
+            className: "header-twitter-link",
+            "aria-label": "GitHub repository",
+          },
+          {
             href: "https://github.com/zeno-ml",
-            // label: "GitHub",
             position: "right",
             className: "header-github-link",
             "aria-label": "GitHub repository",
