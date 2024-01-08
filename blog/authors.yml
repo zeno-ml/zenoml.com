@@ -1,5 +1,11 @@
-endi:
+ac:
   name: Angel Alexander Cabrera
   title: PhD Student @ CMU
   url: https://cabreraalex.com
   image_url: https://cabreraalex.com/images/profile.png
+
+ab:
+  name: Alex Bäuerle
+  title: Researcher @ CMU
+  url: https://a13x.io
+  image_url: https://a13x.io/images/alex.jpeg
