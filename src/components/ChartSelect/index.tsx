@@ -16,6 +16,19 @@ export default function DatatypeSelect() {
   return (
     <div className={styles.reportWrapper}>
       <div className={styles.left}>
+        <Header
+          title="Chart"
+          summary="Chart Building"
+          description="Create beautiful, interactive visualizations to compare model performance
+          across slices and models"
+        ></Header>
+        <p>
+          Use Zeno's drag-and-drop interface to create interactive charts. Create a radar chart
+          comparing multiple models on different slices of your data, or a beeswarm plot to compare
+          hundreds of models.
+        </p>
+      </div>
+      <div className={styles.right}>
         <img
           style={imageStyle}
           src={require("@site/static/img/radar-chart.png").default}
@@ -33,19 +46,6 @@ export default function DatatypeSelect() {
             alt="Screenshot of beeswarm chart"
           />
         </div>
-      </div>
-      <div className={styles.right}>
-        <Header
-          title="Chart"
-          summary="Chart Building"
-          description="Create beautiful, interactive visualizations to compare model performnce
-          across slices and models"
-        ></Header>
-        <p>
-          Use Zeno's drag-and-drop interface to create interactive charts. Create a radar chart
-          comparing multiple models on different slices of your data, or a beeswarm plot to compare
-          hundreds of models.
-        </p>
       </div>
     </div>
   );

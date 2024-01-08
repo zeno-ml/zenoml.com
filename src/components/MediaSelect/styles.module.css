@@ -9,9 +9,7 @@
   margin-bottom: 5px;
   background: white;
   color: black;
-  box-shadow:
-    0 4px 6px -1px rgb(0 0 0 / 0.1),
-    0 2px 4px -2px rgb(0 0 0 / 0.1);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 .activeSelection {
@@ -40,6 +38,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 20px;
   width: 60%;
   margin-left: 100px;
   margin-right: 50px;

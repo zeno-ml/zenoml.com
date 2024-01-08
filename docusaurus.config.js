@@ -1,8 +1,7 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+import { themes as prismThemes } from "prism-react-renderer";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -40,17 +39,9 @@ const config = {
         },
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          // editUrl:
-          //   "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          // editUrl:
-          //   "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -91,7 +82,8 @@ const config = {
           {
             type: "html",
             position: "right",
-            value: "<a style='margin-left: 10px' href='https://hub.zenoml.com/signup'>Sign up</a>",
+            value:
+              "<a style='margin-left: 10px' href='https://hub.zenoml.com/signup'>Sign up</a>",
           },
           {
             type: "html",
@@ -166,8 +158,8 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} Zeno`,
       },
       prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
+        theme: prismThemes.oneLight,
+        darkTheme: prismThemes.oneDark,
         additionalLanguages: ["toml", "json"],
       },
     }),
