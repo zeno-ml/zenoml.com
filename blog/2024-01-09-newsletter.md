@@ -69,4 +69,4 @@ If you have any suggestions for what you'd like to see in our documentation, ple
 
 ---
 
-_If you have questions about Zeno or anything we've highlighted in this newsletter, have ideas for new Zeno features or content for an upcoming issue of Elea Evals, or simply want to say hi, get in touch via [email](mailto:hello@zenoml.com) or join our [Discord](https://discord.gg/km62pDKAkE)._
+_If you have questions about Zeno or anything we've highlighted in this newsletter, have ideas for new Zeno features or content for a future issue of Zeno's Notes, or simply want to say hi, get in touch via [email](mailto:hello@zenoml.com) or join our [Discord](https://discord.gg/km62pDKAkE)._
