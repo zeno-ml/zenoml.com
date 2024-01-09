@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkzeno_docs=self.webpackChunkzeno_docs||[]).push([[649],{6128:s=>{s.exports=JSON.parse('{"label":"zeno\'s notes","permalink":"/blog/tags/zenos-notes","allTagsPath":"/blog/tags","count":1,"unlisted":false}')}}]);

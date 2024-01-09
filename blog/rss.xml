@@ -4,27 +4,65 @@
         <title>AI Evaluation Platform Blog</title>
         <link>https://zenoml.com/blog</link>
         <description>AI Evaluation Platform Blog</description>
-        <lastBuildDate>Fri, 26 Aug 2022 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 09 Jan 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[Zeno: Interactive Model Evaluation]]></title>
-            <link>https://zenoml.com/blog/welcome-post</link>
-            <guid>https://zenoml.com/blog/welcome-post</guid>
-            <pubDate>Fri, 26 Aug 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[Model evaluation is a key part of the machine learning development process.]]></description>
-            <content:encoded><![CDATA[<p>Model evaluation is a key part of the machine learning development process.
-Evaluation often stops at measuring metrics such as accuracy, but aggregate metrics are a limited view of model performance.
-It's important to look at specific failures or subgroups of data to develop a nuanced view of model performance and discover issues such as <a href="http://gendershades.org/" target="_blank" rel="noopener noreferrer">biases</a> and <a href="https://en.wikipedia.org/wiki/Death_of_Elaine_Herzberg" target="_blank" rel="noopener noreferrer">safety concerns</a>.</p>
-<p><img loading="lazy" alt="safety concerns" src="https://zenoml.com/assets/images/overall-946eb5d6678e441074bff0f492f36ca6.png" width="3438" height="962" class="img_ev3q"></p>
-<p><a href="https://zenoml.com/" target="_blank" rel="noopener noreferrer"><strong>Zeno</strong></a> is a framework for fine-grained evaluation of diverse machine learning models.
-Zeno is primarily a UI for interactively exploring your data, model outputs, and metrics.
-You can interactively filter your data using metadata and create slices to track and compare model performance.
-Lastly, you can create visualizations and reports to summarize model performance and share insights with other stakeholders.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="get-started">Get Started<a href="https://zenoml.com/blog/welcome-post#get-started" class="hash-link" aria-label="Direct link to Get Started" title="Direct link to Get Started">​</a></h3>
-<p>Interested in using Zeno? Get started with our <a href="https://zenoml.com/docs/intro">Quickstart</a> guide!</p>]]></content:encoded>
-            <category>introduction</category>
+            <title><![CDATA[Zeno's Notes on AI Evaluation | January 2024]]></title>
+            <link>https://zenoml.com/blog/newsletter-24-01</link>
+            <guid>https://zenoml.com/blog/newsletter-24-01</guid>
+            <pubDate>Tue, 09 Jan 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Welcome to the first edition of the Zeno's Notes newsletter!]]></description>
+            <content:encoded><![CDATA[<p>Welcome to the first edition of the <strong>Zeno's Notes</strong> newsletter!
+Each month, we'll discuss the community's work around Zeno, interesting research and projects on AI evaluation, and new Zeno features.</p>
+<p>Before we dive in, we wanted to look back at the last few months since we launched <a href="https://hub.zenoml.com/" target="_blank" rel="noopener noreferrer">Zeno Hub</a>.
+Our users have created over <strong>800 projects</strong> and <strong>1,400 slices</strong> to evaluate more than <strong>10,000 AI systems</strong>!
+These insights have been used to author over <strong>160 reports</strong>, communicating interesting findings and insights.
+It's exciting to see how Zeno is being used to make AI evaluation more accessible and transparent.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-community">🌎 Community<a href="https://zenoml.com/blog/newsletter-24-01#-community" class="hash-link" aria-label="Direct link to 🌎 Community" title="Direct link to 🌎 Community">​</a></h2>
+<p><em>Highlighting work from the Zeno community.</em></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="an-in-depth-look-at-geminis-language-abilities"><a href="https://arxiv.org/abs/2312.11444" target="_blank" rel="noopener noreferrer">An In-Depth Look at Gemini's Language Abilities</a><a href="https://zenoml.com/blog/newsletter-24-01#an-in-depth-look-at-geminis-language-abilities" class="hash-link" aria-label="Direct link to an-in-depth-look-at-geminis-language-abilities" title="Direct link to an-in-depth-look-at-geminis-language-abilities">​</a></h3>
+<p>Researchers at CMU, including the Zeno team, conducted a <a href="https://x.com/gneubig/status/1737108966931673191?s=20" target="_blank" rel="noopener noreferrer">deep dive into Gemini's language abilities</a>.
+They compared Gemini Pro, Google's newly released LLM, with GPT-3.5-Turbo, GPT-4-Turbo, and Mixtral.
+Overall, they found that Gemini approaches but lags behind GPT-3.5-Turbo in all English tasks, yet performs better in translation into languages it supports.
+For more detailed results, <a href="https://arxiv.org/abs/2312.11444" target="_blank" rel="noopener noreferrer">read the paper</a> or explore the code on <a href="https://t.co/S7S9473xtP" target="_blank" rel="noopener noreferrer">GitHub</a>.
+Each section of the paper is linked to a Zeno report for further exploration!</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="huggingface-is-dropping-drop"><a href="https://huggingface.co/blog/leaderboard-drop-dive" target="_blank" rel="noopener noreferrer">HuggingFace is Dropping DROP</a><a href="https://zenoml.com/blog/newsletter-24-01#huggingface-is-dropping-drop" class="hash-link" aria-label="Direct link to huggingface-is-dropping-drop" title="Direct link to huggingface-is-dropping-drop">​</a></h3>
+<p>The HuggingFace <a href="https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard" target="_blank" rel="noopener noreferrer">Open LLM Leaderboard</a> is a popular repository for comparing new LLMs. HuggingFace recently added <a href="https://twitter.com/clefourrier/status/1722555555338956840" target="_blank" rel="noopener noreferrer">three new benchmarks</a> to their leaderboard to better represent real-world performance.
+After receiving feedback from the community, they noticed significant fluctuations in the scores for one benchmark, DROP.
+<a href="https://hub.zenoml.com/report/1255/DROP%20Benchmark%20Exploration" target="_blank" rel="noopener noreferrer">Using Zeno</a>, they uncovered the reason behind the variance and decided to remove DROP from the leaderboard until a revised version of the benchmark is developed.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-evaluation-news">📰 Evaluation News<a href="https://zenoml.com/blog/newsletter-24-01#-evaluation-news" class="hash-link" aria-label="Direct link to 📰 Evaluation News" title="Direct link to 📰 Evaluation News">​</a></h2>
+<p><em>Interesting news from the world of AI evaluation.</em></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="cruxeval"><a href="https://crux-eval.github.io/" target="_blank" rel="noopener noreferrer">CRUXEval</a><a href="https://zenoml.com/blog/newsletter-24-01#cruxeval" class="hash-link" aria-label="Direct link to cruxeval" title="Direct link to cruxeval">​</a></h3>
+<p>Researchers from MIT and Meta AI Research released new evaluation dataset for code reasoning, understanding, and execution.
+Instead of having models generate code, CRUXEval asks models to either predict the output or input of a given function based on its signature.
+This dataset, which includes 800 python functions, supplements classic code generation datasets such as HumanEval and MBPP.
+They compared multiple open and closed-source models on their new benchmarks and found that there is quite a bit of room for improvement.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="commongen-leaderboard"><a href="https://inklab.usc.edu/CommonGen/leaderboard.html" target="_blank" rel="noopener noreferrer">CommonGen Leaderboard</a><a href="https://zenoml.com/blog/newsletter-24-01#commongen-leaderboard" class="hash-link" aria-label="Direct link to commongen-leaderboard" title="Direct link to commongen-leaderboard">​</a></h3>
+<p>CommonGen is a challenging benchmark task asking models to generate coherent sentences describing everyday scenarios.
+The reseaerchers behind the benchmark, from USC, Allen AI, and UW, recently updated their <a href="https://github.com/allenai/CommonGen-Eval" target="_blank" rel="noopener noreferrer">eval repository</a> with a <a href="https://inklab.usc.edu/CommonGen/leaderboard.html" target="_blank" rel="noopener noreferrer">new leaderboard</a> for the task, showing how state-of-the-art models, including GPT-4, perform significantly worse than humans.
+The authors argue that the task is so hard because it requires relational reasoning using background common sense knowledge and the models need to be able to generalize to unseen concept combinations.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-new-in-zeno">✨ New in Zeno<a href="https://zenoml.com/blog/newsletter-24-01#-new-in-zeno" class="hash-link" aria-label="Direct link to ✨ New in Zeno" title="Direct link to ✨ New in Zeno">​</a></h2>
+<p><em>Updates to Zeno that you'll love.</em></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="integrations">Integrations<a href="https://zenoml.com/blog/newsletter-24-01#integrations" class="hash-link" aria-label="Direct link to Integrations" title="Direct link to Integrations">​</a></h3>
+<p>We've been focusing on making it even easier for you to analyze your evaluation results in Zeno by <a href="https://zenoml.com/docs/integrations/" target="_blank" rel="noopener noreferrer">integrating Zeno into other AI evaluation frameworks</a>.
+You can now directly upload your model outputs if you're using the <a href="https://github.com/EleutherAI/lm-evaluation-harness" target="_blank" rel="noopener noreferrer">EleutherAI LM Evaluation Harness</a> or the <a href="https://docs.ragas.io/en/latest/index.html" target="_blank" rel="noopener noreferrer">Ragas Framework</a>.</p>
+<ul>
+<li>
+<p><strong>Ragas</strong> is a library for model-graded evaluation of RAG applications. We've added <a href="https://docs.ragas.io/en/latest/howtos/integrations/zeno.html" target="_blank" rel="noopener noreferrer">a detailed tutorial</a> on how to use Zeno to investigate your evaluation results. You can view an example of this in Zeno <a href="https://hub.zenoml.com/project/b35c83b8-0b22-4b9c-aedb-80964011d7a7/ragas%20FICA%20eval" target="_blank" rel="noopener noreferrer">here</a>.</p>
+</li>
+<li>
+<p><strong>EleutherAI LM Evaluation Harness</strong> is a popular library for running LLM benchmarks. We wrote a script that allows you to directly upload all your evaluation data as a Zeno project, enabling you to compare different models across various benchmarks provided by EleutherAI. To start visualizing your LM Evaluation Harness data in Zeno, follow <a href="https://github.com/EleutherAI/lm-evaluation-harness#visualizing-results" target="_blank" rel="noopener noreferrer">these instructions</a> or take a look at our <a href="https://github.com/EleutherAI/lm-evaluation-harness/blob/main/examples/visualize-zeno.ipynb" target="_blank" rel="noopener noreferrer">example notebook</a>. We've already used this integration for some of our own projects, such as <a href="https://hub.zenoml.com/project/ba44d31c-9e02-4330-bdbe-0760dfe85dc4/Mamba%20Eval_hellaswag" target="_blank" rel="noopener noreferrer">this evaluation of the Mamba architecture</a>!</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="documentation">Documentation<a href="https://zenoml.com/blog/newsletter-24-01#documentation" class="hash-link" aria-label="Direct link to Documentation" title="Direct link to Documentation">​</a></h3>
+<p>We've also been working on improving our documentation to make it easier for you to get started with Zeno.
+This includes <a href="http://localhost:3000/docs/examples/" target="_blank" rel="noopener noreferrer">use cases</a>, <a href="https://zenoml.com/docs/tutorials/" target="_blank" rel="noopener noreferrer">tutorials</a>, and <a href="https://zenoml.com/docs/integrations/" target="_blank" rel="noopener noreferrer">integration guides</a>.
+If you have any suggestions for what you'd like to see in our documentation, please let us know!</p>
+<hr>
+<p><em>If you have questions about Zeno or anything we've highlighted in this newsletter, have ideas for new Zeno features or content for a future issue of Zeno's Notes, or simply want to say hi, get in touch via <a href="mailto:hello@zenoml.com" target="_blank" rel="noopener noreferrer">email</a> or join our <a href="https://discord.gg/km62pDKAkE" target="_blank" rel="noopener noreferrer">Discord</a>.</em></p>]]></content:encoded>
+            <category>zeno's notes</category>
         </item>
     </channel>
 </rss>

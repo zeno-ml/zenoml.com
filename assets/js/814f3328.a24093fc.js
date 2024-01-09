@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkzeno_docs=self.webpackChunkzeno_docs||[]).push([[535],{5641:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Zeno\'s Notes on AI Evaluation | January 2024","permalink":"/blog/newsletter-24-01","unlisted":false}]}')}}]);
