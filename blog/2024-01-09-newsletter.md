@@ -1,12 +1,12 @@
 ---
 slug: newsletter-24-01
-title: "Elea Evals - January 2024"
+title: "Zeno's Notes on AI Evaluation | January 2024"
 authors: [ac, ab]
-tags: ["elea evals"]
+tags: ["zeno's notes"]
 ---
 
-Welcome to the first edition of the Zeno newsletter, **Elea Evals**!
-In each edition, we'll discuss the community's work around Zeno, interesting research and projects on AI evaluation, and new Zeno features.
+Welcome to the first edition of the **Zeno's Notes** newsletter!
+Each month, we'll discuss the community's work around Zeno, interesting research and projects on AI evaluation, and new Zeno features.
 
 Before we dive in, we wanted to look back at the last few months since we launched [Zeno Hub](https://hub.zenoml.com).
 Our users have created over **800 projects** and **1,400 slices** to evaluate more than **10,000 AI systems**!
@@ -29,7 +29,7 @@ Each section of the paper is linked to a Zeno report for further exploration!
 
 The HuggingFace [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard) is a popular repository for comparing new LLMs. HuggingFace recently added [three new benchmarks](https://twitter.com/clefourrier/status/1722555555338956840) to their leaderboard to better represent real-world performance.
 After receiving feedback from the community, they noticed significant fluctuations in the scores for one benchmark, DROP.
-[Using Zeno](https://hub.zenoml.com/report/1255/DROP%20Benchmark%20Exploration), they quickly discovered the reason behind the variance and decided to remove DROP from the leaderboard until a revised version of the benchmark is developed.
+[Using Zeno](https://hub.zenoml.com/report/1255/DROP%20Benchmark%20Exploration), they uncovered the reason behind the variance and decided to remove DROP from the leaderboard until a revised version of the benchmark is developed.
 
 ## 📰 Evaluation News
 
@@ -41,12 +41,11 @@ Researchers from MIT and Meta AI Research released new evaluation dataset for co
 Instead of having models generate code, CRUXEval asks models to either predict the output or input of a given function based on its signature.
 This dataset, which includes 800 python functions, supplements classic code generation datasets such as HumanEval and MBPP.
 They compared multiple open and closed-source models on their new benchmarks and found that there is quite a bit of room for improvement.
-All of their findings, including the code and a link to the HF dataset are available from their [paper page](https://crux-eval.github.io/).
 
 ### [CommonGen Leaderboard](https://inklab.usc.edu/CommonGen/leaderboard.html)
 
 CommonGen is a challenging benchmark task asking models to generate coherent sentences describing everyday scenarios.
-The reseaerchers behind the benchmark, who are from USC, Allen AI, and UW, recently updated their [eval repository](https://github.com/allenai/CommonGen-Eval) including a [new leaderboard](https://inklab.usc.edu/CommonGen/leaderboard.html) for the task, showing how state-of-the-art models, including GPT-4, perform significantly worse than humans.
+The reseaerchers behind the benchmark, from USC, Allen AI, and UW, recently updated their [eval repository](https://github.com/allenai/CommonGen-Eval) with a [new leaderboard](https://inklab.usc.edu/CommonGen/leaderboard.html) for the task, showing how state-of-the-art models, including GPT-4, perform significantly worse than humans.
 The authors argue that the task is so hard because it requires relational reasoning using background common sense knowledge and the models need to be able to generalize to unseen concept combinations.
 
 ## ✨ New in Zeno
@@ -60,7 +59,7 @@ You can now directly upload your model outputs if you're using the [EleutherAI L
 
 - **Ragas** is a library for model-graded evaluation of RAG applications. We've added [a detailed tutorial](https://docs.ragas.io/en/latest/howtos/integrations/zeno.html) on how to use Zeno to investigate your evaluation results. You can view an example of this in Zeno [here](https://hub.zenoml.com/project/b35c83b8-0b22-4b9c-aedb-80964011d7a7/ragas%20FICA%20eval).
 
-- **EleutherAI LM Evaluation Harness** - We wrote a script that allows you to directly upload all your evaluation data as a Zeno project, enabling you to compare different models across various benchmarks provided by EleutherAI. To start visualizing your LM Evaluation Harness data in Zeno, follow [these instructions](https://github.com/EleutherAI/lm-evaluation-harness#visualizing-results) or take a look at our [example notebook](https://github.com/EleutherAI/lm-evaluation-harness/blob/main/examples/visualize-zeno.ipynb). We've already used this integration for some of our own projects, such as [this one](https://hub.zenoml.com/project/ba44d31c-9e02-4330-bdbe-0760dfe85dc4/Mamba%20Eval_hellaswag)!
+- **EleutherAI LM Evaluation Harness** is a popular library for running LLM benchmarks. We wrote a script that allows you to directly upload all your evaluation data as a Zeno project, enabling you to compare different models across various benchmarks provided by EleutherAI. To start visualizing your LM Evaluation Harness data in Zeno, follow [these instructions](https://github.com/EleutherAI/lm-evaluation-harness#visualizing-results) or take a look at our [example notebook](https://github.com/EleutherAI/lm-evaluation-harness/blob/main/examples/visualize-zeno.ipynb). We've already used this integration for some of our own projects, such as [this evaluation of the Mamba architecture](https://hub.zenoml.com/project/ba44d31c-9e02-4330-bdbe-0760dfe85dc4/Mamba%20Eval_hellaswag)!
 
 ### Documentation
 
