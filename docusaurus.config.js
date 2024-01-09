@@ -26,6 +26,13 @@ const config = {
     locales: ["en"],
   },
 
+  scripts: [
+    {
+      src: `<!-- MailerLite Universal --><script>(function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');ml('account', '754700');</script><!-- End MailerLite Universal -->`,
+      async: true,
+    },
+  ],
+
   presets: [
     [
       "classic",
@@ -41,7 +48,9 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
         },
         blog: {
-          showReadingTime: true,
+          blogTitle: "Zeno Blog",
+          blogDescription: "Updates and news from the Zeno team",
+          blogSidebarCount: "ALL",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -82,8 +91,7 @@ const config = {
           {
             type: "html",
             position: "right",
-            value:
-              "<a style='margin-left: 10px' href='https://hub.zenoml.com/signup'>Sign up</a>",
+            value: "<a style='margin-left: 10px' href='https://hub.zenoml.com/signup'>Sign up</a>",
           },
           {
             type: "html",
