@@ -1,11 +1,11 @@
 ---
 slug: newsletter-24-01
-title: "Halfway Evals - January 2023"
+title: "Elea Evals - January 2024"
 authors: [ac, ab]
-tags: ["halfway evals"]
+tags: ["elea evals"]
 ---
 
-Welcome to the first edition of the Zeno newsletter, **Halfway Evals**!
+Welcome to the first edition of the Zeno newsletter, **Elea Evals**!
 In each edition, we'll discuss the community's work around Zeno, interesting research and projects on AI evaluation, and new Zeno features.
 
 Before we dive in, we wanted to look back at the last few months since we launched [Zeno Hub](https://hub.zenoml.com).
@@ -70,4 +70,4 @@ If you have any suggestions for what you'd like to see in our documentation, ple
 
 ---
 
-_If you have questions about Zeno or anything we've highlighted in this newsletter, have ideas for new Zeno features or content for an upcoming issue of Halfway Evals, or simply want to say hi, get in touch via [email](mailto:hello@zenoml.com) or join our [Discord](https://discord.gg/km62pDKAkE)._
+_If you have questions about Zeno or anything we've highlighted in this newsletter, have ideas for new Zeno features or content for an upcoming issue of Elea Evals, or simply want to say hi, get in touch via [email](mailto:hello@zenoml.com) or join our [Discord](https://discord.gg/km62pDKAkE)._
