@@ -41,7 +41,9 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
         },
         blog: {
-          showReadingTime: true,
+          blogTitle: "Zeno Blog",
+          blogDescription: "Updates and news from the Zeno team",
+          blogSidebarCount: "ALL",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -82,8 +84,7 @@ const config = {
           {
             type: "html",
             position: "right",
-            value:
-              "<a style='margin-left: 10px' href='https://hub.zenoml.com/signup'>Sign up</a>",
+            value: "<a style='margin-left: 10px' href='https://hub.zenoml.com/signup'>Sign up</a>",
           },
           {
             type: "html",
