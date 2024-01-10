@@ -1,4 +1,5 @@
 import ChartSelect from "@site/src/components/ChartSelect";
+import { Code } from "@site/src/components/Code/Code";
 import DatatypeSelect from "@site/src/components/DatatypeSelect";
 import { HomepageHeader } from "@site/src/components/HomepageHeader/HomepageHeader";
 import ReportSelect from "@site/src/components/ReportSelect";
@@ -26,9 +27,10 @@ export default function Home(): JSX.Element {
         <div id="pageWrapper">
           <br />
           <Trending />
-          {/* <br /> */}
         </div>
-        <hr />
+        <br />
+        <Code />
+        <br />
         {/* <Testimonials />
         <br />
         <br /> */}

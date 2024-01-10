@@ -314,3 +314,8 @@ hr {
 .alert a {
   text-decoration: var(--ifm-link-decoration);
 }
+
+.heroButton:hover {
+  color: white;
+  background-color: var(--ifm-color-primary-lighter);
+}
