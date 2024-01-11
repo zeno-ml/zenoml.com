@@ -2,6 +2,7 @@ import { Header } from "@site/src/pages";
 import React from "react";
 import { CodeBlock } from "./CodeBlock";
 
+import Link from "@docusaurus/Link";
 import styles from "./styles.module.css";
 
 export function Code() {
@@ -26,8 +27,21 @@ proj.upload_system(system_df, name="System A", id_column="id", output_column="ou
         <Header
           title="Getting Started"
           summary="Getting Started"
-          description="Upload your results to Zeno in jut a few lines of code"
+          description="Upload your results to Zeno in just a few lines of code"
         ></Header>
+        <div
+          className={styles.buttons}
+          style={{ justifyContent: "space-between", alignItems: "center" }}
+        >
+          <div className={styles.buttons}>
+            <Link
+              className="button button--lg heroButtonSecondary"
+              to="/docs/intro"
+            >
+              Learn More
+            </Link>
+          </div>
+        </div>
         <br />
         <CodeBlock language="python" code={pipCode} />
         <CodeBlock language="python" code={pythonCode} />
