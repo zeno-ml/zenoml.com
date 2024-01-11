@@ -48,7 +48,7 @@ export function CodeBlock({ language, code }: CodeBlockProps) {
         }}
         onClick={copyCode}
       >
-        {state.value ? "Copied!" : "Copy code"}
+        {state.value ? "Copied!" : "Copy"}
       </button>
     </div>
   );
