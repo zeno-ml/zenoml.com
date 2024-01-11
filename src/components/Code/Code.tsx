@@ -12,32 +12,29 @@ export function Code() {
 client = ZenoClient(YOUR_API_KEY)
 
 # Create a project.
-project = client.create_project(name="Awesome Project", view="text-classification")
+project = client.create_project(name="Writing Assistant", view="text-classification")
 
 # Upload the data.
 df = ... # Your DataFrame
 project.upload_dataset(df, id_column="id", data_column='text', label_column="label")
-system_df = ... # Your System Outputs
-proj.upload_system(system_df, name="System A", id_column="id", output_column="output")`;
+system_df = ... # Your system outputs
+proj.upload_system(system_df, name="GPT-4", id_column="id", output_column="output")`;
   const pipCode = `pip install zeno-client`;
 
   return (
     <div className={styles.container}>
       <div className={styles.innerContainer}>
-        <Header
-          title="Getting Started"
-          summary="Getting Started"
-          description="Upload your results to Zeno in just a few lines of code"
-        ></Header>
-        <div
-          className={styles.buttons}
-          style={{ justifyContent: "space-between", alignItems: "center" }}
-        >
-          <div className={styles.buttons}>
-            <Link
-              className="button button--lg heroButtonSecondary"
-              to="/docs/intro"
-            >
+        <div className={styles.header}>
+          <Header
+            title="Getting Started"
+            summary="Getting Started"
+            description="Upload your results to Zeno in just a few lines of code"
+          ></Header>
+          <div
+            className={styles.buttons}
+            style={{ justifyContent: "space-between", alignItems: "center" }}
+          >
+            <Link className="button button--lg heroButtonSecondary" to="/docs/intro">
               Learn More
             </Link>
           </div>

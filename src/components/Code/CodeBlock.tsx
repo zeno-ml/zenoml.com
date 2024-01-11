@@ -11,7 +11,6 @@ export function CodeBlock({ language, code }: CodeBlockProps) {
   const [state, copyToClipboard] = useCopyToClipboard();
 
   const copyCode = () => {
-    // Logic to copy `code`
     copyToClipboard(code);
   };
 

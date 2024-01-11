@@ -1,9 +1,5 @@
 .container {
-  background-image: linear-gradient(
-    140deg,
-    hsl(277deg 70% 35%) 0%,
-    hsl(277deg 43% 55%) 100%
-  );
+  background-image: linear-gradient(140deg, hsl(277deg 70% 35%) 0%, hsl(277deg 43% 55%) 100%);
   color: white;
   display: flex;
   flex-direction: column;
@@ -18,4 +14,15 @@
   max-width: 1300px;
   padding-top: 30px;
   margin: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+  }
 }
