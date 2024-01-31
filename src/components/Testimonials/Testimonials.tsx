@@ -16,7 +16,7 @@ export function Testimonials(props) {
     {
       name: "Hailey, Research Scientist",
       message:
-        "Visualizing benchmarking results with Zeno makes it much easier to find systematic failures and differences between models.",
+        "Demystifying benchmarkings and evaluation practices, and communicating them to a wider audience effectively is very difficult. Zeno does a great job of encouraging taking a critical look at your metrics and your datasets, which is much needed in the field!",
       project: "https://hub.zenoml.com/project/c72065fa-9fea-4904-82f8-5e1fe4b5a685/MMLU/",
       link: "https://github.com/EleutherAI/lm-evaluation-harness?tab=readme-ov-file#visualizing-results",
       image: require("@site/static/img/eleuther.png").default,
