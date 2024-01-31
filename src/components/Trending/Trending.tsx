@@ -11,8 +11,9 @@ export function Trending(props) {
         description="Explore popular public projects and reports on Zeno Hub"
       ></Header>
       <br />
-      <div className={styles.iframe}>
+      <div className={styles.iframeContainer}>
         <iframe
+          className={styles.iframe}
           height="250"
           width="100%"
           src="https://hub.zenoml.com/embed/entry/featured/4"

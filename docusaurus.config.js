@@ -39,17 +39,11 @@ const config = {
         },
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          // editUrl:
-          //   "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
         },
         blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          // editUrl:
-          //   "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          blogTitle: "Zeno Blog",
+          blogDescription: "Updates and news from the Zeno team",
+          blogSidebarCount: "ALL",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -75,6 +69,7 @@ const config = {
             position: "left",
             label: "Docs",
           },
+          { to: "blog", label: "Blog", position: "left" }, // or position: 'right'
           { to: "/about", label: "About", position: "left" },
           { to: "/faq", label: "FAQ", position: "left" },
           {
@@ -115,6 +110,10 @@ const config = {
               {
                 label: "Docs",
                 to: "/docs/intro",
+              },
+              {
+                label: "Blog",
+                to: "/blog/",
               },
               {
                 label: "About",
