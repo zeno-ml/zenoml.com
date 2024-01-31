@@ -10,7 +10,7 @@ interface TestimonialProps {
 
 export function Testimonial({ name, message, project, link, image }: TestimonialProps) {
   return (
-    <div>
+    <div style={{ width: "50%" }}>
       <p style={{ fontStyle: "italic" }}>{message}</p>
       <div style={{ display: "flex", gap: "10px" }}>
         <h3>{name}</h3>
