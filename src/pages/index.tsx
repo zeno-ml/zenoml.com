@@ -7,6 +7,7 @@ import { Trending } from "@site/src/components/Trending/Trending";
 
 import Layout from "@theme/Layout";
 import React from "react";
+import { Code } from "../components/Code/Code";
 import DiscoverSelect from "../components/DiscoverSelect";
 import { Testimonials } from "../components/Testimonials/Testimonials";
 
@@ -31,7 +32,6 @@ export default function Home(): JSX.Element {
         </div>
         <Testimonials />
         <br />
-        <br />
         <div id="pageWrapper">
           <DatatypeSelect />
           <hr />
@@ -40,9 +40,9 @@ export default function Home(): JSX.Element {
           <ChartSelect />
           <hr />
           <ReportSelect />
-          <hr />
-          <Sponsors />
         </div>
+        <Code />
+        <Sponsors />
       </div>
     </Layout>
   );
