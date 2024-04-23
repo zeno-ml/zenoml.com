@@ -17,7 +17,7 @@ export default function FAQ() {
         <h3>How can I report an issue with Zeno?</h3>
         <p>
           Please send us a message on our{" "}
-          <a href="https://discord.gg/km62pDKAkE">Discord channel</a>, file a bug on{" "}
+          <a href="https://discord.gg/nW8AtcYdKF">Discord channel</a>, file a bug on{" "}
           <a href="https://github.com/zeno-ml/zeno-hub/issues">GitHub</a>, or email{" "}
           <a href="mailto:hello@zenoml.com">
             <code>hello@zenoml.com</code>

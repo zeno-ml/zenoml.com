@@ -163,7 +163,7 @@ export default function About() {
         <p>
           If you have any questions or issues with Zeno please send an email to{" "}
           <a href="mailto:hello@zenoml.com">hello@zenoml.com</a>, ask in our{" "}
-          <a href="https://discord.gg/km62pDKAkE">Discord</a>, or open an issue on{" "}
+          <a href="https://discord.gg/nW8AtcYdKF">Discord</a>, or open an issue on{" "}
           <a href="https://github.com/zeno-ml/zeno/issues/new">GitHub</a>
         </p>
         <h2 style={{ marginTop: "20px" }}>Cite</h2>
