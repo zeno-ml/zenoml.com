@@ -75,7 +75,8 @@ const config = {
           {
             type: "html",
             position: "right",
-            value: "<a style='margin-left: 10px' href='https://hub.zenoml.com/signup'>Sign up</a>",
+            value:
+              "<a style='margin-left: 10px' href='https://hub.zenoml.com/signup'>Sign up</a>",
           },
           {
             type: "html",
@@ -130,7 +131,7 @@ const config = {
             items: [
               {
                 label: "Discord",
-                href: "https://discord.gg/km62pDKAkE",
+                href: "https://discord.gg/nW8AtcYdKF",
               },
               {
                 label: "Stack Overflow",
