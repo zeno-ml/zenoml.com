@@ -339,5 +339,5 @@ hr {
 
 .heroButton:hover {
   color: white;
-  background-color: var(--ifm-color-primary-lighter);
+  background-color: var(--p1);
 }
