@@ -15,8 +15,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "zenoml", // Usually your GitHub org/user name.
-  projectName: "zeno", // Usually your repo name.
+  organizationName: "zeno-ml", // Usually your GitHub org/user name.
+  projectName: "zenoml.com", // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
